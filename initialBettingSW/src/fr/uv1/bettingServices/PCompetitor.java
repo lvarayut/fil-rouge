@@ -112,6 +112,14 @@ public class PCompetitor extends Person  implements Competitor{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	
 }
