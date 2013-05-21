@@ -54,26 +54,26 @@ public class TestBettingSoft {
 		}
 		
 		
-		/*
-		 * Test listCompetition function 
-		 */
-		System.out.println("----------------List competitions ---------------");
-		bs.listCompetitions();
-		
-		
-		/*
-		 * Test addSubscriber (age > 18) 
-		 */
-		System.out.println("----------------Add Subscriber ---------------");
-		Calendar c1 = Calendar.getInstance(); //Current time
-		c1.set(1989,Calendar.OCTOBER,10);
-		try {
-			bs.subscribe("GAYE", "Rokhaya", "rgaye", c1, "rokhayagaye");
-		} catch (AuthenticationException | ExistingSubscriberException
-				| BadParametersException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		/*
+//		 * Test listCompetition function 
+//		 */
+//		System.out.println("----------------List competitions ---------------");
+//		bs.listCompetitions();
+//		
+//		
+//		/*
+//		 * Test addSubscriber (age > 18) 
+//		 */
+//		System.out.println("----------------Add Subscriber ---------------");
+//		Calendar c1 = Calendar.getInstance(); //Current time
+//		c1.set(1989,Calendar.OCTOBER,10);
+//		try {
+//			bs.subscribe("GAYE", "Rokhaya", "rgaye", c1, "rokhayagaye");
+//		} catch (AuthenticationException | ExistingSubscriberException
+//				| BadParametersException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 
 

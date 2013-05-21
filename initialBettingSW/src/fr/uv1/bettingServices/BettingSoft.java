@@ -223,7 +223,7 @@ public class BettingSoft implements Betting {
 		CompetitorDAO cd = new CompetitorDAO();
 		PCompetitor com = new PCompetitor(firstname, lastname, username, birthDay);
 		try {
-			cd.createCompetitor(com);
+			com = cd.createCompetitor(com);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -263,13 +263,13 @@ public class BettingSoft implements Betting {
 				Calendar.getInstance(), a_closingDate);
 		CompetitionDAO cd = new CompetitionDAO();
 		try {
-			cd.addCompetition(com);
+		//	cd.addCompetition(com);
 			// Add new competitor into paticipate table DB
 			addCompetitor(com, competitors, a_managerPwd);
 			// Verify whether the competitors exist in Competitor DB or not
-		} catch (SQLException e) {
+		} catch (Exception e){//SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 
 	}

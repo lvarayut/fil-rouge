@@ -2,6 +2,7 @@ package fr.uv1.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mysql.jdbc.Statement;
@@ -14,7 +15,8 @@ public class CompetitorDAO {
 	public CompetitorDAO() {
 		// TODO Auto-generated constructor stub
 	}
-	public void createCompetitor(PCompetitor com) throws SQLException {
+	public PCompetitor createCompetitor(PCompetitor com) throws SQLException {
+		int id = 0;
 		DBConnection db = new DBConnection();
 		java.sql.Date birthDay = new java.sql.Date(com.getBirthdate().getTime()
 				.getTime());
@@ -22,16 +24,24 @@ public class CompetitorDAO {
 		try {
 			c.setAutoCommit(false);
 			PreparedStatement psSQL = c
-					.prepareStatement("insert into competitor(id,firstname, lastname,birthdate)  values (?,?,?,?)");
-
-			psSQL.setInt(1,Statement.RETURN_GENERATED_KEYS);
-			psSQL.setString(2, com.getFirstname());
-			psSQL.setString(3, com.getLastname());
-			psSQL.setDate(4, birthDay);
+					.prepareStatement("insert into competitor(firstname, lastname,birthdate)  values (?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			//id = 
+			//psSQL.setInt(1,Statement.RETURN_GENERATED_KEYS);
+			psSQL.setString(1, com.getFirstname());
+			psSQL.setString(2, com.getLastname());
+			psSQL.setDate(3, birthDay);
 			psSQL.executeUpdate();
-
+			
+			// Retrieve last index
+			ResultSet keys = psSQL.getGeneratedKeys();
+            while (keys.next()) {
+                id = keys.getInt(1);
+            }
+            com.setId(id);
+            // Release object
 			psSQL.close();
 			System.out.println("Sucess!, the competitor is added");
+			
 
 		} catch (SQLException e) {
 			try {
@@ -45,6 +55,7 @@ public class CompetitorDAO {
 		}
 		c.setAutoCommit(true);
 		db.disconnect();
+		return com;
 
 	}
 
