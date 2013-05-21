@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:SequenceDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="addCompetitor" size="2039,863" metadata="uml2-1.0" initialized="true" zoom="0.75" tag="1000" key="32303037303533312D3130303020696E697469616C42657474696E6753572F75736572">
+  <children xsi:type="editmodel:InstanceEditModel" name="TestBettingSoft" location="60,20" size="157,469" id="fr.uv1.tests.validation/TestBettingSoft" itemName="">
+    <children xsi:type="editmodel:ActivationEditModel" location="70,96" size="16,172" sequenceItemContainer="//@children.0" length="172">
+      <sourceConnections xsi:type="editmodel:SequenceMessageEditModel" name="addCompetitor" id="fr.uv1.bettingServices/BettingSoft#addCompetitor(Lfr.uv1.bettingServices.Competition;Ljava.util.Collection;Ljava.lang.String;)" source="//@children.0/@children.0" target="//@children.1/@children.0" targetEnd="//@children.0/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual" associatedMethod="addCompetitor(Competition,Collection &lt;E>,String)" associatedSequenceNumber="1">
+        <children xsi:type="editmodel:SequenceEndEditModel" anchorKind="FixedAtEdge" attachSource="true" userLabel="//@children.0/@children.0/@sourceConnections.0/@children.0/@children.0" methodLabel="//@children.0/@children.0/@sourceConnections.0/@children.0/@children.1" sequenceNumberLabel="//@children.0/@children.0/@sourceConnections.0/@children.0/@children.2" statementExpression="//@children.0/@children.0/@sourceConnections.0/@children.0/@children.3">
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:LabelEditModel" name="addCompetitor(Competition,Collection &lt;E>,String)" size="275,13"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1" size="7,13"/>
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+        </children>
+        <children xsi:type="editmodel:SequenceEndEditModel" anchorKind="FixedAtEdge" userLabel="//@children.0/@children.0/@sourceConnections.0/@children.1/@children.0" methodLabel="//@children.0/@children.0/@sourceConnections.0/@children.1/@children.1" sequenceNumberLabel="//@children.0/@children.0/@sourceConnections.0/@children.1/@children.2" statementExpression="//@children.0/@children.0/@sourceConnections.0/@children.1/@children.3">
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:LabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:LabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+        </children>
+      </sourceConnections>
+    </children>
+  </children>
+  <children xsi:type="editmodel:InstanceEditModel" name="BettingSoft" location="584,20" size="151,469" id="fr.uv1.bettingServices/BettingSoft" itemName="bSoft">
+    <children xsi:type="editmodel:ActivationEditModel" targetConnections="//@children.0/@children.0/@sourceConnections.0" location="67,96" size="16,172" sequenceItemContainer="//@children.1" recursiveChildren="//@children.1/@children.1" length="172">
+      <sourceConnections xsi:type="editmodel:SelfSequenceMessageEditModel" name="authenticateMngr" source="//@children.1/@children.0" target="//@children.1/@children.1" targetEnd="//@children.1/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan" associatedMethod="authenticateMngr(String)" associatedSequenceNumber="1.1">
+        <children xsi:type="editmodel:SequenceEndEditModel" location="4,7" anchorKind="FixedAtEdge" attachSource="true" userLabel="//@children.1/@children.0/@sourceConnections.0/@children.0/@children.0" methodLabel="//@children.1/@children.0/@sourceConnections.0/@children.0/@children.1" sequenceNumberLabel="//@children.1/@children.0/@sourceConnections.0/@children.0/@children.2" statementExpression="//@children.1/@children.0/@sourceConnections.0/@children.0/@children.3">
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:LabelEditModel" name="authenticateMngr(String)" size="137,13"/>
+          <children xsi:type="editmodel:LabelEditModel" name="1.1" size="17,13"/>
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+        </children>
+        <children xsi:type="editmodel:SequenceEndEditModel" location="16,0" anchorKind="FixedAtEdge" userLabel="//@children.1/@children.0/@sourceConnections.0/@children.1/@children.0" methodLabel="//@children.1/@children.0/@sourceConnections.0/@children.1/@children.1" sequenceNumberLabel="//@children.1/@children.0/@sourceConnections.0/@children.1/@children.2" statementExpression="//@children.1/@children.0/@sourceConnections.0/@children.1/@children.3">
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:LabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:LabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+        </children>
+      </sourceConnections>
+    </children>
+    <children xsi:type="editmodel:RecursiveActivationEditModel" targetConnections="//@children.1/@children.0/@sourceConnections.0" location="75,113" size="16,101" sequenceItemContainer="//@children.1" length="101" associatedActivation="//@children.1/@children.0" relativeLocation="8,17"/>
+    <children xsi:type="editmodel:ActivationEditModel" location="67,298" size="16,61" sequenceItemContainer="//@children.1" length="61">
+      <sourceConnections xsi:type="editmodel:SequenceMessageEditModel" name="addCompetitor" id="fr.uv1.DAO/CompetitionDAO#addCompetitor(Lfr.uv1.bettingServices.Competition;Ljava.util.Collection;)" source="//@children.1/@children.2" target="//@children.7/@children.0" targetEnd="//@children.1/@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.1/@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual" associatedMethod="addCompetitor(Competition,Collection &lt;E>)" associatedSequenceNumber="2">
+        <children xsi:type="editmodel:SequenceEndEditModel" location="5,12" anchorKind="FixedAtEdge" attachSource="true" userLabel="//@children.1/@children.2/@sourceConnections.0/@children.0/@children.0" methodLabel="//@children.1/@children.2/@sourceConnections.0/@children.0/@children.1" sequenceNumberLabel="//@children.1/@children.2/@sourceConnections.0/@children.0/@children.2" statementExpression="//@children.1/@children.2/@sourceConnections.0/@children.0/@children.3">
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:LabelEditModel" name="addCompetitor(Competition,Collection &lt;E>)" size="240,13"/>
+          <children xsi:type="editmodel:LabelEditModel" name="2" size="7,13"/>
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+        </children>
+        <children xsi:type="editmodel:SequenceEndEditModel" anchorKind="FixedAtEdge" userLabel="//@children.1/@children.2/@sourceConnections.0/@children.1/@children.0" methodLabel="//@children.1/@children.2/@sourceConnections.0/@children.1/@children.1" sequenceNumberLabel="//@children.1/@children.2/@sourceConnections.0/@children.1/@children.2" statementExpression="//@children.1/@children.2/@sourceConnections.0/@children.1/@children.3">
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:LabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:LabelEditModel" size="0,13"/>
+          <children xsi:type="editmodel:MessageLabelEditModel" size="0,13"/>
+        </children>
+      </sourceConnections>
+    </children>
+  </children>
+  <children xsi:type="editmodel:NotepadEditModel" location="195,142" size="348,36" fontInfo="Sans-8-0" note="Method parameters: &#xA;competition, competitor, a_managerPwd"/>
+  <children xsi:type="editmodel:NotepadEditModel" location="615,177" size="229,36" fontInfo="Sans-8-0" note="Exception AuthenticationException if &#xA;managerPwd is incorrect"/>
+  <children xsi:type="editmodel:LabelObjectEditModel" location="836,570" size="0,13" fontInfo="Sans-8-0"/>
+  <children xsi:type="editmodel:NotepadEditModel" location="1064,284" size="225,23" fontInfo="Sans-8-0" note="Add the competitor in the Database"/>
+  <children xsi:type="editmodel:NotepadEditModel" location="1079,345" size="170,36" fontInfo="Sans-8-0" note="Exception SQLException &#xA;if the query is not success "/>
+  <children xsi:type="editmodel:InstanceEditModel" name="CompetitionDAO" location="1641,20" size="152,469" id="fr.uv1.DAO/CompetitionDAO" itemName="cd">
+    <children xsi:type="editmodel:ActivationEditModel" targetConnections="//@children.1/@children.2/@sourceConnections.0" location="68,310" size="16,40" sequenceItemContainer="//@children.7"/>
+  </children>
+  <diagramOptions xsi:type="options:SequenceDiagramOptions" level="0" properties="Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <sequenceDiagramPreferences showPopupBars="true" showConnectionHandles="true"/>
+</editmodel:SequenceDiagramEditModel>
