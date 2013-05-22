@@ -121,7 +121,7 @@ public class Subscriber extends Person implements Serializable {
 		SubscriberDAO sd = new SubscriberDAO();
 		try {
 			// Bet Podium
-			sd.betPodium(numberTokens,winner,second,third,username);
+			sd.betPodium(numberTokens,competition,winner,second,third,username);
 			// The number of tokens of the subscriber is debited.
 			BettingSoft bs = new BettingSoft("password");
 			bs.debitSubscriber(username, -numberTokens, "password");

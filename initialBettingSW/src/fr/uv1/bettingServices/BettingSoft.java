@@ -376,8 +376,11 @@ public class BettingSoft implements Betting {
 		// Authenticate manager
 		authenticateMngr(managerPwd);
 		CompetitionDAO cd = new CompetitionDAO();
+		// Exist Competition
 		if(cd.isDuplicateCompetition(competition))
 			throw new ExistingCompetitionException("The competition doesn't exist");
+		PodiumDAO pd = new PodiumDAO();
+		pd.settlePodiumToSubscriber(competition,winner,second,third);
 		
 	}
 	

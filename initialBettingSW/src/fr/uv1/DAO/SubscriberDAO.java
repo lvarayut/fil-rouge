@@ -126,7 +126,7 @@ public class SubscriberDAO {
 				+ " tokens");
 	}
 
-	public void betPodium(long numberTokens, PCompetitor winner,
+	public void betPodium(long numberTokens, String competition, PCompetitor winner,
 			PCompetitor second, PCompetitor third, String username)
 			throws SQLException {
 		DBConnection db = new DBConnection();
@@ -135,12 +135,13 @@ public class SubscriberDAO {
 		try {
 			c.setAutoCommit(false);
 			PreparedStatement psSQL = c
-					.prepareStatement("insert into bet_podium(pseudo_subscriber, id_competitor1, id_competitor2,id_competitor3,betToken)  values (?, ?,?,?,?)");
+					.prepareStatement("insert into bet_podium(pseudo_subscriber, id_competitor1, id_competitor2,id_competitor3,name_competition,betToken)  values (?,? ?,?,?,?)");
 			psSQL.setString(1, username);
 			psSQL.setInt(2, winner.getId());
 			psSQL.setInt(3, second.getId());
 			psSQL.setInt(4, third.getId());
-			psSQL.setLong(5, numberTokens);
+			psSQL.setString(5, competition);
+			psSQL.setLong(6, numberTokens);
 			psSQL.executeUpdate();
 			psSQL.close();
 			c.commit();
