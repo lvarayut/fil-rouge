@@ -12,6 +12,7 @@ import fr.uv1.bettingServices.CompetitionException;
 import fr.uv1.bettingServices.PCompetitor;
 import fr.uv1.bettingServices.ExistingCompetitionException;
 import fr.uv1.bettingServices.ExistingSubscriberException;
+import fr.uv1.bettingServices.Subscriber;
 
 public class TestBettingSoft {
 
@@ -96,6 +97,17 @@ public class TestBettingSoft {
 			e.printStackTrace();
 		}
 		
+		/*
+		 * Test betOnPodium  
+		 */
+		System.out.println("----------------Bet on podium ---------------");
+		try {
+			Subscriber s = new Subscriber("subLast", "subFirst", "sub", s1);
+			s.betOnPodium(10, "Polo", cTor, cTor, cTor, "rgaye",  "rokhayagaye");
+		} catch (BadParametersException | AuthenticationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 
 	}

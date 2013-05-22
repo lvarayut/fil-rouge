@@ -84,6 +84,7 @@ public interface Betting {
 	 *             raised if the manager's password is incorrect.
 	 */
 	void authenticateMngr(String a_managerPwd) throws AuthenticationException;
+	
 
 	/**
 	 * change manager's password.

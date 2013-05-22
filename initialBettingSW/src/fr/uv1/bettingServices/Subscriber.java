@@ -1,8 +1,10 @@
 package fr.uv1.bettingServices;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Calendar;
 
+import fr.uv1.DAO.SubscriberDAO;
 import fr.uv1.utils.*;
 import java.util.Collection;
 
@@ -59,7 +61,18 @@ public class Subscriber extends Person implements Serializable {
 		rp.addVerifier(pv);
 		this.setPassword(new RandPass().getPass(Constraints.LONG_PWD));
 	}
+	/**
+	 * Authentication by using subsciber's password
+	 */
 
+	public void authenticateSubscriber(String a_subscriberPwd)
+			throws AuthenticationException {
+		if (a_subscriberPwd == null)
+			throw new AuthenticationException("invalid subscriber's password");
+
+		if (!this.password.equals(a_subscriberPwd))
+			throw new AuthenticationException("incorrect subscriber's password");
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -72,19 +85,50 @@ public class Subscriber extends Person implements Serializable {
 		this.password = password;
 	}
 
-	/**
-		 */
-	public void creditSubscriber(String a_username, long number_tokens,
-			String a_managerPwd) throws AuthenticationException,
-			ExistingSubscriberException, BadParametersException {
-	}
+//	/**
+//		 */
+//	public void creditSubscriber(String a_username, long number_tokens,
+//			String a_managerPwd) throws AuthenticationException,
+//			ExistingSubscriberException, BadParametersException {
+//	}
+//
+//	/**
+//			 */
+//	public void debitSubscriber(String a_username, long number_tokens,
+//			String a_managerPwd) throws AuthenticationException,
+//			ExistingSubscriberException, SubscriberException,
+//			BadParametersException {
+//	}
 
+	
 	/**
-			 */
-	public void debitSubscriber(String a_username, long number_tokens,
-			String a_managerPwd) throws AuthenticationException,
-			ExistingSubscriberException, SubscriberException,
-			BadParametersException {
+	 * Bet on podium 
+	 * The number of tokens of the subscriber is debited.
+	 * @param numberTokens
+	 * @param competition
+	 * @param winner
+	 * @param second
+	 * @param third
+	 * @param username
+	 * @param pwdSubs
+	 * @throws AuthenticationException 
+	 */
+	public void betOnPodium(long numberTokens, String competition,
+			PCompetitor winner, PCompetitor second, PCompetitor third,
+			String username, String pwdSubs) throws AuthenticationException {
+		// Authenticate manager
+		authenticateSubscriber(password);
+		SubscriberDAO sd = new SubscriberDAO();
+		try {
+			// Bet Podium
+			sd.betPodium(numberTokens,winner,second,third,username);
+			// The number of tokens of the subscriber is debited.
+			BettingSoft bs = new BettingSoft("password");
+			bs.debitSubscriber(username, -numberTokens, "password");
+		} catch (SQLException | BadParametersException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

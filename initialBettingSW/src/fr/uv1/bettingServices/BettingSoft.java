@@ -185,6 +185,7 @@ public class BettingSoft implements Betting {
 			throw new AuthenticationException("incorrect manager's password");
 	}
 
+	
 	/**
 	 * From Betting interface
 	 */
@@ -312,18 +313,20 @@ public class BettingSoft implements Betting {
 	 * @param numberTokens
 	 * @param managerPwd
 	 * @throws AuthenticationException
-	 * @throws BadParametersException 
+	 * @throws BadParametersException
 	 */
 	public void creditCompetitor(String username, long numberTokens,
-			String managerPwd) throws AuthenticationException, BadParametersException {
+			String managerPwd) throws AuthenticationException,
+			BadParametersException {
 		// Authenticate manager
 		authenticateMngr(managerPwd);
 		// Verify number of tokens
-		if(numberTokens<=0)
-			throw new BadParametersException("The number of tokens should be greater than 0");
+		if (numberTokens <= 0)
+			throw new BadParametersException(
+					"The number of tokens should be greater than 0");
 		SubscriberDAO sd = new SubscriberDAO();
 		try {
-			sd.addTokens(username,numberTokens);
+			sd.addTokens(username, numberTokens);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -337,24 +340,27 @@ public class BettingSoft implements Betting {
 	 * @param numberTokens
 	 * @param managerPwd
 	 * @throws AuthenticationException
-	 * @throws BadParametersException 
+	 * @throws BadParametersException
 	 */
 	public void debitSubscriber(String username, long numberTokens,
-			String managerPwd) throws AuthenticationException, BadParametersException {
+			String managerPwd) throws AuthenticationException,
+			BadParametersException {
 		// Authenticate manager
 		authenticateMngr(managerPwd);
 		// Verify number of tokens
-		if(numberTokens>0)
-			throw new BadParametersException("The number of tokens should be lesser than 0");
+		if (numberTokens > 0)
+			throw new BadParametersException(
+					"The number of tokens should be lesser than 0");
 		SubscriberDAO sd = new SubscriberDAO();
 		try {
-			sd.removeTokens(username,numberTokens);
+			sd.removeTokens(username, numberTokens);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	
 	/**
 	 * Getter of the property <tt>robot</tt>
 	 * 
