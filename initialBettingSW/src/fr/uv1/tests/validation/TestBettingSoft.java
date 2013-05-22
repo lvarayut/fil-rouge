@@ -77,7 +77,24 @@ public class TestBettingSoft {
 		/*
 		 * Test credit  
 		 */
+		System.out.println("----------------Add tokens ---------------");
+		try {
+			bs.creditCompetitor("rgaye", 20,  "rokhayagaye");
+		} catch (AuthenticationException | BadParametersException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		/*
+		 * Test debit
+		 */
+		System.out.println("----------------Remove tokens ---------------");
+		try {
+			bs.debitSubscriber("rgaye", -10,  "rokhayagaye");
+		} catch (AuthenticationException | BadParametersException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 
 

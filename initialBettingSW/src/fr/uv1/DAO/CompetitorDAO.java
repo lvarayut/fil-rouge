@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import com.mysql.jdbc.Statement;
 
+import fr.uv1.bettingServices.ExistingCompetitorException;
 import fr.uv1.bettingServices.PCompetitor;
 import fr.uv1.database.DBConnection;
 
@@ -15,7 +16,10 @@ public class CompetitorDAO {
 	public CompetitorDAO() {
 		// TODO Auto-generated constructor stub
 	}
-	public PCompetitor createCompetitor(PCompetitor com) throws SQLException {
+	public PCompetitor createCompetitor(PCompetitor com) throws SQLException, ExistingCompetitorException {
+		// Verify duplicate competitor
+		if(isDuplicateCompetitor(com))
+				throw new ExistingCompetitorException("Duplicate competitor");
 		int id = 0;
 		DBConnection db = new DBConnection();
 		java.sql.Date birthDay = new java.sql.Date(com.getBirthdate().getTime()
@@ -57,6 +61,22 @@ public class CompetitorDAO {
 		db.disconnect();
 		return com;
 
+	}
+	
+	public boolean isDuplicateCompetitor(PCompetitor comTor) throws SQLException{
+		DBConnection db = new DBConnection();
+		Connection c = db.connect();
+		PreparedStatement psSQL = c
+				.prepareStatement("select * from competitor");
+		ResultSet resultSet = psSQL.executeQuery();
+		while (resultSet.next()) {
+			if(comTor.getId()==resultSet.getInt("id"))
+				return true;
+		}
+		resultSet.close();
+		c.setAutoCommit(true);
+		db.disconnect();
+		return false;
 	}
 
 

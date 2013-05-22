@@ -225,7 +225,7 @@ public class BettingSoft implements Betting {
 				birthDay);
 		try {
 			com = cd.createCompetitor(com);
-		} catch (SQLException e) {
+		} catch (SQLException | ExistingCompetitorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -272,8 +272,7 @@ public class BettingSoft implements Betting {
 			addCompetitor(comTion, competitors, a_managerPwd);
 			// Verify whether the competitors exist in Competitor DB or not
 		} catch (Exception e) {// SQLException e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 
 	}
@@ -308,24 +307,52 @@ public class BettingSoft implements Betting {
 
 	/**
 	 * Credit number of tokens of a subscriber.
+	 * 
 	 * @param username
 	 * @param numberTokens
 	 * @param managerPwd
+	 * @throws AuthenticationException
+	 * @throws BadParametersException 
 	 */
-	public void createCompetitor(String username, long numberTokens,
-			String managerPwd) {
-		
+	public void creditCompetitor(String username, long numberTokens,
+			String managerPwd) throws AuthenticationException, BadParametersException {
+		// Authenticate manager
+		authenticateMngr(managerPwd);
+		// Verify number of tokens
+		if(numberTokens<=0)
+			throw new BadParametersException("The number of tokens should be greater than 0");
+		SubscriberDAO sd = new SubscriberDAO();
+		try {
+			sd.addTokens(username,numberTokens);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Debit a subscriber account with a number of tokens.
+	 * 
 	 * @param username
 	 * @param numberTokens
 	 * @param managerPwd
+	 * @throws AuthenticationException
+	 * @throws BadParametersException 
 	 */
 	public void debitSubscriber(String username, long numberTokens,
-			String managerPwd) {
-		
+			String managerPwd) throws AuthenticationException, BadParametersException {
+		// Authenticate manager
+		authenticateMngr(managerPwd);
+		// Verify number of tokens
+		if(numberTokens>0)
+			throw new BadParametersException("The number of tokens should be lesser than 0");
+		SubscriberDAO sd = new SubscriberDAO();
+		try {
+			sd.removeTokens(username,numberTokens);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**

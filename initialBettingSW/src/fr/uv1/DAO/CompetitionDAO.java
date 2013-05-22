@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import fr.uv1.bettingServices.Competition;
+import fr.uv1.bettingServices.ExistingCompetitionException;
+import fr.uv1.bettingServices.ExistingCompetitorException;
 import fr.uv1.bettingServices.PCompetitor;
 import fr.uv1.database.DBConnection;
 
@@ -18,7 +20,10 @@ public class CompetitionDAO {
 	public CompetitionDAO() {
 		// TODO Auto-generated constructor stub
 	}
-	public void addCompetition(Competition com) throws SQLException {
+	public void addCompetition(Competition com) throws SQLException, ExistingCompetitionException {
+		// Verify duplicate competition
+		if(isDuplicateCompetition(com))
+			throw new ExistingCompetitionException("Duplicate competition");
 		DBConnection db = new DBConnection();
 		java.sql.Date startDay = new java.sql.Date(com.getStartDate().getTime()
 				.getTime());
@@ -54,13 +59,13 @@ public class CompetitionDAO {
 			Collection competitors) throws SQLException {
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
+		CompetitorDAO cd = new CompetitorDAO();
 		try {
 			Iterator iterator = competitors.iterator();
 			while (iterator.hasNext()) {
 				PCompetitor tempC = (PCompetitor) iterator.next();
 				// Verify whether this competitor is already created or not
-				if(!isDuplicateCompetitor(tempC)){
-					CompetitorDAO cd = new CompetitorDAO();
+				if(!cd.isDuplicateCompetitor(tempC)){
 					tempC = cd.createCompetitor(tempC);
 				}
 				c.setAutoCommit(false);
@@ -73,7 +78,7 @@ public class CompetitionDAO {
 				System.out.println("Sucess!, the competitor id = "+tempC.getId()+" participated in the competition");
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | ExistingCompetitorException e) {
 			try {
 				c.rollback();
 			} catch (SQLException e1) {
@@ -87,21 +92,7 @@ public class CompetitionDAO {
 		db.disconnect();
 	}
 	
-	public boolean isDuplicateCompetitor(PCompetitor comTor) throws SQLException{
-		DBConnection db = new DBConnection();
-		Connection c = db.connect();
-		PreparedStatement psSQL = c
-				.prepareStatement("select * from competitor");
-		ResultSet resultSet = psSQL.executeQuery();
-		while (resultSet.next()) {
-			if(comTor.getId()==resultSet.getInt("id"))
-				return true;
-		}
-		resultSet.close();
-		c.setAutoCommit(true);
-		db.disconnect();
-		return false;
-	}
+	
 	
 	public Collection listAllCompetition() throws SQLException{
 		DBConnection db = new DBConnection();
@@ -121,5 +112,21 @@ public class CompetitionDAO {
 		c.setAutoCommit(true);
 		db.disconnect();
 		return allCTion;
+	}
+	
+	public boolean isDuplicateCompetition(Competition cTion) throws SQLException{
+		DBConnection db = new DBConnection();
+		Connection c = db.connect();
+		PreparedStatement psSQL = c
+				.prepareStatement("select * from competition");
+		ResultSet resultSet = psSQL.executeQuery();
+		while (resultSet.next()) {
+			if(cTion.getName().equals(resultSet.getString("name")))
+				return true;
+		}
+		resultSet.close();
+		c.setAutoCommit(true);
+		db.disconnect();
+		return false;
 	}
 }
