@@ -9,6 +9,7 @@ public class PCompetitor extends Person  implements Competitor{
 	public PCompetitor(String firstname,String lastname,String username,Calendar birthDay) {
 		// TODO Auto-generated constructor stub
 		super(firstname, lastname,birthDay);
+		id = -1;
 	}
 
 	/**

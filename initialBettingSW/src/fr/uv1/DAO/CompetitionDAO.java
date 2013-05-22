@@ -58,14 +58,19 @@ public class CompetitionDAO {
 			Iterator iterator = competitors.iterator();
 			while (iterator.hasNext()) {
 				PCompetitor tempC = (PCompetitor) iterator.next();
+				// Verify whether this competitor is already created or not
+				if(!isDuplicateCompetitor(tempC)){
+					CompetitorDAO cd = new CompetitorDAO();
+					tempC = cd.createCompetitor(tempC);
+				}
 				c.setAutoCommit(false);
 				PreparedStatement psSQL = c
 						.prepareStatement("insert into participate(id_competitor,name_competition)  values (?,?)");
-				
-				psSQL.setString(1, a_competition.getName());
+				psSQL.setInt(1, tempC.getId());
+				psSQL.setString(2, a_competition.getName());
 				psSQL.executeUpdate();
 				psSQL.close();
-				System.out.println("Sucess!, the competitors participated in the competition");
+				System.out.println("Sucess!, the competitor id = "+tempC.getId()+" participated in the competition");
 			}
 
 		} catch (SQLException e) {
@@ -82,10 +87,26 @@ public class CompetitionDAO {
 		db.disconnect();
 	}
 	
+	public boolean isDuplicateCompetitor(PCompetitor comTor) throws SQLException{
+		DBConnection db = new DBConnection();
+		Connection c = db.connect();
+		PreparedStatement psSQL = c
+				.prepareStatement("select * from competitor");
+		ResultSet resultSet = psSQL.executeQuery();
+		while (resultSet.next()) {
+			if(comTor.getId()==resultSet.getInt("id"))
+				return true;
+		}
+		resultSet.close();
+		c.setAutoCommit(true);
+		db.disconnect();
+		return false;
+	}
+	
 	public Collection listAllCompetition() throws SQLException{
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
-		Collection allCTion = new ArrayList<PCompetitor>();
+		Collection allCTion = new ArrayList<Competition>();
 		PreparedStatement psSQL = c
 				.prepareStatement("select * from competition");
 		ResultSet resultSet = psSQL.executeQuery();

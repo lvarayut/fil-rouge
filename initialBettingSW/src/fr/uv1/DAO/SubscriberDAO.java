@@ -12,6 +12,7 @@ public class SubscriberDAO {
 	public SubscriberDAO() {
 		// TODO Auto-generated constructor stub
 	}
+
 	public void addSubscriber(Subscriber s) throws SQLException {
 		DBConnection db = new DBConnection();
 		java.sql.Date birthDay = new java.sql.Date(s.getBirthdate().getTime()
@@ -45,6 +46,12 @@ public class SubscriberDAO {
 		}
 		c.setAutoCommit(true);
 		db.disconnect();
+	}
+
+	public void createCompetitor(java.lang.String lastName,
+			java.lang.String firstName, java.lang.String borndate,
+			java.lang.String managerPwd) {
+
 	}
 
 }

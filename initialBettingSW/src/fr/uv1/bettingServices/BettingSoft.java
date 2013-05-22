@@ -218,24 +218,28 @@ public class BettingSoft implements Betting {
 	/**
 	 * Create a new competitor
 	 */
-	public void createCompetitor(String username, String firstname,
+	public PCompetitor createCompetitor(String username, String firstname,
 			String lastname, Calendar birthDay) {
 		CompetitorDAO cd = new CompetitorDAO();
-		PCompetitor com = new PCompetitor(firstname, lastname, username, birthDay);
+		PCompetitor com = new PCompetitor(firstname, lastname, username,
+				birthDay);
 		try {
 			com = cd.createCompetitor(com);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return com;
 	}
 
 	/**
 	 * Add competitors to participate competitions
-	 * @throws AuthenticationException 
+	 * 
+	 * @throws AuthenticationException
 	 */
 	public void addCompetitor(Competition a_competition,
-			Collection competitors, String a_managerPwd) throws AuthenticationException {
+			Collection competitors, String a_managerPwd)
+			throws AuthenticationException {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
 		CompetitionDAO cd = new CompetitionDAO();
@@ -259,17 +263,17 @@ public class BettingSoft implements Betting {
 			throw new BadParametersException("Invalide end date");
 		}
 		// Add new competition table DB
-		Competition com = new Competition(a_competition,
+		Competition comTion = new Competition(a_competition,
 				Calendar.getInstance(), a_closingDate);
 		CompetitionDAO cd = new CompetitionDAO();
 		try {
-		//	cd.addCompetition(com);
-			// Add new competitor into paticipate table DB
-			addCompetitor(com, competitors, a_managerPwd);
+			cd.addCompetition(comTion);
+			// Add new competitor into participate table DB
+			addCompetitor(comTion, competitors, a_managerPwd);
 			// Verify whether the competitors exist in Competitor DB or not
-		} catch (Exception e){//SQLException e) {
+		} catch (Exception e) {// SQLException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			// e.printStackTrace();
 		}
 
 	}
@@ -300,6 +304,28 @@ public class BettingSoft implements Betting {
 					+ (cTion.getEndDate().get(Calendar.MONTH) + 1) + "/"
 					+ cTion.getEndDate().get(Calendar.YEAR));
 		}
+	}
+
+	/**
+	 * Credit number of tokens of a subscriber.
+	 * @param username
+	 * @param numberTokens
+	 * @param managerPwd
+	 */
+	public void createCompetitor(String username, long numberTokens,
+			String managerPwd) {
+		
+	}
+
+	/**
+	 * Debit a subscriber account with a number of tokens.
+	 * @param username
+	 * @param numberTokens
+	 * @param managerPwd
+	 */
+	public void debitSubscriber(String username, long numberTokens,
+			String managerPwd) {
+		
 	}
 
 	/**
