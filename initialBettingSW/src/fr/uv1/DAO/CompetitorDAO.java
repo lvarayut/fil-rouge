@@ -18,7 +18,7 @@ public class CompetitorDAO {
 	}
 	public PCompetitor createCompetitor(PCompetitor com) throws SQLException, ExistingCompetitorException {
 		// Verify duplicate competitor
-		if(isDuplicateCompetitor(com))
+		if(isDuplicateCompetitor(com.getId()))
 				throw new ExistingCompetitorException("Duplicate competitor");
 		int id = 0;
 		DBConnection db = new DBConnection();
@@ -63,14 +63,14 @@ public class CompetitorDAO {
 
 	}
 	
-	public boolean isDuplicateCompetitor(PCompetitor comTor) throws SQLException{
+	public boolean isDuplicateCompetitor(int id) throws SQLException{
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
 		PreparedStatement psSQL = c
 				.prepareStatement("select * from competitor");
 		ResultSet resultSet = psSQL.executeQuery();
 		while (resultSet.next()) {
-			if(comTor.getId()==resultSet.getInt("id"))
+			if(id == resultSet.getInt("id"))
 				return true;
 		}
 		resultSet.close();

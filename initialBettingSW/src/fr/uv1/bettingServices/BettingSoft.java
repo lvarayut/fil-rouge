@@ -8,6 +8,7 @@ import sun.security.util.Password;
 
 import fr.uv1.DAO.CompetitionDAO;
 import fr.uv1.DAO.CompetitorDAO;
+import fr.uv1.DAO.PodiumDAO;
 import fr.uv1.DAO.SubscriberDAO;
 import fr.uv1.database.DBConnection;
 
@@ -185,7 +186,6 @@ public class BettingSoft implements Betting {
 			throw new AuthenticationException("incorrect manager's password");
 	}
 
-	
 	/**
 	 * From Betting interface
 	 */
@@ -360,7 +360,49 @@ public class BettingSoft implements Betting {
 		}
 	}
 
+	/**
+	 * Settle bets on podium
+	 * @param competition
+	 * @param winner
+	 * @param second
+	 * @param third
+	 * @param managerPwd
+	 * @throws AuthenticationException 
+	 * @throws ExistingCompetitionException 
+	 * @throws SQLException 
+	 */
+	public void settlePodium(String competition, PCompetitor winner,
+			PCompetitor second, PCompetitor third, String managerPwd) throws AuthenticationException, SQLException, ExistingCompetitionException {
+		// Authenticate manager
+		authenticateMngr(managerPwd);
+		CompetitionDAO cd = new CompetitionDAO();
+		if(cd.isDuplicateCompetition(competition))
+			throw new ExistingCompetitionException("The competition doesn't exist");
+		
+	}
 	
+	/**
+	 * Calculate the competitors who are first, second, and third
+	 * @param competition
+	 * @param winner
+	 * @param second
+	 * @param third
+	 * @param managerPwd
+	 * @throws AuthenticationException
+	 */
+	public void calculatePodiumWinner(String competition, PCompetitor winner,
+			PCompetitor second, PCompetitor third, String managerPwd) throws AuthenticationException {
+		// Authenticate manager
+				authenticateMngr(managerPwd);
+		PodiumDAO pd = new PodiumDAO();
+		try {
+			pd.addPodiumWinner(competition,winner,second,third);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * Getter of the property <tt>robot</tt>
 	 * 

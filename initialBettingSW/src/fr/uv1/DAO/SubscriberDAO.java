@@ -21,7 +21,7 @@ public class SubscriberDAO {
 	public void addSubscriber(Subscriber s) throws SQLException,
 			ExistingSubscriberException {
 		// Verify duplicate subscriber
-		if (isDuplicateSubscriber(s))
+		if (isDuplicateSubscriber(s.getUsername()))
 			throw new ExistingSubscriberException("Duplicate subscriber");
 		DBConnection db = new DBConnection();
 		java.sql.Date birthDay = new java.sql.Date(s.getBirthdate().getTime()
@@ -58,14 +58,14 @@ public class SubscriberDAO {
 		db.disconnect();
 	}
 
-	public boolean isDuplicateSubscriber(Subscriber s) throws SQLException {
+	public boolean isDuplicateSubscriber(String username) throws SQLException {
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
 		PreparedStatement psSQL = c
 				.prepareStatement("select * from subscriber");
 		ResultSet resultSet = psSQL.executeQuery();
 		while (resultSet.next()) {
-			if (s.getUsername().equals(resultSet.getString("pseudo")))
+			if (username.equals(resultSet.getString("pseudo")))
 				return true;
 		}
 		resultSet.close();
