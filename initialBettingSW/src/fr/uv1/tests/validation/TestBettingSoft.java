@@ -1,6 +1,7 @@
 package fr.uv1.tests.validation;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -101,14 +102,38 @@ public class TestBettingSoft {
 		 * Test betOnPodium  
 		 */
 		System.out.println("----------------Bet on podium ---------------");
+		PCompetitor cTor1 = bs.createCompetitor("A_First", "A_Last", "A_Username", Calendar.getInstance());
+		PCompetitor cTor2 = bs.createCompetitor("B_First", "B_Last", "B_Username", Calendar.getInstance());
+		PCompetitor cTor3 = bs.createCompetitor("C_First", "C_Last", "C_Username", Calendar.getInstance());
 		try {
 			Subscriber s = new Subscriber("subLast", "subFirst", "sub", s1);
-			s.betOnPodium(10, "Polo", cTor, cTor, cTor, "rgaye",  "rokhayagaye");
+			s.betOnPodium(10, "Polo", cTor1, cTor2, cTor3, "rgaye",  "rokhayagaye");
 		} catch (BadParametersException | AuthenticationException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+//		/*
+//		 * Test calculatePodiumWinner
+//		 */
+//		System.out.println("----------------Calculate Podium Winner ---------------");
+//		try {
+//			bs.calculatePodiumWinner("Polo", cTor1, cTor2, cTor3, "rokhayagaye");
+//		} catch (AuthenticationException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
-
+		/*
+		 * Test settlePodium
+		 */
+		System.out.println("----------------Settle Podium ---------------");
+		try {
+			bs.settlePodium("Polo", cTor1, cTor2, cTor3, "rokhayagaye");
+		} catch (AuthenticationException | SQLException
+				| ExistingCompetitionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

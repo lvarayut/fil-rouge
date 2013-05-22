@@ -21,7 +21,7 @@ public class SubscriberDAO {
 	public void addSubscriber(Subscriber s) throws SQLException,
 			ExistingSubscriberException {
 		// Verify duplicate subscriber
-		if (isDuplicateSubscriber(s.getUsername()))
+		if (isExistSubscriber(s.getUsername()))
 			throw new ExistingSubscriberException("Duplicate subscriber");
 		DBConnection db = new DBConnection();
 		java.sql.Date birthDay = new java.sql.Date(s.getBirthdate().getTime()
@@ -58,7 +58,7 @@ public class SubscriberDAO {
 		db.disconnect();
 	}
 
-	public boolean isDuplicateSubscriber(String username) throws SQLException {
+	public boolean isExistSubscriber(String username) throws SQLException {
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
 		PreparedStatement psSQL = c
@@ -135,7 +135,7 @@ public class SubscriberDAO {
 		try {
 			c.setAutoCommit(false);
 			PreparedStatement psSQL = c
-					.prepareStatement("insert into bet_podium(pseudo_subscriber, id_competitor1, id_competitor2,id_competitor3,name_competition,betToken)  values (?,? ?,?,?,?)");
+					.prepareStatement("insert into bet_podium(pseudo_subscriber, id_competitor1, id_competitor2, id_competitor3, name_competition, betToken)  values (?,?,?,?,?,?)");
 			psSQL.setString(1, username);
 			psSQL.setInt(2, winner.getId());
 			psSQL.setInt(3, second.getId());

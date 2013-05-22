@@ -22,7 +22,7 @@ public class CompetitionDAO {
 	}
 	public void addCompetition(Competition com) throws SQLException, ExistingCompetitionException {
 		// Verify duplicate competition
-		if(isDuplicateCompetition(com.getName()))
+		if(isExistCompetition(com.getName()))
 			throw new ExistingCompetitionException("Duplicate competition");
 		DBConnection db = new DBConnection();
 		java.sql.Date startDay = new java.sql.Date(com.getStartDate().getTime()
@@ -65,7 +65,7 @@ public class CompetitionDAO {
 			while (iterator.hasNext()) {
 				PCompetitor tempC = (PCompetitor) iterator.next();
 				// Verify whether this competitor is already created or not
-				if(!cd.isDuplicateCompetitor(tempC.getId())){
+				if(!cd.isExistCompetitor(tempC.getId())){
 					tempC = cd.createCompetitor(tempC);
 				}
 				c.setAutoCommit(false);
@@ -114,7 +114,7 @@ public class CompetitionDAO {
 		return allCTion;
 	}
 	
-	public boolean isDuplicateCompetition(String competitionName) throws SQLException{
+	public boolean isExistCompetition(String competitionName) throws SQLException{
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
 		PreparedStatement psSQL = c

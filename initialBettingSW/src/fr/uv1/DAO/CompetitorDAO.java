@@ -18,7 +18,7 @@ public class CompetitorDAO {
 	}
 	public PCompetitor createCompetitor(PCompetitor com) throws SQLException, ExistingCompetitorException {
 		// Verify duplicate competitor
-		if(isDuplicateCompetitor(com.getId()))
+		if(isExistCompetitor(com.getId()))
 				throw new ExistingCompetitorException("Duplicate competitor");
 		int id = 0;
 		DBConnection db = new DBConnection();
@@ -63,7 +63,7 @@ public class CompetitorDAO {
 
 	}
 	
-	public boolean isDuplicateCompetitor(int id) throws SQLException{
+	public boolean isExistCompetitor(int id) throws SQLException{
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
 		PreparedStatement psSQL = c
