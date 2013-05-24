@@ -53,7 +53,7 @@ public class Subscriber extends Person implements Serializable {
 	public Subscriber(String a_lastname, String a_firstName, String a_username,
 			Calendar a_birthDay) throws BadParametersException {
 		super(a_firstName, a_lastname, a_birthDay);
-		this.username = a_username;
+		this.setUsername(a_username);
 		// this.setLastname(a_name);
 		// this.setFirstname(a_firstName);
 		// this.setUsername(a_username);
@@ -64,25 +64,13 @@ public class Subscriber extends Person implements Serializable {
 		this.setPassword(new RandPass().getPass(Constraints.LONG_PWD));
 	}
 
-	/**
-	 * Authentication by using subsciber's password
-	 * @param a_subscriberPwd Subscriber's password
-	 * @throws AuthenticationException The subscriber's password is invalid
-	 */
-	public void authenticateSubscriber(String a_subscriberPwd)
-			throws AuthenticationException {
-		if (a_subscriberPwd == null)
-			throw new AuthenticationException("invalid subscriber's password");
-
-		if (!this.password.equals(a_subscriberPwd))
-			throw new AuthenticationException("incorrect subscriber's password");
-	}
+	
 
 	public String getPassword() {
 		return password;
 	}
 
-	private void setPassword(String password) throws BadParametersException {
+	public void setPassword(String password) throws BadParametersException {
 		if (password == null)
 			throw new BadParametersException("password is not valid");
 		if (!pv.verify(password.toCharArray()))
@@ -105,45 +93,14 @@ public class Subscriber extends Person implements Serializable {
 	// BadParametersException {
 	// }
 
-	/**
-	 * Bet on podium The number of tokens of the subscriber is debited.
-	 * @param numberTokens Number of tokens
-	 * @param competition  Competition's name
-	 * @param winner
-	 *            Winner
-	 * @param second
-	 *            First runner-up
-	 * @param third
-	 *            Second runner-up
-	 * @param username Subscriber's username
-	 * @param pwdSubs Subscriber's password
-	 * @throws AuthenticationException  The subscriber's password is invalid
-	 */
-	public void betOnPodium(long numberTokens, String competition,
-			PCompetitor winner, PCompetitor second, PCompetitor third,
-			String username, String pwdSubs) throws AuthenticationException {
-		// Authenticate subscriber
-		authenticateSubscriber(pwdSubs);
-		SubscriberDAO sd = new SubscriberDAO();
-		try {
-			// Bet Podium
-			sd.betPodium(numberTokens, competition, winner, second, third,
-					username);
-			// The number of tokens of the subscriber is debited.
-			BettingSoft bs = new BettingSoft("password");
-			bs.debitSubscriber(username, -numberTokens, "password");
-		} catch (SQLException | BadParametersException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 
 	/**
 	 * uml.property name="robot"
 	 * uml.associationEnd multiplicity="(0 -1)"
 	 *                     inverse="subscriber:fr.uv1.bettingServices.Robot"
 	 */
-	private Collection robot;
+	private Collection<Robot> robot;
 
 	/**
 	 * Getter of the property <tt>robot</tt>
@@ -161,8 +118,11 @@ public class Subscriber extends Person implements Serializable {
 	 * @param robot
 	 *            The robot to set.
 	 * uml.property name="robot"
+	 * @throws BadParametersException 
 	 */
-	public void setRobot(Collection<Robot> robot) {
+	public void setRobot(Collection<Robot> robot) throws BadParametersException {
+		if(robot==null)
+			throw new BadParametersException("The robot object is null");
 		this.robot = robot;
 	}
 
@@ -171,7 +131,7 @@ public class Subscriber extends Person implements Serializable {
 	 * uml.associationEnd multiplicity="(0 -1)"
 	 *                     inverse="subscriber:fr.uv1.bettingServices.Bet"
 	 */
-	private Collection bet;
+	private Collection<Bet> bet;
 
 	/**
 	 * Getter of the property <tt>bet</tt>
@@ -189,15 +149,12 @@ public class Subscriber extends Person implements Serializable {
 	 * @param bet
 	 *            The bet to set.
 	 * uml.property name="bet"
+	 * @throws BadParametersException 
 	 */
-	public void setBet(Collection<Bet> bet) {
+	public void setBet(Collection<Bet> bet) throws BadParametersException {
 		if(bet == null)
-			try {
 				throw new BadParametersException("Bet should not be null");
-			} catch (BadParametersException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+
 		this.bet = bet;
 	}
 

@@ -15,9 +15,15 @@ public abstract class Person {
 
 	public Person(String firstname,String lastname,Calendar birthDate) {
 		// TODO Auto-generated constructor stub
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.birthdate = birthDate;
+		try {
+			this.setFirstname(firstname);
+			this.setLastname(lastname);
+			this.setBirthdate(birthDate);
+		} catch (BadParametersException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	public String getFirstName() {
@@ -30,16 +36,24 @@ public abstract class Person {
 
 	
 	
+	/**
+	 * @param lastname Person's last name
+	 * @throws BadParametersException The lastname object cannot be null
+	 */
 	public void setLastname(String lastname) throws BadParametersException {
 		if (lastname == null)
-			throw new BadParametersException("lastname is not valid");
+			throw new BadParametersException("The lastname object cannot be null");
 		checkStringLastName(lastname);
 		this.lastname = lastname;
 	}
 
+	/**
+	 * @param firstname Person's first name
+	 * @throws BadParametersException The firstname cannot be null
+	 */
 	public void setFirstname(String firstname) throws BadParametersException {
-		if (lastname == null)
-			throw new BadParametersException("firstname is not valid");
+		if (firstname == null)
+			throw new BadParametersException("The firstname cannot be null");
 		checkStringFirstName(firstname);
 		this.firstname = firstname;
 	}
@@ -122,8 +136,11 @@ public abstract class Person {
 	 * Setter of the property <tt>bettingSoft</tt>
 	 * @param bettingSoft  The bettingSoft to set.
 	 * uml.property  name="bettingSoft"
+	 * @throws BadParametersException The bettingSoft object cannot be null
 	 */
-	public void setBettingSoft(BettingSoft bettingSoft) {
+	public void setBettingSoft(BettingSoft bettingSoft) throws BadParametersException {
+		if (bettingSoft == null)
+			throw new BadParametersException("The bettingSoft object cannot be null");
 		this.bettingSoft = bettingSoft;
 	}
 
@@ -131,7 +148,13 @@ public abstract class Person {
 		return birthdate;
 	}
 
-	public void setBirthdate(Calendar birthdate) {
+	/**
+	 * @param birthdate Calendar object of birthdate
+	 * @throws BadParametersException "The birthdate object cannot be null"
+	 */
+	public void setBirthdate(Calendar birthdate) throws BadParametersException {
+		if (birthdate == null)
+			throw new BadParametersException("The birthdate object cannot be null");
 		this.birthdate = birthdate;
 	}
 

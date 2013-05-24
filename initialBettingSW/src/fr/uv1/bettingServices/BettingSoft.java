@@ -47,12 +47,12 @@ public class BettingSoft implements Betting {
 	 * uml.property name="robot" uml.associationEnd multiplicity="(0 -1)"
 	 * inverse="bettingSoft:fr.uv1.bettingServices.Robot"
 	 */
-	private Collection robot;
+	private Collection<Robot> robot;
 	/**
 	 * uml.property name="person" uml.associationEnd multiplicity="(0 -1)"
 	 * inverse="bettingSoft:fr.uv1.bettingServices.Person"
 	 */
-	private Collection person;
+	private Collection<Person> person;
 
 	/**
 	 * constructor of BettingSoft
@@ -88,6 +88,7 @@ public class BettingSoft implements Betting {
 		if (!pv.verify(managerPassword.toCharArray()))
 			throw new BadParametersException("manager's password is not valid");
 		this.managerPassword = managerPassword;
+		System.out.println("The manager's password is changed");
 	}
 
 	/**
@@ -285,7 +286,7 @@ public class BettingSoft implements Betting {
 	 *             The manager's password is wrong
 	 */
 	public void addCompetitor(Competition a_competition,
-			Collection competitors, String a_managerPwd)
+			Collection<PCompetitor> competitors, String a_managerPwd)
 			throws AuthenticationException {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
@@ -317,7 +318,7 @@ public class BettingSoft implements Betting {
 	 *             The end date is invalid
 	 */
 	public void addCompetition(String a_competition, Calendar a_closingDate,
-			Collection competitors, String a_managerPwd)
+			Collection<PCompetitor> competitors, String a_managerPwd)
 			throws AuthenticationException, ExistingCompetitionException,
 			BadParametersException {
 		// Authenticate manager
@@ -442,41 +443,7 @@ public class BettingSoft implements Betting {
 		}
 	}
 
-	/**
-	 * Settle bets on podium
-	 * 
-	 * @param competition
-	 *            Competition's name
-	 * @param winner
-	 *            Winner
-	 * @param second
-	 *            First runner-up
-	 * @param third
-	 *            Second runner-up
-	 * @param managerPwd
-	 *            Manager's password
-	 * @throws AuthenticationException
-	 *             The manager's password is invalid
-	 * @throws ExistingCompetitionException
-	 *             The competition is not existed
-	 * @throws SQLException
-	 *             SQL problem
-	 */
-	public void settlePodium(String competition, PCompetitor winner,
-			PCompetitor second, PCompetitor third, String managerPwd)
-			throws AuthenticationException, SQLException,
-			ExistingCompetitionException {
-		// Authenticate manager
-		authenticateMngr(managerPwd);
-		CompetitionDAO cd = new CompetitionDAO();
-		// Exist Competition
-		if (!cd.isExistCompetition(competition))
-			throw new ExistingCompetitionException(
-					"The competition doesn't exist");
-		PodiumDAO pd = new PodiumDAO();
-		pd.settlePodiumToSubscriber(competition, winner, second, third);
 
-	}
 
 	/**
 	 * Calculate the competitors who are first, second, and third
@@ -513,7 +480,7 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @return Returns the robot. uml.property name="robot"
 	 */
-	public Collection getRobot() {
+	public Collection<Robot> getRobot() {
 		return robot;
 	}
 
@@ -522,8 +489,11 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @param robot
 	 *            The robot to set. uml.property name="robot"
+	 * @throws BadParametersException  The robot object cannot be null
 	 */
-	public void setRobot(Collection robot) {
+	public void setRobot(Collection<Robot> robot) throws BadParametersException {
+		if(robot == null)
+			throw new BadParametersException("The robot object cannot be null");
 		this.robot = robot;
 	}
 
@@ -532,7 +502,7 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @return Returns the person. uml.property name="person"
 	 */
-	public Collection getPerson() {
+	public Collection<Person> getPerson() {
 		return person;
 	}
 
@@ -541,8 +511,11 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @param person
 	 *            The person to set. uml.property name="person"
+	 * @throws BadParametersException The person object cannot be null
 	 */
-	public void setPerson(Collection person) {
+	public void setPerson(Collection<Person> person) throws BadParametersException {
+		if(person == null)
+			throw new BadParametersException("The person object cannot be null");
 		this.person = person;
 	}
 
@@ -550,14 +523,14 @@ public class BettingSoft implements Betting {
 	 * uml.property name="competition" uml.associationEnd multiplicity="(0 -1)"
 	 * inverse="bettingSoft:fr.uv1.bettingServices.Competition"
 	 */
-	private Collection competition;
+	private Collection<Competition> competition;
 
 	/**
 	 * Getter of the property <tt>competition</tt>
 	 * 
 	 * @return Returns the competition. uml.property name="competition"
 	 */
-	public Collection getCompetition() {
+	public Collection<Competition> getCompetition() {
 		return competition;
 	}
 
@@ -566,8 +539,11 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @param competition
 	 *            The competition to set. uml.property name="competition"
+	 * @throws BadParametersException The competition object cannot be null
 	 */
-	public void setCompetition(Collection competition) {
+	public void setCompetition(Collection<Competition> competition) throws BadParametersException {
+		if(competition == null)
+			throw new BadParametersException("The competition object cannot be null");
 		this.competition = competition;
 	}
 
@@ -575,7 +551,13 @@ public class BettingSoft implements Betting {
 		return pv;
 	}
 
-	public void setPv(BettingPasswordsVerifier pv) {
+	/**
+	 * @param pv BettingPasswordVerifier object
+	 * @throws BadParametersException "The pv object cannot be null"
+	 */
+	public void setPv(BettingPasswordsVerifier pv) throws BadParametersException {
+		if(pv == null)
+			throw new BadParametersException("The pv object cannot be null");
 		this.pv = pv;
 	}
 
@@ -583,7 +565,13 @@ public class BettingSoft implements Betting {
 		return subscribers;
 	}
 
-	public void setSubscribers(Collection<Subscriber> subscribers) {
+	/**
+	 * @param subscribers Collection of subscribers
+	 * @throws BadParametersException The subscriber object cannot be null
+	 */
+	public void setSubscribers(Collection<Subscriber> subscribers) throws BadParametersException {
+		if(subscribers == null)
+			throw new BadParametersException("The subscriber object cannot be null");
 		this.subscribers = subscribers;
 	}
 

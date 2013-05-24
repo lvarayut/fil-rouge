@@ -16,14 +16,14 @@ public class PCompetitor extends Person  implements Competitor{
 	 * uml.property  name="betPodium"
 	 * uml.associationEnd  multiplicity="(0 -1)" inverse="competitor:fr.uv1.bettingServices.BetPodium"
 	 */
-	private Collection betPodium;
+	private Collection<BetPodium> betPodium;
 
 	/**
 	 * Getter of the property <tt>betPodium</tt>
 	 * @return  Returns the betPodium.
 	 * uml.property  name="betPodium"
 	 */
-	public Collection getBetPodium() {
+	public Collection<BetPodium> getBetPodium() {
 		return betPodium;
 	}
 
@@ -47,7 +47,7 @@ public class PCompetitor extends Person  implements Competitor{
 	 * @return  Returns the betWinner.
 	 * uml.property  name="betWinner"
 	 */
-	public Collection getBetWinner() {
+	public Collection<BetWinner> getBetWinner() {
 		return betWinner;
 	}
 
@@ -56,7 +56,7 @@ public class PCompetitor extends Person  implements Competitor{
 	 * @param betWinner  The betWinner to set.
 	 * uml.property  name="betWinner"
 	 */
-	public void setBetWinner(Collection betWinner) {
+	public void setBetWinner(Collection<BetWinner> betWinner) {
 		this.betWinner = betWinner;
 	}
 
@@ -64,14 +64,14 @@ public class PCompetitor extends Person  implements Competitor{
 	 * uml.property  name="competitionPodium"
 	 * uml.associationEnd  multiplicity="(0 -1)" inverse="competitor:fr.uv1.bettingServices.CompetitionPodium"
 	 */
-	private Collection competitionPodium;
+	private Collection<CompetitionPodium> competitionPodium;
 
 	/**
 	 * Getter of the property <tt>competitionPodium</tt>
 	 * @return  Returns the competitionPodium.
 	 * uml.property  name="competitionPodium"
 	 */
-	public Collection getCompetitionPodium() {
+	public Collection<CompetitionPodium> getCompetitionPodium() {
 		return competitionPodium;
 	}
 
@@ -80,7 +80,7 @@ public class PCompetitor extends Person  implements Competitor{
 	 * @param competitionPodium  The competitionPodium to set.
 	 * uml.property  name="competitionPodium"
 	 */
-	public void setCompetitionPodium(Collection competitionPodium) {
+	public void setCompetitionPodium(Collection<CompetitionPodium> competitionPodium) {
 		this.competitionPodium = competitionPodium;
 	}
 
@@ -88,14 +88,14 @@ public class PCompetitor extends Person  implements Competitor{
 	 * uml.property  name="competitionWinner"
 	 * uml.associationEnd  multiplicity="(0 -1)" inverse="competitor:fr.uv1.bettingServices.CompetitionWinner"
 	 */
-	private Collection competitionWinner;
+	private Collection<CompetitionWinner> competitionWinner;
 
 	/**
 	 * Getter of the property <tt>competitionWinner</tt>
 	 * @return  Returns the competitionWinner.
 	 * uml.property  name="competitionWinner"
 	 */
-	public Collection getCompetitionWinner() {
+	public Collection<CompetitionWinner> getCompetitionWinner() {
 		return competitionWinner;
 	}
 
@@ -104,7 +104,7 @@ public class PCompetitor extends Person  implements Competitor{
 	 * @param competitionWinner  The competitionWinner to set.
 	 * uml.property  name="competitionWinner"
 	 */
-	public void setCompetitionWinner(Collection competitionWinner) {
+	public void setCompetitionWinner(Collection<CompetitionWinner> competitionWinner) {
 		this.competitionWinner = competitionWinner;
 	}
 
