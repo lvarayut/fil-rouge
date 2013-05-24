@@ -73,7 +73,7 @@ public class TestBettingSoft {
 		 */
 		System.out.println("----------------Add Subscriber ---------------");
 		try {
-			bs.subscribe("GAYE", "Rokhaya", "rgaye", "1989-10-10", "rokhayagaye");
+			bs.subscribe("GAYE", "Rokhaya", "1989-10-10","rgaye",  "rokhayagaye");
 		} catch (AuthenticationException | ExistingSubscriberException
 				| BadParametersException e) {
 			// TODO Auto-generated catch block

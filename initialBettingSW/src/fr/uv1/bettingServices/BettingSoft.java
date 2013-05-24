@@ -14,18 +14,17 @@ import fr.uv1.database.DBConnection;
  * 
  * @author prou + mallet <br>
  * @version 2.0
- * @since 24/05/2013
+ * @since 24/05/2013 <br>
+ *        This class implements methods of the interface Betting. <br>
  * <br>
- *         This class implements methods of the interface Betting. <br>
- * <br>
- *         <ul>
- *         <li>manager password validity:
- *         <ul>
- *         <li>only letters and digits are allowed</li>
- *         <li>password size should be at least 8 characters</li>
- *         </ul>
- *         </li>
- *         </ul>
+ *        <ul>
+ *        <li>manager password validity:
+ *        <ul>
+ *        <li>only letters and digits are allowed</li>
+ *        <li>password size should be at least 8 characters</li>
+ *        </ul>
+ *        </li>
+ *        </ul>
  */
 
 public class BettingSoft implements Betting {
@@ -45,15 +44,13 @@ public class BettingSoft implements Betting {
 	 */
 	private Collection<Subscriber> subscribers;
 	/**
-	 * uml.property name="robot"
-	 * uml.associationEnd multiplicity="(0 -1)"
-	 *                     inverse="bettingSoft:fr.uv1.bettingServices.Robot"
+	 * uml.property name="robot" uml.associationEnd multiplicity="(0 -1)"
+	 * inverse="bettingSoft:fr.uv1.bettingServices.Robot"
 	 */
 	private Collection robot;
 	/**
-	 * uml.property name="person"
-	 * uml.associationEnd multiplicity="(0 -1)"
-	 *                     inverse="bettingSoft:fr.uv1.bettingServices.Person"
+	 * uml.property name="person" uml.associationEnd multiplicity="(0 -1)"
+	 * inverse="bettingSoft:fr.uv1.bettingServices.Person"
 	 */
 	private Collection person;
 
@@ -99,14 +96,14 @@ public class BettingSoft implements Betting {
 	 */
 	@Override
 	public String subscribe(String a_name, String a_firstName,
-			String a_username, String a_birthDay, String a_managerPwd)
+			String a_birthDay, String a_username, String a_managerPwd)
 			throws AuthenticationException, ExistingSubscriberException,
 			BadParametersException {
-		System.out.println("lastname"+a_name);
-		System.out.println("firstname"+a_firstName);
-		System.out.println("username"+a_username);
-		System.out.println("birthday"+a_birthDay);
-		System.out.println("ManagerPassword"+a_managerPwd);
+		System.out.println("lastname" + a_name);
+		System.out.println("firstname" + a_firstName);
+		System.out.println("username" + a_username);
+		System.out.println("birthday" + a_birthDay);
+		System.out.println("ManagerPassword" + a_managerPwd);
 		String query = "";
 		String a_password = "";
 		int birthDate = 0;
@@ -332,7 +329,7 @@ public class BettingSoft implements Betting {
 		// Check whether the competition is existed or not
 		CompetitionDAO cd = new CompetitionDAO();
 		try {
-			if(cd.isExistCompetition(a_competition))
+			if (cd.isExistCompetition(a_competition))
 				throw new ExistingCompetitionException();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -340,7 +337,7 @@ public class BettingSoft implements Betting {
 		// Add new competition table DB
 		Competition comTion = new Competition(a_competition,
 				Calendar.getInstance(), a_closingDate);
-		
+
 		try {
 			cd.addCompetition(comTion);
 			// Add new competitor into participate table DB
@@ -514,8 +511,7 @@ public class BettingSoft implements Betting {
 	/**
 	 * Getter of the property <tt>robot</tt>
 	 * 
-	 * @return Returns the robot.
-	 * uml.property name="robot"
+	 * @return Returns the robot. uml.property name="robot"
 	 */
 	public Collection getRobot() {
 		return robot;
@@ -525,8 +521,7 @@ public class BettingSoft implements Betting {
 	 * Setter of the property <tt>robot</tt>
 	 * 
 	 * @param robot
-	 *            The robot to set.
-	 * uml.property name="robot"
+	 *            The robot to set. uml.property name="robot"
 	 */
 	public void setRobot(Collection robot) {
 		this.robot = robot;
@@ -535,8 +530,7 @@ public class BettingSoft implements Betting {
 	/**
 	 * Getter of the property <tt>person</tt>
 	 * 
-	 * @return Returns the person.
-	 * uml.property name="person"
+	 * @return Returns the person. uml.property name="person"
 	 */
 	public Collection getPerson() {
 		return person;
@@ -546,25 +540,22 @@ public class BettingSoft implements Betting {
 	 * Setter of the property <tt>person</tt>
 	 * 
 	 * @param person
-	 *            The person to set.
-	 * uml.property name="person"
+	 *            The person to set. uml.property name="person"
 	 */
 	public void setPerson(Collection person) {
 		this.person = person;
 	}
 
 	/**
-	 * uml.property name="competition"
-	 * uml.associationEnd multiplicity="(0 -1)"
-	 *                     inverse="bettingSoft:fr.uv1.bettingServices.Competition"
+	 * uml.property name="competition" uml.associationEnd multiplicity="(0 -1)"
+	 * inverse="bettingSoft:fr.uv1.bettingServices.Competition"
 	 */
 	private Collection competition;
 
 	/**
 	 * Getter of the property <tt>competition</tt>
 	 * 
-	 * @return Returns the competition.
-	 * uml.property name="competition"
+	 * @return Returns the competition. uml.property name="competition"
 	 */
 	public Collection getCompetition() {
 		return competition;
@@ -574,8 +565,7 @@ public class BettingSoft implements Betting {
 	 * Setter of the property <tt>competition</tt>
 	 * 
 	 * @param competition
-	 *            The competition to set.
-	 * uml.property name="competition"
+	 *            The competition to set. uml.property name="competition"
 	 */
 	public void setCompetition(Collection competition) {
 		this.competition = competition;
