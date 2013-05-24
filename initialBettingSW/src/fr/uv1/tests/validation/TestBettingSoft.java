@@ -38,7 +38,13 @@ public class TestBettingSoft {
 		System.out.println("----------------Add Competitor ----------------");
 		Calendar s1 = Calendar.getInstance(); //Current time
 		s1.set(2013, Calendar.AUGUST, 20);
-		PCompetitor cTor = bs.createCompetitor("vlerd","Varayut", "Lerd", s1);
+		PCompetitor cTor = null;
+		try {
+			cTor = bs.createCompetitor("Varayut", "Lerd", s1,"rokhayagaye");
+		} catch (AuthenticationException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		
 		/*
 		 * Test addCompetition
@@ -49,7 +55,7 @@ public class TestBettingSoft {
 		try {
 			bs.addCompetition("Polo", s1, comName, "rokhayagaye");
 		} catch (AuthenticationException | ExistingCompetitionException
-				| CompetitionException | BadParametersException e1) {
+				| BadParametersException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
@@ -66,10 +72,8 @@ public class TestBettingSoft {
 		 * Test addSubscriber (age > 18) 
 		 */
 		System.out.println("----------------Add Subscriber ---------------");
-		Calendar c1 = Calendar.getInstance(); //Current time
-		c1.set(1989,Calendar.OCTOBER,10);
 		try {
-			bs.subscribe("GAYE", "Rokhaya", "rgaye", c1, "rokhayagaye");
+			bs.subscribe("GAYE", "Rokhaya", "rgaye", "1989-10-10", "rokhayagaye");
 		} catch (AuthenticationException | ExistingSubscriberException
 				| BadParametersException e) {
 			// TODO Auto-generated catch block
@@ -81,7 +85,7 @@ public class TestBettingSoft {
 		 */
 		System.out.println("----------------Add tokens ---------------");
 		try {
-			bs.creditCompetitor("rgaye", 20,  "rokhayagaye");
+			bs.creditSubscriber("rgaye", 20,  "rokhayagaye");
 		} catch (AuthenticationException | BadParametersException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -102,9 +106,18 @@ public class TestBettingSoft {
 		 * Test betOnPodium  
 		 */
 		System.out.println("----------------Bet on podium ---------------");
-		PCompetitor cTor1 = bs.createCompetitor("A_First", "A_Last", "A_Username", Calendar.getInstance());
-		PCompetitor cTor2 = bs.createCompetitor("B_First", "B_Last", "B_Username", Calendar.getInstance());
-		PCompetitor cTor3 = bs.createCompetitor("C_First", "C_Last", "C_Username", Calendar.getInstance());
+		PCompetitor cTor1 = null;
+		PCompetitor cTor2 = null;
+		PCompetitor cTor3 = null;
+		try {
+			cTor1 = bs.createCompetitor("A_First", "A_Last", Calendar.getInstance(),"rokhayagaye");
+			cTor2 = bs.createCompetitor("B_First", "B_Last", Calendar.getInstance(),"rokhayagaye");
+			cTor3 = bs.createCompetitor("C_First", "C_Last", Calendar.getInstance(),"rokhayagaye");
+		} catch (AuthenticationException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		try {
 			Subscriber s = new Subscriber("subLast", "subFirst", "sub", s1);
 			s.betOnPodium(10, "Polo", cTor1, cTor2, cTor3, "rgaye",  "rokhayagaye");

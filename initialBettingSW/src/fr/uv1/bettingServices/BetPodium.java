@@ -25,8 +25,8 @@ public class BetPodium extends Bet {
 
 
 		/**
-		 * @uml.property  name="competitor"
-		 * @uml.associationEnd  multiplicity="(3 3)" inverse="betPodium:fr.uv1.bettingServices.Competitor"
+		 * uml.property  name="competitor"
+		 * uml.associationEnd  multiplicity="(3 3)" inverse="betPodium:fr.uv1.bettingServices.Competitor"
 		 */
 		private Collection competitor;
 
@@ -35,7 +35,7 @@ public class BetPodium extends Bet {
 		/**
 		 * Getter of the property <tt>competitor</tt>
 		 * @return  Returns the competitor.
-		 * @uml.property  name="competitor"
+		 * uml.property  name="competitor"
 		 */
 		public Collection getCompetitor() {
 			return competitor;
@@ -43,7 +43,7 @@ public class BetPodium extends Bet {
 		/**
 		 * Setter of the property <tt>competitor</tt>
 		 * @param competitor  The competitor to set.
-		 * @uml.property  name="competitor"
+		 * uml.property  name="competitor"
 		 */
 		public void setCompetitor(Collection competitor) {
 			this.competitor = competitor;
@@ -52,8 +52,8 @@ public class BetPodium extends Bet {
 
 
 		/**
-		 * @uml.property  name="competitionPodium"
-		 * @uml.associationEnd  multiplicity="(1 1)" inverse="betPodium:fr.uv1.bettingServices.CompetitionPodium"
+		 * uml.property  name="competitionPodium"
+		 * uml.associationEnd  multiplicity="(1 1)" inverse="betPodium:fr.uv1.bettingServices.CompetitionPodium"
 		 */
 		private CompetitionPodium competitionPodium;
 
@@ -62,7 +62,7 @@ public class BetPodium extends Bet {
 		/**
 		 * Getter of the property <tt>competitionPodium</tt>
 		 * @return  Returns the competitionPodium.
-		 * @uml.property  name="competitionPodium"
+		 * uml.property  name="competitionPodium"
 		 */
 		public CompetitionPodium getCompetitionPodium() {
 			return competitionPodium;
@@ -70,7 +70,7 @@ public class BetPodium extends Bet {
 		/**
 		 * Setter of the property <tt>competitionPodium</tt>
 		 * @param competitionPodium  The competitionPodium to set.
-		 * @uml.property  name="competitionPodium"
+		 * uml.property  name="competitionPodium"
 		 */
 		public void setCompetitionPodium(CompetitionPodium competitionPodium) {
 			this.competitionPodium = competitionPodium;

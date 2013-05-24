@@ -1,3 +1,4 @@
+
 package fr.uv1.DAO;
 
 import java.sql.Connection;
@@ -15,11 +16,25 @@ import fr.uv1.bettingServices.ExistingCompetitorException;
 import fr.uv1.bettingServices.PCompetitor;
 import fr.uv1.database.DBConnection;
 
+/**
+ * This class is used to create t
+ * @author Rokhaya and Varayut
+ * @version 2.0
+ * @since 24/05/2013
+ *
+ */
 public class CompetitionDAO {
 
 	public CompetitionDAO() {
 		// TODO Auto-generated constructor stub
 	}
+	/**
+	 * Add a new competition
+	 * @param com Competition's name
+	 * @throws SQLException SQL problem
+	 * @throws ExistingCompetitionException The competition is already existed
+	 */
+
 	public void addCompetition(Competition com) throws SQLException, ExistingCompetitionException {
 		// Verify duplicate competition
 		if(isExistCompetition(com.getName()))
@@ -55,6 +70,12 @@ public class CompetitionDAO {
 		c.setAutoCommit(true);
 		db.disconnect();
 	}
+	/**
+	 * Add a new Competitor
+	 * @param a_competition Competition's name
+	 * @param competitors Collection of competitors
+	 * @throws SQLException SQL problem
+	 */
 	public void addCompetitor(Competition a_competition,
 			Collection competitors) throws SQLException {
 		DBConnection db = new DBConnection();
@@ -94,6 +115,11 @@ public class CompetitionDAO {
 	
 	
 	
+	/**
+	 * List all competitions in the database
+	 * @return Collection of competitions
+	 * @throws SQLException SQL problem
+	 */
 	public Collection listAllCompetition() throws SQLException{
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
@@ -114,6 +140,12 @@ public class CompetitionDAO {
 		return allCTion;
 	}
 	
+	/**
+	 * Verify the existence of competition
+	 * @param competitionName Competition's name
+	 * @return Whether the competition is existed or not
+	 * @throws SQLException SQL problem
+	 */
 	public boolean isExistCompetition(String competitionName) throws SQLException{
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();

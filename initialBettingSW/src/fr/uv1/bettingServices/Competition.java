@@ -16,14 +16,14 @@ public class Competition {
 		this.endDate = endDate;
 	}
 	/**
-	 * @uml.property  name="bettingSoft"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="competition:fr.uv1.bettingServices.BettingSoft"
+	 * uml.property  name="bettingSoft"
+	 * uml.associationEnd  multiplicity="(1 1)" inverse="competition:fr.uv1.bettingServices.BettingSoft"
 	 */
 	private BettingSoft bettingSoft;
 	/**
 	 * Getter of the property <tt>bettingSoft</tt>
 	 * @return  Returns the bettingSoft.
-	 * @uml.property  name="bettingSoft"
+	 * uml.property  name="bettingSoft"
 	 */
 	public BettingSoft getBettingSoft() {
 		return bettingSoft;
@@ -31,20 +31,20 @@ public class Competition {
 	/**
 	 * Setter of the property <tt>bettingSoft</tt>
 	 * @param bettingSoft  The bettingSoft to set.
-	 * @uml.property  name="bettingSoft"
+	 * uml.property  name="bettingSoft"
 	 */
 	public void setBettingSoft(BettingSoft bettingSoft) {
 		this.bettingSoft = bettingSoft;
 	}
 	/**
-	 * @uml.property  name="bet"
-	 * @uml.associationEnd  multiplicity="(0 -1)" inverse="competition:fr.uv1.bettingServices.Bet"
+	 * uml.property  name="bet"
+	 * uml.associationEnd  multiplicity="(0 -1)" inverse="competition:fr.uv1.bettingServices.Bet"
 	 */
 	private Collection bet;
 	/**
 	 * Getter of the property <tt>bet</tt>
 	 * @return  Returns the bet.
-	 * @uml.property  name="bet"
+	 * uml.property  name="bet"
 	 */
 	public Collection getBet() {
 		return bet;
@@ -52,7 +52,7 @@ public class Competition {
 	/**
 	 * Setter of the property <tt>bet</tt>
 	 * @param bet  The bet to set.
-	 * @uml.property  name="bet"
+	 * uml.property  name="bet"
 	 */
 	public void setBet(Collection bet) {
 		this.bet = bet;

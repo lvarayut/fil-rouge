@@ -11,24 +11,26 @@ import java.util.Collection;
 /**
  * 
  * @author prou, segarra<br>
+ * @version 2.0
+ * @since 24/05/2013
+ *  <br>
+ *        This class represents a subscriber for a betting application. <br>
  * <br>
- *         This class represents a subscriber for a betting application. <br>
- * <br>
- *         The constructor of the class creates a password for the subscriber. <br>
- *         <ul>
- *         <li>subscriber's password validity:
- *         <ul>
- *         <li>only letters and digits are allowed</li>
- *         <li>password size should be at least 8 characters</li>
- *         </ul>
- *         </li>
- *         <li>for the username validity:
- *         <ul>
- *         <li>only letters and digits are allowed</li>
- *         <li>size should be at least 4 characters</li>
- *         </ul>
- *         </li>
- *         </ul>
+ *        The constructor of the class creates a password for the subscriber. <br>
+ *        <ul>
+ *        <li>subscriber's password validity:
+ *        <ul>
+ *        <li>only letters and digits are allowed</li>
+ *        <li>password size should be at least 8 characters</li>
+ *        </ul>
+ *        </li>
+ *        <li>for the username validity:
+ *        <ul>
+ *        <li>only letters and digits are allowed</li>
+ *        <li>size should be at least 4 characters</li>
+ *        </ul>
+ *        </li>
+ *        </ul>
  * 
  */
 public class Subscriber extends Person implements Serializable {
@@ -61,10 +63,12 @@ public class Subscriber extends Person implements Serializable {
 		rp.addVerifier(pv);
 		this.setPassword(new RandPass().getPass(Constraints.LONG_PWD));
 	}
+
 	/**
 	 * Authentication by using subsciber's password
+	 * @param a_subscriberPwd Subscriber's password
+	 * @throws AuthenticationException The subscriber's password is invalid
 	 */
-
 	public void authenticateSubscriber(String a_subscriberPwd)
 			throws AuthenticationException {
 		if (a_subscriberPwd == null)
@@ -73,6 +77,7 @@ public class Subscriber extends Person implements Serializable {
 		if (!this.password.equals(a_subscriberPwd))
 			throw new AuthenticationException("incorrect subscriber's password");
 	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -85,43 +90,45 @@ public class Subscriber extends Person implements Serializable {
 		this.password = password;
 	}
 
-//	/**
-//		 */
-//	public void creditSubscriber(String a_username, long number_tokens,
-//			String a_managerPwd) throws AuthenticationException,
-//			ExistingSubscriberException, BadParametersException {
-//	}
-//
-//	/**
-//			 */
-//	public void debitSubscriber(String a_username, long number_tokens,
-//			String a_managerPwd) throws AuthenticationException,
-//			ExistingSubscriberException, SubscriberException,
-//			BadParametersException {
-//	}
+	// /**
+	// */
+	// public void creditSubscriber(String a_username, long number_tokens,
+	// String a_managerPwd) throws AuthenticationException,
+	// ExistingSubscriberException, BadParametersException {
+	// }
+	//
+	// /**
+	// */
+	// public void debitSubscriber(String a_username, long number_tokens,
+	// String a_managerPwd) throws AuthenticationException,
+	// ExistingSubscriberException, SubscriberException,
+	// BadParametersException {
+	// }
 
-	
 	/**
-	 * Bet on podium 
-	 * The number of tokens of the subscriber is debited.
-	 * @param numberTokens
-	 * @param competition
+	 * Bet on podium The number of tokens of the subscriber is debited.
+	 * @param numberTokens Number of tokens
+	 * @param competition  Competition's name
 	 * @param winner
+	 *            Winner
 	 * @param second
+	 *            First runner-up
 	 * @param third
-	 * @param username
-	 * @param pwdSubs
-	 * @throws AuthenticationException 
+	 *            Second runner-up
+	 * @param username Subscriber's username
+	 * @param pwdSubs Subscriber's password
+	 * @throws AuthenticationException  The subscriber's password is invalid
 	 */
 	public void betOnPodium(long numberTokens, String competition,
 			PCompetitor winner, PCompetitor second, PCompetitor third,
 			String username, String pwdSubs) throws AuthenticationException {
-		// Authenticate manager
-		authenticateSubscriber(password);
+		// Authenticate subscriber
+		authenticateSubscriber(pwdSubs);
 		SubscriberDAO sd = new SubscriberDAO();
 		try {
 			// Bet Podium
-			sd.betPodium(numberTokens,competition,winner,second,third,username);
+			sd.betPodium(numberTokens, competition, winner, second, third,
+					username);
 			// The number of tokens of the subscriber is debited.
 			BettingSoft bs = new BettingSoft("password");
 			bs.debitSubscriber(username, -numberTokens, "password");
@@ -132,8 +139,8 @@ public class Subscriber extends Person implements Serializable {
 	}
 
 	/**
-	 * @uml.property name="robot"
-	 * @uml.associationEnd multiplicity="(0 -1)"
+	 * uml.property name="robot"
+	 * uml.associationEnd multiplicity="(0 -1)"
 	 *                     inverse="subscriber:fr.uv1.bettingServices.Robot"
 	 */
 	private Collection robot;
@@ -142,9 +149,9 @@ public class Subscriber extends Person implements Serializable {
 	 * Getter of the property <tt>robot</tt>
 	 * 
 	 * @return Returns the robot.
-	 * @uml.property name="robot"
+	 * uml.property name="robot"
 	 */
-	public Collection getRobot() {
+	public Collection<Robot> getRobot() {
 		return robot;
 	}
 
@@ -153,15 +160,15 @@ public class Subscriber extends Person implements Serializable {
 	 * 
 	 * @param robot
 	 *            The robot to set.
-	 * @uml.property name="robot"
+	 * uml.property name="robot"
 	 */
-	public void setRobot(Collection robot) {
+	public void setRobot(Collection<Robot> robot) {
 		this.robot = robot;
 	}
 
 	/**
-	 * @uml.property name="bet"
-	 * @uml.associationEnd multiplicity="(0 -1)"
+	 * uml.property name="bet"
+	 * uml.associationEnd multiplicity="(0 -1)"
 	 *                     inverse="subscriber:fr.uv1.bettingServices.Bet"
 	 */
 	private Collection bet;
@@ -170,9 +177,9 @@ public class Subscriber extends Person implements Serializable {
 	 * Getter of the property <tt>bet</tt>
 	 * 
 	 * @return Returns the bet.
-	 * @uml.property name="bet"
+	 * uml.property name="bet"
 	 */
-	public Collection getBet() {
+	public Collection<Bet> getBet() {
 		return bet;
 	}
 
@@ -181,9 +188,16 @@ public class Subscriber extends Person implements Serializable {
 	 * 
 	 * @param bet
 	 *            The bet to set.
-	 * @uml.property name="bet"
+	 * uml.property name="bet"
 	 */
-	public void setBet(Collection bet) {
+	public void setBet(Collection<Bet> bet) {
+		if(bet == null)
+			try {
+				throw new BadParametersException("Bet should not be null");
+			} catch (BadParametersException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		this.bet = bet;
 	}
 
@@ -192,6 +206,14 @@ public class Subscriber extends Person implements Serializable {
 	}
 
 	public void setToken(int token) {
+		// Verify negative value
+		if(token <0)
+			try {
+				throw new BadParametersException("The number of tokens should be geather than 0");
+			} catch (BadParametersException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		this.token = token;
 	}
 

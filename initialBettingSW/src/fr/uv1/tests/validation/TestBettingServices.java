@@ -56,10 +56,8 @@ public class TestBettingServices {
 			if (aSoft.listSubscribers(new String("ilesCaimans")).size() != 4) {
 				System.out.println("le nombre de joueurs est incorrect ");
 			}
-			Calendar c = Calendar.getInstance();
-			c.set(1989, 10, 10);
 			aSoft.subscribe(new String("Prou"), new String("Bernard"),
-					new String("nanard"),c, new String("ilesCaimans"));
+					new String("nanard"), "1989-10-10", new String("ilesCaimans"));
 			if (aSoft.listSubscribers(new String("ilesCaimans")).size() != 5) {
 				System.out.println("le nombre de joueurs est incorrect ");
 			}
@@ -204,33 +202,32 @@ public class TestBettingServices {
 
 	private static void testSubscribe() throws AuthenticationException,
 			ExistingSubscriberException, BadParametersException {
-		Calendar c = Calendar.getInstance();
-		c.set(1989, 10, 10);
 		// Tests entries : null
 		try {
 			aSoft.subscribe(null, new String("Albert"),
-					new String("worldChamp"),c, new String("ilesCaimans"));
+					new String("worldChamp"), "1989-10-10", new String(
+							"ilesCaimans"));
 			System.out
 					.println("l'ajout d'un joueur avec un nom non instancié n'a pas levé d'exception");
 		} catch (BadParametersException e) {
 		}
 		try {
 			aSoft.subscribe(new String("Duran"), null,
-					new String("worldChamp"), c,new String("ilesCaimans"));
+					new String("worldChamp"), "1989-10-10", new String("ilesCaimans"));
 			System.out
 					.println("l'ajout d'un joueur avec un prénom non instancié n'a pas levé d'exception");
 		} catch (BadParametersException e) {
 		}
 		try {
-			aSoft.subscribe(new String("Duran"), new String("Albert"), null,
-					c,new String("ilesCaimans"));
+			aSoft.subscribe(new String("Duran"), new String("Albert"), null, "1989-10-10",
+					new String("ilesCaimans"));
 			System.out
 					.println("l'ajout d'un joueur avec un pseudo non instancié n'a pas levé d'exception");
 		} catch (BadParametersException e) {
 		}
 		try {
 			aSoft.subscribe(new String("Duran"), new String("Albert"),
-					new String("worldChamp"), c,null);
+					new String("worldChamp"), "1989-10-10", null);
 			System.out
 					.println("l'ajout d'un joueur avec un mdp gestionnaire non instancié n'a pas levé d'exception");
 		} catch (AuthenticationException e) {
@@ -239,14 +236,14 @@ public class TestBettingServices {
 		// Tests entries : invalid format
 		try {
 			aSoft.subscribe(new String(" "), new String("Albert"), new String(
-					"worldChamp"),c, new String("ilesCaimans"));
+					"worldChamp"), "1989-10-10", new String("ilesCaimans"));
 			System.out
 					.println("l'ajout d'un joueur avec un nom invalide n'a pas levé d'exception");
 		} catch (BadParametersException e) {
 		}
 		try {
 			aSoft.subscribe(new String("Duran"), new String(" "), new String(
-					"worldChamp"), c,new String("ilesCaimans"));
+					"worldChamp"), "1989-10-10", new String("ilesCaimans"));
 			System.out
 					.println("l'ajout d'un joueur avec un prénom invalide n'a pas levé d'exception");
 		} catch (BadParametersException e) {
@@ -254,7 +251,7 @@ public class TestBettingServices {
 
 		try {
 			aSoft.subscribe(new String("Nobel"), new String("Alfred"),
-					new String("tnt"), c,new String("ilesCaimans"));
+					new String("tnt"), "1989-10-10", new String("ilesCaimans"));
 			System.out
 					.println("l'ajout d'un joueur avec un pseudo invalide n'a pas levé d'exception");
 		} catch (BadParametersException e) {
@@ -262,7 +259,7 @@ public class TestBettingServices {
 
 		try {
 			aSoft.subscribe(new String("Duran"), new String("Roberto"),
-					new String("worldChamp"), c,new String("abef"));
+					new String("worldChamp"), "1989-10-10", new String("abef"));
 			System.out
 					.println("l'ajout d'un joueur avec un password gestionnaire incorrect n'a pas levé d'exception");
 		} catch (AuthenticationException e) {
@@ -271,7 +268,7 @@ public class TestBettingServices {
 		// Tests with valid parameters
 		try {
 			aSoft.subscribe(new String("Duran"), new String("Albert"),
-					new String("fanfan"), c,new String("ilesCaimans"));
+					new String("fanfan"), "1989-10-10", new String("ilesCaimans"));
 		} catch (ExistingSubscriberException | BadParametersException e) {
 			System.out
 					.println("l'ajout d'un nouveau joueur a levé une exception");
@@ -280,7 +277,7 @@ public class TestBettingServices {
 		// The same subscriber
 		try {
 			aSoft.subscribe(new String("Duran"), new String("Albert"),
-					new String("fanfan"), c,new String("ilesCaimans"));
+					new String("fanfan"), "1989-10-10", new String("ilesCaimans"));
 			System.out
 					.println("1. l'ajout d'un joueur existant n'a pas levé d'exception");
 		} catch (ExistingSubscriberException e) {
@@ -288,7 +285,7 @@ public class TestBettingServices {
 		// same firstname, username ; different lastname
 		try {
 			aSoft.subscribe(new String("Durano"), new String("Albert"),
-					new String("fanfan"),c, new String("ilesCaimans"));
+					new String("fanfan"), "1989-10-10", new String("ilesCaimans"));
 			System.out
 					.println("2. l'ajout d'un joueur existant n'a pas levé d'exception");
 		} catch (ExistingSubscriberException e) {
@@ -296,7 +293,7 @@ public class TestBettingServices {
 		// same lastname, username; different firstname
 		try {
 			aSoft.subscribe(new String("Duran"), new String("Alfred"),
-					new String("fanfan"), c,new String("ilesCaimans"));
+					new String("fanfan"), "1989-10-10", new String("ilesCaimans"));
 			System.out
 					.println("3. l'ajout d'un joueur existant n'a pas levé d'exception ");
 		} catch (ExistingSubscriberException e) {
@@ -304,7 +301,7 @@ public class TestBettingServices {
 		// same lastname, firstname; different username
 		try {
 			aSoft.subscribe(new String("Duran"), new String("Albert"),
-					new String("fanfin"), c,new String("ilesCaimans"));
+					new String("fanfin"), "1989-10-10", new String("ilesCaimans"));
 		} catch (ExistingSubscriberException e) {
 			System.out
 					.println("4. l'ajout d'un joueur pas inscrit a levé une exception ");
@@ -313,7 +310,7 @@ public class TestBettingServices {
 		// same firstname; different lastname, username
 		try {
 			aSoft.subscribe(new String("Durano"), new String("Albert"),
-					new String("fanfin"), c,new String("ilesCaimans"));
+					new String("fanfin"), "1989-10-10", new String("ilesCaimans"));
 			System.out
 					.println("5. l'ajout d'un joueur inscrit n'a pas levé d'exception ");
 		} catch (ExistingSubscriberException e) {
@@ -322,7 +319,7 @@ public class TestBettingServices {
 		// same lastname; different username and firstname
 		try {
 			aSoft.subscribe(new String("Duran"), new String("Morgan"),
-					new String("fanfon"),c, new String("ilesCaimans"));
+					new String("fanfon"), "1989-10-10", new String("ilesCaimans"));
 		} catch (ExistingSubscriberException e) {
 			System.out
 					.println("6. l'ajout d'un nouveau joueur a levé une exception ");
@@ -331,7 +328,7 @@ public class TestBettingServices {
 		// different lastname, firstname and username
 		try {
 			aSoft.subscribe(new String("Mato"), new String("Anna"), new String(
-					"salto"), c,new String("ilesCaimans"));
+					"salto"), "1989-10-10", new String("ilesCaimans"));
 		} catch (ExistingSubscriberException e) {
 			System.out
 					.println("7. l'ajout d'un nouveau joueur a levé une exception ");

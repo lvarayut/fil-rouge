@@ -5,6 +5,13 @@ import java.util.ArrayList;
 
 import javax.sql.*;
 
+/**
+ * This class is used to create t
+ * @author Rokhaya and Varayut
+ * @version 2.0
+ * @since 24/05/2013
+ *
+ */
 public class DBConnection {
 	private Connection connect;
 	private Statement statement;
@@ -21,6 +28,10 @@ public class DBConnection {
 
 	}
 
+	/**
+	 * Connect database 
+	 * @return Connection object
+	 */
 	public Connection connect() {
 		try {
 			Class.forName(dbClass);
@@ -39,6 +50,9 @@ public class DBConnection {
 
 	}
 
+	/**
+	 * Disconnect database 
+	 */
 	public void disconnect(){
 		try {
 			connect.close();

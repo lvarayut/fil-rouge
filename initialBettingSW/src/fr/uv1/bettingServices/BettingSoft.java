@@ -4,8 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-import sun.security.util.Password;
-
 import fr.uv1.DAO.CompetitionDAO;
 import fr.uv1.DAO.CompetitorDAO;
 import fr.uv1.DAO.PodiumDAO;
@@ -15,6 +13,8 @@ import fr.uv1.database.DBConnection;
 /**
  * 
  * @author prou + mallet <br>
+ * @version 2.0
+ * @since 24/05/2013
  * <br>
  *         This class implements methods of the interface Betting. <br>
  * <br>
@@ -45,14 +45,14 @@ public class BettingSoft implements Betting {
 	 */
 	private Collection<Subscriber> subscribers;
 	/**
-	 * @uml.property name="robot"
-	 * @uml.associationEnd multiplicity="(0 -1)"
+	 * uml.property name="robot"
+	 * uml.associationEnd multiplicity="(0 -1)"
 	 *                     inverse="bettingSoft:fr.uv1.bettingServices.Robot"
 	 */
 	private Collection robot;
 	/**
-	 * @uml.property name="person"
-	 * @uml.associationEnd multiplicity="(0 -1)"
+	 * uml.property name="person"
+	 * uml.associationEnd multiplicity="(0 -1)"
 	 *                     inverse="bettingSoft:fr.uv1.bettingServices.Person"
 	 */
 	private Collection person;
@@ -75,26 +75,49 @@ public class BettingSoft implements Betting {
 		this.subscribers = new ArrayList<Subscriber>();
 	}
 
+	/**
+	 * Set manager's password
+	 * 
+	 * @param managerPassword
+	 *            A password
+	 * @throws BadParametersException
+	 *             Manager's password is not valid
+	 */
 	private void setManagerPassword(String managerPassword)
 			throws BadParametersException {
 		if (managerPassword == null)
-			throw new BadParametersException("manager's password not valid");
+			throw new BadParametersException("manager's password is not valid");
 		// The password should be valid
 		if (!pv.verify(managerPassword.toCharArray()))
-			throw new BadParametersException("manager's password not valid");
+			throw new BadParametersException("manager's password is not valid");
 		this.managerPassword = managerPassword;
 	}
 
 	/**
-	 * From Betting interface
+	 * From Betting interface (non-Javadoc)
+	 * 
 	 */
 	@Override
 	public String subscribe(String a_name, String a_firstName,
-			String a_username, Calendar a_birthDay, String a_managerPwd)
+			String a_username, String a_birthDay, String a_managerPwd)
 			throws AuthenticationException, ExistingSubscriberException,
 			BadParametersException {
+		System.out.println("lastname"+a_name);
+		System.out.println("firstname"+a_firstName);
+		System.out.println("username"+a_username);
+		System.out.println("birthday"+a_birthDay);
+		System.out.println("ManagerPassword"+a_managerPwd);
 		String query = "";
 		String a_password = "";
+		int birthDate = 0;
+		int birthMonth = 0;
+		int birthYear = 0;
+		String[] birth = a_birthDay.split("-");
+		birthDate = Integer.parseInt(birth[0]);
+		birthMonth = Integer.parseInt(birth[1]);
+		birthYear = Integer.parseInt(birth[2]);
+		Calendar birthDay = Calendar.getInstance();
+		birthDay.set(birthYear, birthMonth, birthDate);
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
 		// Look if a subscriber with the same username already exists
@@ -103,8 +126,8 @@ public class BettingSoft implements Betting {
 			throw new ExistingSubscriberException(
 					"A subscriber with the same username already exists");
 		// Creates the new subscriber
-		if (verifyAge(a_birthDay)) {
-			s = new Subscriber(a_name, a_firstName, a_username, a_birthDay);
+		if (verifyAge(birthDay)) {
+			s = new Subscriber(a_name, a_firstName, a_username, birthDay);
 			// Add it to the collection of subscribers
 			subscribers.add(s);
 			a_password = s.getPassword();
@@ -122,7 +145,11 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * verify age of subscribers
+	 * Verify age of subscribers
+	 * 
+	 * @param birthDay
+	 *            Subscriber's birthday
+	 * @return Whether age is greater than 18 or not
 	 */
 	public boolean verifyAge(Calendar birthDay) {
 		Calendar current = Calendar.getInstance();
@@ -137,7 +164,10 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * From Betting interface
+	 * From Betting interface (non-Javadoc)
+	 * 
+	 * @see fr.uv1.bettingServices.Betting#unsubscribe(java.lang.String,
+	 *      java.lang.String)
 	 */
 	@Override
 	public void unsubscribe(String a_username, String a_managerPwd)
@@ -153,7 +183,9 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * From Betting interface
+	 * From Betting interface (non-Javadoc)
+	 * 
+	 * @see fr.uv1.bettingServices.Betting#listSubscribers(java.lang.String)
 	 */
 	@Override
 	public ArrayList<ArrayList<String>> listSubscribers(String a_managerPwd)
@@ -174,7 +206,9 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * From Betting interface
+	 * From Betting interface (non-Javadoc)
+	 * 
+	 * @see fr.uv1.bettingServices.Betting#authenticateMngr(java.lang.String)
 	 */
 	@Override
 	public void authenticateMngr(String a_managerPwd)
@@ -187,7 +221,10 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * From Betting interface
+	 * From Betting interface (non-Javadoc)
+	 * 
+	 * @see fr.uv1.bettingServices.Betting#changeMngrPwd(java.lang.String,
+	 *      java.lang.String)
 	 */
 	@Override
 	public void changeMngrPwd(String newPwd, String currentPwd)
@@ -199,12 +236,11 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * search a subscriber by username
+	 * Search a subscriber by username
 	 * 
 	 * @param a_username
-	 *            the username of the subscriber.
-	 * 
-	 * @return the found subscriber or null
+	 *            Subscriber's username
+	 * @return List of subscribers or null
 	 */
 	private Subscriber searchSubscriberByUsername(String a_username) {
 		if (a_username == null)
@@ -217,13 +253,19 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * Create a new competitor
+	 * From Betting interface (non-Javadoc)
+	 * 
+	 * @see fr.uv1.bettingServices.Betting#createCompetitor(java.lang.String,
+	 *      java.lang.String, java.util.Calendar, java.lang.String)
 	 */
-	public PCompetitor createCompetitor(String username, String firstname,
-			String lastname, Calendar birthDay) {
+	@Override
+	public PCompetitor createCompetitor(String firstname, String lastname,
+			Calendar birthDay, String managerPwd)
+			throws AuthenticationException {
 		CompetitorDAO cd = new CompetitorDAO();
-		PCompetitor com = new PCompetitor(firstname, lastname, username,
-				birthDay);
+		PCompetitor com = new PCompetitor(firstname, lastname, birthDay);
+		// Authenticate manager
+		authenticateMngr(managerPwd);
 		try {
 			com = cd.createCompetitor(com);
 		} catch (SQLException | ExistingCompetitorException e) {
@@ -236,7 +278,14 @@ public class BettingSoft implements Betting {
 	/**
 	 * Add competitors to participate competitions
 	 * 
+	 * @param a_competition
+	 *            Competition's name
+	 * @param competitors
+	 *            Collection of competitors
+	 * @param a_managerPwd
+	 *            Manager's password
 	 * @throws AuthenticationException
+	 *             The manager's password is wrong
 	 */
 	public void addCompetitor(Competition a_competition,
 			Collection competitors, String a_managerPwd)
@@ -253,20 +302,45 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * Add new competition
+	 * Add a new competition
+	 * 
+	 * @param a_competition
+	 *            Competition's name
+	 * @param a_closingDate
+	 *            End date
+	 * @param competitors
+	 *            Collection of competitors
+	 * @param a_managerPwd
+	 *            Manager's password
+	 * @throws AuthenticationException
+	 *             The manager's password is wrong
+	 * @throws ExistingCompetitionException
+	 *             The competition is already existed
+	 * @throws BadParametersException
+	 *             The end date is invalid
 	 */
 	public void addCompetition(String a_competition, Calendar a_closingDate,
 			Collection competitors, String a_managerPwd)
 			throws AuthenticationException, ExistingCompetitionException,
-			CompetitionException, BadParametersException {
+			BadParametersException {
+		// Authenticate manager
+		authenticateMngr(a_managerPwd);
 		// Check whether the end date is correct or not
 		if (a_closingDate.before(Calendar.getInstance())) {
 			throw new BadParametersException("Invalide end date");
 		}
+		// Check whether the competition is existed or not
+		CompetitionDAO cd = new CompetitionDAO();
+		try {
+			if(cd.isExistCompetition(a_competition))
+				throw new ExistingCompetitionException();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 		// Add new competition table DB
 		Competition comTion = new Competition(a_competition,
 				Calendar.getInstance(), a_closingDate);
-		CompetitionDAO cd = new CompetitionDAO();
+		
 		try {
 			cd.addCompetition(comTion);
 			// Add new competitor into participate table DB
@@ -279,8 +353,9 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * List all the competition
+	 * List all the competition, shown in console
 	 */
+
 	public void listCompetitions() {
 		CompetitionDAO cd = new CompetitionDAO();
 		Collection allCTion = new ArrayList<PCompetitor>();
@@ -310,12 +385,17 @@ public class BettingSoft implements Betting {
 	 * Credit number of tokens of a subscriber.
 	 * 
 	 * @param username
+	 *            Subscriber's username
 	 * @param numberTokens
+	 *            Number of tokens
 	 * @param managerPwd
+	 *            Manager's password
 	 * @throws AuthenticationException
+	 *             The manager's password is wrong
 	 * @throws BadParametersException
+	 *             The number of tokens lesser than 0
 	 */
-	public void creditCompetitor(String username, long numberTokens,
+	public void creditSubscriber(String username, long numberTokens,
 			String managerPwd) throws AuthenticationException,
 			BadParametersException {
 		// Authenticate manager
@@ -337,10 +417,15 @@ public class BettingSoft implements Betting {
 	 * Debit a subscriber account with a number of tokens.
 	 * 
 	 * @param username
+	 *            Subscriber's username
 	 * @param numberTokens
+	 *            Number of tokens
 	 * @param managerPwd
+	 *            Manager's password
 	 * @throws AuthenticationException
+	 *             The manager's password is wrong
 	 * @throws BadParametersException
+	 *             The number of tokens lesser than 0
 	 */
 	public void debitSubscriber(String username, long numberTokens,
 			String managerPwd) throws AuthenticationException,
@@ -362,44 +447,64 @@ public class BettingSoft implements Betting {
 
 	/**
 	 * Settle bets on podium
+	 * 
 	 * @param competition
+	 *            Competition's name
 	 * @param winner
+	 *            Winner
 	 * @param second
+	 *            First runner-up
 	 * @param third
+	 *            Second runner-up
 	 * @param managerPwd
-	 * @throws AuthenticationException 
-	 * @throws ExistingCompetitionException 
-	 * @throws SQLException 
+	 *            Manager's password
+	 * @throws AuthenticationException
+	 *             The manager's password is invalid
+	 * @throws ExistingCompetitionException
+	 *             The competition is not existed
+	 * @throws SQLException
+	 *             SQL problem
 	 */
 	public void settlePodium(String competition, PCompetitor winner,
-			PCompetitor second, PCompetitor third, String managerPwd) throws AuthenticationException, SQLException, ExistingCompetitionException {
+			PCompetitor second, PCompetitor third, String managerPwd)
+			throws AuthenticationException, SQLException,
+			ExistingCompetitionException {
 		// Authenticate manager
 		authenticateMngr(managerPwd);
 		CompetitionDAO cd = new CompetitionDAO();
 		// Exist Competition
-		if(!cd.isExistCompetition(competition))
-			throw new ExistingCompetitionException("The competition doesn't exist");
+		if (!cd.isExistCompetition(competition))
+			throw new ExistingCompetitionException(
+					"The competition doesn't exist");
 		PodiumDAO pd = new PodiumDAO();
-		pd.settlePodiumToSubscriber(competition,winner,second,third);
-		
+		pd.settlePodiumToSubscriber(competition, winner, second, third);
+
 	}
-	
+
 	/**
 	 * Calculate the competitors who are first, second, and third
+	 * 
 	 * @param competition
+	 *            Competition's name
 	 * @param winner
+	 *            Winner
 	 * @param second
+	 *            First runner-up
 	 * @param third
+	 *            Second runner-up
 	 * @param managerPwd
+	 *            Manager's password
 	 * @throws AuthenticationException
+	 *             The manager's password is wrong
 	 */
 	public void calculatePodiumWinner(String competition, PCompetitor winner,
-			PCompetitor second, PCompetitor third, String managerPwd) throws AuthenticationException {
+			PCompetitor second, PCompetitor third, String managerPwd)
+			throws AuthenticationException {
 		// Authenticate manager
-				authenticateMngr(managerPwd);
+		authenticateMngr(managerPwd);
 		PodiumDAO pd = new PodiumDAO();
 		try {
-			pd.addPodiumWinner(competition,winner,second,third);
+			pd.addPodiumWinner(competition, winner, second, third);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -410,7 +515,7 @@ public class BettingSoft implements Betting {
 	 * Getter of the property <tt>robot</tt>
 	 * 
 	 * @return Returns the robot.
-	 * @uml.property name="robot"
+	 * uml.property name="robot"
 	 */
 	public Collection getRobot() {
 		return robot;
@@ -421,7 +526,7 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @param robot
 	 *            The robot to set.
-	 * @uml.property name="robot"
+	 * uml.property name="robot"
 	 */
 	public void setRobot(Collection robot) {
 		this.robot = robot;
@@ -431,7 +536,7 @@ public class BettingSoft implements Betting {
 	 * Getter of the property <tt>person</tt>
 	 * 
 	 * @return Returns the person.
-	 * @uml.property name="person"
+	 * uml.property name="person"
 	 */
 	public Collection getPerson() {
 		return person;
@@ -442,15 +547,15 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @param person
 	 *            The person to set.
-	 * @uml.property name="person"
+	 * uml.property name="person"
 	 */
 	public void setPerson(Collection person) {
 		this.person = person;
 	}
 
 	/**
-	 * @uml.property name="competition"
-	 * @uml.associationEnd multiplicity="(0 -1)"
+	 * uml.property name="competition"
+	 * uml.associationEnd multiplicity="(0 -1)"
 	 *                     inverse="bettingSoft:fr.uv1.bettingServices.Competition"
 	 */
 	private Collection competition;
@@ -459,7 +564,7 @@ public class BettingSoft implements Betting {
 	 * Getter of the property <tt>competition</tt>
 	 * 
 	 * @return Returns the competition.
-	 * @uml.property name="competition"
+	 * uml.property name="competition"
 	 */
 	public Collection getCompetition() {
 		return competition;
@@ -470,10 +575,30 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @param competition
 	 *            The competition to set.
-	 * @uml.property name="competition"
+	 * uml.property name="competition"
 	 */
 	public void setCompetition(Collection competition) {
 		this.competition = competition;
+	}
+
+	public BettingPasswordsVerifier getPv() {
+		return pv;
+	}
+
+	public void setPv(BettingPasswordsVerifier pv) {
+		this.pv = pv;
+	}
+
+	public Collection<Subscriber> getSubscribers() {
+		return subscribers;
+	}
+
+	public void setSubscribers(Collection<Subscriber> subscribers) {
+		this.subscribers = subscribers;
+	}
+
+	public String getManagerPassword() {
+		return managerPassword;
 	}
 
 }

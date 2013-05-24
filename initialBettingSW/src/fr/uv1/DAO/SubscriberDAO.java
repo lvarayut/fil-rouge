@@ -11,13 +11,25 @@ import fr.uv1.bettingServices.ExistingSubscriberException;
 import fr.uv1.bettingServices.PCompetitor;
 import fr.uv1.bettingServices.Subscriber;
 import fr.uv1.database.DBConnection;
-
+/**
+ * This class is used to create t
+ * @author Rokhaya and Varayut
+ * @version 2.0
+ * @since 24/05/2013
+ *
+ */
 public class SubscriberDAO {
 
 	public SubscriberDAO() {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Add a new subscriber to the database
+	 * @param s Subscriber object
+	 * @throws SQLException SQL problem
+	 * @throws ExistingSubscriberException  The subscriber is already existed
+	 */
 	public void addSubscriber(Subscriber s) throws SQLException,
 			ExistingSubscriberException {
 		// Verify duplicate subscriber
@@ -58,6 +70,12 @@ public class SubscriberDAO {
 		db.disconnect();
 	}
 
+	/**
+	 * Verify the existence of subscriber
+	 * @param username Subscriber's username
+	 * @return Whether the subscriber is existed or not
+	 * @throws SQLException SQL problem
+	 */
 	public boolean isExistSubscriber(String username) throws SQLException {
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();

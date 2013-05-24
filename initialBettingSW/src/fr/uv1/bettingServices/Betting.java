@@ -35,7 +35,7 @@ public interface Betting {
 	 * @return password for the new subscriber
 	 */
 	String subscribe(String a_name, String a_firstName, String a_username,
-			Calendar a_birthDay, String a_managerPwd) throws AuthenticationException,
+			String a_birthDay, String a_managerPwd) throws AuthenticationException,
 			ExistingSubscriberException, BadParametersException;
 
 	/**
@@ -91,7 +91,7 @@ public interface Betting {
 	 * 
 	 * @param newPwd
 	 *            the new manager's password.
-	 * @param currentPwdDe
+	 * @param currentPwd
 	 *            the manager's password.
 	 * 
 	 * @throws AuthenticationException
@@ -102,4 +102,22 @@ public interface Betting {
 	 */
 	void changeMngrPwd(String newPwd, String currentPwd)
 			throws AuthenticationException, BadParametersException;
+
+	/**
+	 * Create a new competitor
+	 * 
+	 * @param firstname
+	 *            Competitor's fist name
+	 * @param lastname
+	 *            Competitor's last name
+	 * @param birthDay
+	 *            Competitor's birthday
+	 * @param managerPwd
+	 *            Manager's password
+	 * @return New competitor
+	 * @throws AuthenticationException 
+	 */
+	PCompetitor createCompetitor(String firstname, String lastname,
+			Calendar birthDay, String managerPwd)
+			throws AuthenticationException;
 }

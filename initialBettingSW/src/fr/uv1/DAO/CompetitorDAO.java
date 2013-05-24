@@ -10,12 +10,24 @@ import com.mysql.jdbc.Statement;
 import fr.uv1.bettingServices.ExistingCompetitorException;
 import fr.uv1.bettingServices.PCompetitor;
 import fr.uv1.database.DBConnection;
-
+/**
+ * This class is used to create t
+ * @author Rokhaya and Varayut
+ * @version 2.0
+ * @since 24/05/2013
+ *
+ */
 public class CompetitorDAO {
 
 	public CompetitorDAO() {
 		// TODO Auto-generated constructor stub
 	}
+	/** Create a new competitor
+	 * @param com Competitor's name
+	 * @return Competitor object
+	 * @throws SQLException SQL problem
+	 * @throws ExistingCompetitorException The competitor is already existed
+	 */
 	public PCompetitor createCompetitor(PCompetitor com) throws SQLException, ExistingCompetitorException {
 		// Verify duplicate competitor
 		if(isExistCompetitor(com.getId()))
@@ -63,6 +75,12 @@ public class CompetitorDAO {
 
 	}
 	
+	/**
+	 * Verify the existence of competitor
+	 * @param id Competitor's id
+	 * @return Whether the competitor is existed or not
+	 * @throws SQLException SQL problem
+	 */
 	public boolean isExistCompetitor(int id) throws SQLException{
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();

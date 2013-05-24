@@ -103,8 +103,8 @@ public abstract class Person {
 	
 
 	/**
-	 * @uml.property  name="bettingSoft"
-	 * @uml.associationEnd  multiplicity="(1 1)" inverse="person:fr.uv1.bettingServices.BettingSoft"
+	 * uml.property  name="bettingSoft"
+	 * uml.associationEnd  multiplicity="(1 1)" inverse="person:fr.uv1.bettingServices.BettingSoft"
 	 */
 	private BettingSoft bettingSoft;
 
@@ -112,7 +112,7 @@ public abstract class Person {
 	/**
 	 * Getter of the property <tt>bettingSoft</tt>
 	 * @return  Returns the bettingSoft.
-	 * @uml.property  name="bettingSoft"
+	 * uml.property  name="bettingSoft"
 	 */
 	public BettingSoft getBettingSoft() {
 		return bettingSoft;
@@ -121,7 +121,7 @@ public abstract class Person {
 	/**
 	 * Setter of the property <tt>bettingSoft</tt>
 	 * @param bettingSoft  The bettingSoft to set.
-	 * @uml.property  name="bettingSoft"
+	 * uml.property  name="bettingSoft"
 	 */
 	public void setBettingSoft(BettingSoft bettingSoft) {
 		this.bettingSoft = bettingSoft;

@@ -24,8 +24,8 @@ public class BetWinner extends Bet {
 
 
 		/**
-		 * @uml.property  name="competitor"
-		 * @uml.associationEnd  multiplicity="(1 1)" inverse="betWinner:fr.uv1.bettingServices.Competitor"
+		 * uml.property  name="competitor"
+		 * uml.associationEnd  multiplicity="(1 1)" inverse="betWinner:fr.uv1.bettingServices.Competitor"
 		 */
 		private PCompetitor competitor;
 
@@ -34,7 +34,7 @@ public class BetWinner extends Bet {
 		/**
 		 * Getter of the property <tt>competitor</tt>
 		 * @return  Returns the competitor.
-		 * @uml.property  name="competitor"
+		 * uml.property  name="competitor"
 		 */
 		public PCompetitor getCompetitor() {
 			return competitor;
@@ -43,7 +43,7 @@ public class BetWinner extends Bet {
 		/**
 		 * Setter of the property <tt>competitor</tt>
 		 * @param competitor  The competitor to set.
-		 * @uml.property  name="competitor"
+		 * uml.property  name="competitor"
 		 */
 		public void setCompetitor(PCompetitor competitor) {
 			this.competitor = competitor;
@@ -52,8 +52,8 @@ public class BetWinner extends Bet {
 
 
 		/**
-		 * @uml.property  name="competitionWinner"
-		 * @uml.associationEnd  multiplicity="(1 1)" inverse="betWinner:fr.uv1.bettingServices.CompetitionWinner"
+		 * uml.property  name="competitionWinner"
+		 * uml.associationEnd  multiplicity="(1 1)" inverse="betWinner:fr.uv1.bettingServices.CompetitionWinner"
 		 */
 		private CompetitionWinner competitionWinner;
 
@@ -62,7 +62,7 @@ public class BetWinner extends Bet {
 		/**
 		 * Getter of the property <tt>competitionWinner</tt>
 		 * @return  Returns the competitionWinner.
-		 * @uml.property  name="competitionWinner"
+		 * uml.property  name="competitionWinner"
 		 */
 		public CompetitionWinner getCompetitionWinner() {
 			return competitionWinner;
@@ -71,7 +71,7 @@ public class BetWinner extends Bet {
 		/**
 		 * Setter of the property <tt>competitionWinner</tt>
 		 * @param competitionWinner  The competitionWinner to set.
-		 * @uml.property  name="competitionWinner"
+		 * uml.property  name="competitionWinner"
 		 */
 		public void setCompetitionWinner(CompetitionWinner competitionWinner) {
 			this.competitionWinner = competitionWinner;
