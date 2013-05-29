@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project default="javadoc">
-    <target name="javadoc">
-        <javadoc access="public" author="true" classpath="libs/validationTests.jar:/Users/varayutlerdkanlayanawat/Documents/adt-bundle-mac-x86_64/eclipse/plugins/org.junit_4.10.0.v4_10_0_v20120426-0900/junit.jar:libs/mysql-connector-java-5.1.25-bin.jar:libs/OracleValidationTools.jar:/Users/varayutlerdkanlayanawat/Documents/adt-bundle-mac-x86_64/eclipse/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar" destdir="/Users/varayutlerdkanlayanawat/Google%20Drive/CSDS2/Fil%20rouge/Jalon2/initialBettingSW/doc" doctitle="Betting" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" packagenames="fr.uv1.bettingServices,fr.uv1.DAO,fr.uv1.database" source="1.7" sourcepath="src" splitindex="true" use="true" version="true"/>
-    </target>
-</project>
