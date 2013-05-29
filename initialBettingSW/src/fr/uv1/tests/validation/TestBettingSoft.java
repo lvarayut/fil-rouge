@@ -24,8 +24,9 @@ public class TestBettingSoft {
 	 * @param args
 	 * @throws AuthenticationException 
 	 * @throws BadParametersException 
+	 * @throws CompetitionException 
 	 */
-	public static void main(String[] args) throws BadParametersException, AuthenticationException {
+	public static void main(String[] args) throws BadParametersException, AuthenticationException, CompetitionException {
 		// TODO Auto-generated method stub
 
 		BettingSoft bs = null;
@@ -44,7 +45,10 @@ public class TestBettingSoft {
 		testCreditSubscriber();
 		testDebitSubscriber();
 		testListCompetition();
+		testCalculatePodiumWinner();
 		testSettlePodium();
+		testCalculateWinnerWinner();
+		testSettleWinner();
 		// /*
 		// * Test calculatePodiumWinner
 		// */
@@ -208,7 +212,7 @@ public class TestBettingSoft {
 		bs.calculatePodiumWinner("Polo", cTor1, cTor2, cTor3, "rokhayagaye");
 	}
 
-	public static void testSettlePodium() throws BadParametersException, AuthenticationException {
+	public static void testSettlePodium() throws BadParametersException, AuthenticationException, CompetitionException {
 		/*
 		 * Test settlePodium
 		 */

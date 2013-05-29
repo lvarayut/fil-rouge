@@ -3,6 +3,7 @@ package fr.uv1.bettingServices;
 import java.sql.SQLException;
 
 import fr.uv1.DAO.CompetitionDAO;
+import fr.uv1.DAO.CompetitorDAO;
 import fr.uv1.DAO.PodiumDAO;
 import fr.uv1.DAO.WinnerDAO;
 
@@ -44,11 +45,16 @@ public class BetWinner extends Bet {
 		// Authenticate manager
 		BettingSoft bs = new BettingSoft(a_managerPwd);
 		bs.authenticateMngr(a_managerPwd);
-		CompetitionDAO cd = new CompetitionDAO();
+		CompetitionDAO cTionD = new CompetitionDAO();
 		// Exist Competition
-		if (!cd.isExistCompetition(a_competition))
+		if (!cTionD.isExistCompetition(a_competition))
 			throw new ExistingCompetitionException(
 					"The competition doesn't exist");
+		// Exist Competitor
+		CompetitorDAO cTorD = new CompetitorDAO();
+		if (!cTorD.isExistCompetitor(a_winner.getId()))
+			throw new CompetitionException(
+					"The competitor doesn't exist");
 		WinnerDAO wd = new WinnerDAO();
 		wd.settleWinnerToSubscriber(a_competition, a_winner);
 	}

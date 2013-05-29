@@ -316,20 +316,24 @@ public class BettingSoft implements Betting {
 	 * @throws ExistingCompetitionException
 	 *             The competition is already existed
 	 * @throws BadParametersException
-	 *             The end date is invalid
+	 *             invalid parameters
+	 * @throws CompetitionException The end date is invalid
 	 */
 	public void addCompetition(String a_competition, Calendar a_closingDate,
 			Collection<PCompetitor> competitors, String a_managerPwd)
 			throws AuthenticationException, ExistingCompetitionException,
-			BadParametersException {
+			BadParametersException, CompetitionException {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
 		// Check whether the end date is correct or not
 		if (a_closingDate.before(Calendar.getInstance())) {
-			throw new BadParametersException("Invalide end date");
+			throw new CompetitionException("Invalide end date");
 		}
 		// Check whether the competition is existed or not
 		CompetitionDAO cd = new CompetitionDAO();
+		// Check parameters
+		if(a_closingDate==null||competitors==null || a_competition == null || a_managerPwd == null)
+			throw new BadParametersException();
 		try {
 			if (cd.isExistCompetition(a_competition))
 				throw new ExistingCompetitionException();
