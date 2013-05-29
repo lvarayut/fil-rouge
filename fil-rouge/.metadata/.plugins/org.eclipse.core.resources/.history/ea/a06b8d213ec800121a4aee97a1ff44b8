@@ -1,0 +1,9 @@
+package fr.uv1.DAO;
+
+public class WinnerDAO {
+
+	public WinnerDAO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

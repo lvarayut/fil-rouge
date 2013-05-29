@@ -10,6 +10,7 @@ import fr.uv1.DAO.SubscriberDAO;
 import fr.uv1.bettingServices.AuthenticationException;
 import fr.uv1.bettingServices.BadParametersException;
 import fr.uv1.bettingServices.BetPodium;
+import fr.uv1.bettingServices.BetWinner;
 import fr.uv1.bettingServices.BettingSoft;
 import fr.uv1.bettingServices.CompetitionException;
 import fr.uv1.bettingServices.PCompetitor;
@@ -190,6 +191,22 @@ public class TestBettingSoft {
 		}
 
 	}
+	
+	public static void testCalculatePodiumWinner() throws BadParametersException, AuthenticationException{
+		/*
+		 * Test CalculatePodiumWinner
+		 */
+		System.out.println("----------------Calculate Podium Winner---------------");
+		BettingSoft bs = new BettingSoft("rokhayagaye");
+		PCompetitor cTor1 = bs.createCompetitor("AFirst", "ALast",
+				Calendar.getInstance(), "rokhayagaye");
+		PCompetitor cTor2 = bs.createCompetitor("BFirst", "BLast",
+				Calendar.getInstance(), "rokhayagaye");
+		PCompetitor cTor3 = bs.createCompetitor("CFirst", "CLast",
+				Calendar.getInstance(), "rokhayagaye");
+		
+		bs.calculatePodiumWinner("Polo", cTor1, cTor2, cTor3, "rokhayagaye");
+	}
 
 	public static void testSettlePodium() throws BadParametersException, AuthenticationException {
 		/*
@@ -199,13 +216,41 @@ public class TestBettingSoft {
 		BetPodium bp = new BetPodium();
 		BettingSoft bs = new BettingSoft("rokhayagaye");
 		PCompetitor cTor1 = bs.createCompetitor("AFirst", "ALast",
-				Calendar.getInstance(), "rokhayagaye");;
+				Calendar.getInstance(), "rokhayagaye");
 		PCompetitor cTor2 = bs.createCompetitor("BFirst", "BLast",
 				Calendar.getInstance(), "rokhayagaye");
 		PCompetitor cTor3 = bs.createCompetitor("CFirst", "CLast",
 				Calendar.getInstance(), "rokhayagaye");
 		try {
 			bp.settlePodium("Polo", cTor1, cTor2, cTor3, "rokhayagaye");
+		} catch (AuthenticationException | SQLException
+				| ExistingCompetitionException | BadParametersException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void testCalculateWinnerWinner() throws BadParametersException, AuthenticationException{
+		/*
+		 * Test CalculateWinnerWinner
+		 */
+		System.out.println("----------------Calculate Winner Winner---------------");
+		BettingSoft bs = new BettingSoft("rokhayagaye");
+		PCompetitor cTor1 = bs.createCompetitor("AFirst", "ALast",
+				Calendar.getInstance(), "rokhayagaye");
+		
+		bs.calculateWinnerWinner("Polo", cTor1,  "rokhayagaye");
+	}
+	public static void testSettleWinner() throws BadParametersException, AuthenticationException, CompetitionException {
+		/*
+		 * Test settleWinner
+		 */
+		System.out.println("----------------Settle Winner ---------------");
+		BetWinner bw = new BetWinner();
+		BettingSoft bs = new BettingSoft("rokhayagaye");
+		PCompetitor cTor1 = bs.createCompetitor("AFirst", "ALast",
+				Calendar.getInstance(), "rokhayagaye");
+		try {
+			bw.settleWinner("Polo", cTor1, "rokhayagaye");
 		} catch (AuthenticationException | SQLException
 				| ExistingCompetitionException | BadParametersException e) {
 			// TODO Auto-generated catch block

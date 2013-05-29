@@ -1,0 +1,89 @@
+package fr.uv1.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import fr.uv1.bettingServices.PCompetitor;
+import fr.uv1.database.DBConnection;
+
+public class WinnerDAO {
+
+	public WinnerDAO() {
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * Distribute tokens for subscribers who win this competition
+	 * 
+	 * @param competition
+	 *            Competition's name
+	 * @param winner
+	 *            Winner
+	 * @throws SQLException
+	 *             SQL Problem
+	 */
+	public void settleWinnerToSubscriber(String competition,
+			PCompetitor winner)
+			throws SQLException {
+		int totalTokensInCompetition = 0;
+		int totalTokensInWinner = 0;
+		int numberOfRightSub = 0;
+		ResultSet resultSet = null;
+		PreparedStatement psSQL = null;
+		SubscriberDAO sd = new SubscriberDAO();
+		DBConnection db = new DBConnection();
+		Connection c = db.connect();
+		// Calculate the total number of tokens are bet in winner
+		psSQL = c
+				.prepareStatement("Select sum(betToken) Total from bet_winner where name_competition = ?");
+		psSQL.setString(1, competition);
+		resultSet = psSQL.executeQuery();
+		resultSet.next();
+		totalTokensInWinner = resultSet.getInt("Total");
+
+		// Calculate the total number of tokens are bet in this competition
+		psSQL = c
+				.prepareStatement("Select sum(betToken) from bet_podium where name_competition = ?");
+		psSQL.setString(1, competition);
+		resultSet = psSQL.executeQuery();
+		resultSet.next();
+		totalTokensInCompetition = resultSet.getInt(1) + totalTokensInWinner;
+		// Distribute tokens
+		psSQL = c
+				.prepareStatement("Select * from bet_winner where name_competition = ? and id_competitor = ?");
+		psSQL.setString(1, competition);
+		psSQL.setInt(2, winner.getId());
+		resultSet = psSQL.executeQuery();
+		// Move a index cursor to the last position
+		resultSet.last();
+		// Get the last position
+		numberOfRightSub = resultSet.getRow();
+		resultSet.first();
+		// If no subscriber bets on the right winner, the tokens bet are
+		// credited to subscribers betting on the competition
+		if (numberOfRightSub == 0) {
+			psSQL = c
+					.prepareStatement("Select * from bet_winner where name_competition = ?");
+			psSQL.setString(1, competition);
+			resultSet = psSQL.executeQuery();
+			while (resultSet.next()) {
+				sd.addTokens(resultSet.getString("pseudo_subscriber"),
+						resultSet.getInt("betToken"));
+			}
+		}
+		// number of tokens betted * total tokens betted for the competition) /
+		// total number of tokens betted for the podium
+		else {
+			do {
+				int tokens = resultSet.getInt("betToken");
+				String subscriber = resultSet.getString("pseudo_subscriber");
+				sd.addTokens(subscriber, tokens * totalTokensInCompetition
+						/ totalTokensInWinner);
+			} while (resultSet.next());
+		}
+		resultSet.close();
+		c.setAutoCommit(true);
+		db.disconnect();
+	}
+}

@@ -1,7 +1,10 @@
 package fr.uv1.bettingServices;
 
+import java.sql.SQLException;
+
 import fr.uv1.DAO.CompetitionDAO;
 import fr.uv1.DAO.PodiumDAO;
+import fr.uv1.DAO.WinnerDAO;
 
 public class BetWinner extends Bet {
 
@@ -19,20 +22,35 @@ public class BetWinner extends Bet {
 	}
 
 	/**
-		 */
+	 * Settle bets on winner
+	 * 
+	 * @param competition
+	 *            Competition's name
+	 * @param winner
+	 *            Winner
+	 * @param managerPwd
+	 *            Manager's password
+	 * @throws AuthenticationException
+	 *             The manager's password is invalid
+	 * @throws ExistingCompetitionException
+	 *             The competition is not existed
+	 * @throws SQLException
+	 *             SQL problem
+	 * @throws BadParametersException 
+	 */
 	public void settleWinner(String a_competition, PCompetitor a_winner,
 			String a_managerPwd) throws AuthenticationException,
-			ExistingCompetitionException, CompetitionException {
+			ExistingCompetitionException, CompetitionException, BadParametersException, SQLException {
 		// Authenticate manager
-		BettingSoft bs = new BettingSoft(managerPwd);
-		bs.authenticateMngr(managerPwd);
+		BettingSoft bs = new BettingSoft(a_managerPwd);
+		bs.authenticateMngr(a_managerPwd);
 		CompetitionDAO cd = new CompetitionDAO();
 		// Exist Competition
-		if (!cd.isExistCompetition(competition))
+		if (!cd.isExistCompetition(a_competition))
 			throw new ExistingCompetitionException(
 					"The competition doesn't exist");
-		PodiumDAO pd = new PodiumDAO();
-		pd.settlePodiumToSubscriber(competition, winner, second, third);
+		WinnerDAO wd = new WinnerDAO();
+		wd.settleWinnerToSubscriber(a_competition, a_winner);
 	}
 
 	/**
