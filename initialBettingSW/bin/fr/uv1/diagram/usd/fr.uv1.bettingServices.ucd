@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" size="1471,838" id="fr.uv1.bettingServices" metadata="uml2-1.0" initialized="true" zoom="0.75" scrolledX="144" tag="1000" key="32303037303533312D3130303020696E697469616C42657474696E6753572F75736572">
+  <children xsi:type="editmodel:ClassEditModel" name="AuthenticationException" location="1248,438" size="206,80" id="fr.uv1.bettingServices/AuthenticationException" runTimeClassModel="AuthenticationException(Ljava.lang.String;),AuthenticationException()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="157,30">
+      <children xsi:type="editmodel:MethodEditModel" name="AuthenticationException" id="fr.uv1.bettingServices/AuthenticationException#AuthenticationException()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="AuthenticationException" id="fr.uv1.bettingServices/AuthenticationException#AuthenticationException(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="BadParametersException" location="1095,599" size="214,80" id="fr.uv1.bettingServices/BadParametersException" runTimeClassModel="BadParametersException(Ljava.lang.String;),BadParametersException()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="160,30">
+      <children xsi:type="editmodel:MethodEditModel" name="BadParametersException" id="fr.uv1.bettingServices/BadParametersException#BadParametersException()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="BadParametersException" id="fr.uv1.bettingServices/BadParametersException#BadParametersException(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ExistingSubscriberException" location="1209,330" size="241,80" id="fr.uv1.bettingServices/ExistingSubscriberException" runTimeClassModel="ExistingSubscriberException(Ljava.lang.String;),ExistingSubscriberException()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="178,30">
+      <children xsi:type="editmodel:MethodEditModel" name="ExistingSubscriberException" id="fr.uv1.bettingServices/ExistingSubscriberException#ExistingSubscriberException(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="ExistingSubscriberException" id="fr.uv1.bettingServices/ExistingSubscriberException#ExistingSubscriberException()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.1" name="Subscriber" location="87,318" size="184,155" id="fr.uv1.bettingServices/Subscriber" runTimeClassModel="debitSubscriber(Ljava.lang.String;JLjava.lang.String;),Subscriber(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),getPassword(),pv,password,creditSubscriber(Ljava.lang.String;JLjava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="161,45">
+      <children xsi:type="editmodel:AttributeEditModel" name="password" id="fr.uv1.bettingServices/Subscriber#password"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="pv" id="fr.uv1.bettingServices/Subscriber#pv"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="token" id="fr.uv1.bettingServices/Subscriber#token"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,60">
+      <children xsi:type="editmodel:MethodEditModel" name="Subscriber" id="fr.uv1.bettingServices/Subscriber#Subscriber(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="debitSubscriber" id="fr.uv1.bettingServices/Subscriber#debitSubscriber(Ljava.lang.String;JLjava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPassword" id="fr.uv1.bettingServices/Subscriber#getPassword()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="creditSubscriber" id="fr.uv1.bettingServices/Subscriber#creditSubscriber(Ljava.lang.String;JLjava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Person&lt;-fr.uv1.bettingServices/Subscriber" source="//@children.3" target="//@children.8" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="184,6" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,268"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Bet@bet+fr.uv1.bettingServices/Subscriber@subscriber" source="//@children.3" target="//@children.10" targetEnd="//@children.3/@sourceConnections.1/@children.1" label="//@children.3/@sourceConnections.1/@children.2" sourceEnd="//@children.3/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="subscriber" location="153,155" id="fr.uv1.bettingServices/Bet@bet+fr.uv1.bettingServices/Subscriber@subscriber|fr.uv1.bettingServices/Subscriber#subscriber" attachSource="true" multiplicityLabel="//@children.3/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.3/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - subscriber" location="247,479" size="67,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="226,479" size="7,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="bet" location="30,0" id="fr.uv1.bettingServices/Bet@bet+fr.uv1.bettingServices/Subscriber@subscriber|fr.uv1.bettingServices/Bet#bet" multiplicityLabel="//@children.3/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.3/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - bet" location="247,548" size="28,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="228,548" size="5,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="BettingPasswordsVerifier" location="1242,239" size="215,65" id="fr.uv1.bettingServices/BettingPasswordsVerifier" runTimeClassModel="verify([C)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="53,15">
+      <children xsi:type="editmodel:MethodEditModel" name="verify" id="fr.uv1.bettingServices/BettingPasswordsVerifier#verify([C)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="fr.uv1.utils/PasswordVerifier&lt;-fr.uv1.bettingServices/BettingPasswordsVerifier" source="//@children.4" target="//@children.5" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="108,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="75,91"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.4/@sourceConnections.0" name="PasswordVerifier" location="1275,72" size="152,91" id="fr.uv1.utils/PasswordVerifier" runTimeClassModel="verify([C)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="53,15">
+      <children xsi:type="editmodel:MethodEditModel" name="verify" id="fr.uv1.utils/PasswordVerifier#verify([C)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.0 //@children.8/@sourceConnections.0 //@children.16/@sourceConnections.0" name="BettingSoft" location="820,49" size="184,200" id="fr.uv1.bettingServices/BettingSoft" runTimeClassModel="subscribe(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),unsubscribe(Ljava.lang.String;Ljava.lang.String;),listSubscribers(Ljava.lang.String;),authenticateMngr(Ljava.lang.String;),listCompetitions(),addCompetition(Ljava.lang.String;Ljava.util.Calendar;Ljava.util.Collection;Ljava.lang.String;),changeMngrPwd(Ljava.lang.String;Ljava.lang.String;),BettingSoft(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="161,30">
+      <children xsi:type="editmodel:AttributeEditModel" name="managerPassword" id="fr.uv1.bettingServices/BettingSoft#managerPassword"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="pv" id="fr.uv1.bettingServices/BettingSoft#pv"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="120,120">
+      <children xsi:type="editmodel:MethodEditModel" name="BettingSoft" id="fr.uv1.bettingServices/BettingSoft#BettingSoft(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="subscribe" id="fr.uv1.bettingServices/BettingSoft#subscribe(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="unsubscribe" id="fr.uv1.bettingServices/BettingSoft#unsubscribe(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listSubscribers" id="fr.uv1.bettingServices/BettingSoft#listSubscribers(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="authenticateMngr" id="fr.uv1.bettingServices/BettingSoft#authenticateMngr(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="changeMngrPwd" id="fr.uv1.bettingServices/BettingSoft#changeMngrPwd(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addCompetition" id="fr.uv1.bettingServices/BettingSoft#addCompetition(Ljava.lang.String;Ljava.util.Calendar;Ljava.util.Collection;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listCompetitions" id="fr.uv1.bettingServices/BettingSoft#listCompetitions()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Betting&lt;-fr.uv1.bettingServices/BettingSoft" source="//@children.6" target="//@children.7" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="184,69" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,69"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.6/@sourceConnections.0" name="Betting" location="1078,49" size="143,138" id="fr.uv1.bettingServices/Betting" runTimeClassModel="subscribe(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;),unsubscribe(Ljava.lang.String;Ljava.lang.String;),listSubscribers(Ljava.lang.String;),authenticateMngr(Ljava.lang.String;),changeMngrPwd(Ljava.lang.String;Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="120,75">
+      <children xsi:type="editmodel:MethodEditModel" name="authenticateMngr" id="fr.uv1.bettingServices/Betting#authenticateMngr(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="changeMngrPwd" id="fr.uv1.bettingServices/Betting#changeMngrPwd(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="listSubscribers" id="fr.uv1.bettingServices/Betting#listSubscribers(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="subscribe" id="fr.uv1.bettingServices/Betting#subscribe(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="unsubscribe" id="fr.uv1.bettingServices/Betting#unsubscribe(Ljava.lang.String;Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.0 //@children.15/@sourceConnections.0" name="Person" location="494,56" size="136,275" id="fr.uv1.bettingServices/Person" runTimeClassModel="getFirstName(),lastname,firstname,getLastName(),setUsername(Ljava.lang.String;),setFirstname(Ljava.lang.String;),toString(),username,getUsername(),setLastname(Ljava.lang.String;),hashCode(),equals(Ljava.lang.Object;),hasUsername(Ljava.lang.String;),Person()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,60">
+      <children xsi:type="editmodel:AttributeEditModel" name="firstname" id="fr.uv1.bettingServices/Person#firstname"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="lastname" id="fr.uv1.bettingServices/Person#lastname"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="username" id="fr.uv1.bettingServices/Person#username"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="birthdate" id="fr.uv1.bettingServices/Person#birthdate"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,165">
+      <children xsi:type="editmodel:MethodEditModel" name="Person" id="fr.uv1.bettingServices/Person#Person()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFirstName" id="fr.uv1.bettingServices/Person#getFirstName()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLastName" id="fr.uv1.bettingServices/Person#getLastName()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getUsername" id="fr.uv1.bettingServices/Person#getUsername()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setLastname" id="fr.uv1.bettingServices/Person#setLastname(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setFirstname" id="fr.uv1.bettingServices/Person#setFirstname(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setUsername" id="fr.uv1.bettingServices/Person#setUsername(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hasUsername" id="fr.uv1.bettingServices/Person#hasUsername(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="equals" id="fr.uv1.bettingServices/Person#equals(Ljava.lang.Object;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="hashCode" id="fr.uv1.bettingServices/Person#hashCode()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="fr.uv1.bettingServices/Person#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="fr.uv1.bettingServices/BettingSoft@bettingSoft+fr.uv1.bettingServices/Person@person" source="//@children.8" target="//@children.6" targetEnd="//@children.8/@sourceConnections.0/@children.1" label="//@children.8/@sourceConnections.0/@children.2" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="person" location="136,96" id="fr.uv1.bettingServices/BettingSoft@bettingSoft+fr.uv1.bettingServices/Person@person|fr.uv1.bettingServices/Person#person" attachSource="true" multiplicityLabel="//@children.8/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.8/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - person" location="636,132" size="48,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="636,159" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="bettingSoft" location="0,103" id="fr.uv1.bettingServices/BettingSoft@bettingSoft+fr.uv1.bettingServices/Person@person|fr.uv1.bettingServices/BettingSoft#bettingSoft" multiplicityLabel="//@children.8/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.8/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - bettingSoft" location="742,132" size="71,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="806,159" size="7,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Robot" location="37,161" size="100,80" id="fr.uv1.bettingServices/Robot" runTimeClassModel="Robot()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="77,15">
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="fr.uv1.bettingServices/Robot#name"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="55,15">
+      <children xsi:type="editmodel:MethodEditModel" name="Robot" id="fr.uv1.bettingServices/Robot#Robot()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="fr.uv1.bettingServices/BettingSoft@bettingSoft+fr.uv1.bettingServices/Robot@robot" source="//@children.9" target="//@children.6" targetEnd="//@children.9/@sourceConnections.0/@children.1" label="//@children.9/@sourceConnections.0/@children.2" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="robot" location="100,40" id="fr.uv1.bettingServices/BettingSoft@bettingSoft+fr.uv1.bettingServices/Robot@robot|fr.uv1.bettingServices/Robot#robot" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.9/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - robot" location="143,207" size="39,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="143,180" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="bettingSoft" location="81,-1" id="fr.uv1.bettingServices/BettingSoft@bettingSoft+fr.uv1.bettingServices/Robot@robot|fr.uv1.bettingServices/BettingSoft#bettingSoft" multiplicityLabel="//@children.9/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - bettingSoft" location="907,28" size="71,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="886,28" size="7,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Subscriber@subscriber+fr.uv1.bettingServices/Robot@robot" source="//@children.9" target="//@children.3" targetEnd="//@children.9/@sourceConnections.1/@children.1" label="//@children.9/@sourceConnections.1/@children.2" sourceEnd="//@children.9/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="robot" location="74,80" id="fr.uv1.bettingServices/Subscriber@subscriber+fr.uv1.bettingServices/Robot@robot|fr.uv1.bettingServices/Robot#robot" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.9/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - robot" location="117,247" size="39,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="98,247" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="subscriber" location="24,0" id="fr.uv1.bettingServices/Subscriber@subscriber+fr.uv1.bettingServices/Robot@robot|fr.uv1.bettingServices/Subscriber#subscriber" multiplicityLabel="//@children.9/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - subscriber" location="117,297" size="67,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="96,297" size="7,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="fr.uv1.bettingServices/Bet@bet+fr.uv1.bettingServices/Robot@robot" source="//@children.9" target="//@children.10" targetEnd="//@children.9/@sourceConnections.2/@children.1" label="//@children.9/@sourceConnections.2/@children.2" sourceEnd="//@children.9/@sourceConnections.2/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="robot" location="8,79" id="fr.uv1.bettingServices/Bet@bet+fr.uv1.bettingServices/Robot@robot|fr.uv1.bettingServices/Robot#robot" attachSource="true" multiplicityLabel="//@children.9/@sourceConnections.2/@children.0/@children.1" roleLabel="//@children.9/@sourceConnections.2/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - robot" location="-2,247" size="39,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="51,247" size="7,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="bet" location="-1,63" id="fr.uv1.bettingServices/Bet@bet+fr.uv1.bettingServices/Robot@robot|fr.uv1.bettingServices/Bet#bet" multiplicityLabel="//@children.9/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.9/@sourceConnections.2/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - bet" location="174,639" size="28,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="197,612" size="5,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.11/@sourceConnections.0 //@children.12/@sourceConnections.0 //@children.9/@sourceConnections.2 //@children.3/@sourceConnections.1" name="Bet" location="210,569" size="143,80" id="fr.uv1.bettingServices/Bet" runTimeClassModel="Bet()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="120,15">
+      <children xsi:type="editmodel:AttributeEditModel" name="numberTokenBet" id="fr.uv1.bettingServices/Bet#numberTokenBet"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="41,15">
+      <children xsi:type="editmodel:MethodEditModel" name="Bet" id="fr.uv1.bettingServices/Bet#Bet()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="fr.uv1.bettingServices/Competition@competition+fr.uv1.bettingServices/Bet@bet" source="//@children.10" target="//@children.16" targetEnd="//@children.10/@sourceConnections.0/@children.1" label="//@children.10/@sourceConnections.0/@children.2" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="bet" location="133,0" id="fr.uv1.bettingServices/Competition@competition+fr.uv1.bettingServices/Bet@bet|fr.uv1.bettingServices/Bet#bet" attachSource="true" multiplicityLabel="//@children.10/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.10/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - bet" location="307,548" size="28,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="349,548" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competition" location="0,54" id="fr.uv1.bettingServices/Competition@competition+fr.uv1.bettingServices/Bet@bet|fr.uv1.bettingServices/Competition#competition" multiplicityLabel="//@children.10/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competition" location="682,364" size="75,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="752,391" size="5,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="BetWinner" location="105,855" size="118,95" id="fr.uv1.bettingServices/BetWinner" runTimeClassModel="betOnWinner(JLjava.lang.String;Lfr.uv1.bettingServices.Competitor;Ljava.lang.String;Ljava.lang.String;),BetWinner(),settleWinner(Ljava.lang.String;Lfr.uv1.bettingServices.Competitor;Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="95,45">
+      <children xsi:type="editmodel:MethodEditModel" name="BetWinner" id="fr.uv1.bettingServices/BetWinner#BetWinner()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="betOnWinner" id="fr.uv1.bettingServices/BetWinner#betOnWinner(JLjava.lang.String;Lfr.uv1.bettingServices.Competitor;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="settleWinner" id="fr.uv1.bettingServices/BetWinner#settleWinner(Ljava.lang.String;Lfr.uv1.bettingServices.Competitor;Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Bet&lt;-fr.uv1.bettingServices/BetWinner" source="//@children.11" target="//@children.10" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="111,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="6,80"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="fr.uv1.bettingServices/CompetitionWinner@competitionWinner+fr.uv1.bettingServices/BetWinner@betWinner" source="//@children.11" target="//@children.13" targetEnd="//@children.11/@sourceConnections.1/@children.1" label="//@children.11/@sourceConnections.1/@children.2" sourceEnd="//@children.11/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="betWinner" location="117,76" id="fr.uv1.bettingServices/CompetitionWinner@competitionWinner+fr.uv1.bettingServices/BetWinner@betWinner|fr.uv1.bettingServices/BetWinner#betWinner" attachSource="true" multiplicityLabel="//@children.11/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.11/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - betWinner" location="229,937" size="67,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="229,910" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competitionWinner" location="-1,30" id="fr.uv1.bettingServices/CompetitionWinner@competitionWinner+fr.uv1.bettingServices/BetWinner@betWinner|fr.uv1.bettingServices/CompetitionWinner#competitionWinner" multiplicityLabel="//@children.11/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.11/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competitionWinner" location="643,909" size="114,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="750,936" size="7,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/BetWinner@betWinner" source="//@children.11" target="//@children.15" targetEnd="//@children.11/@sourceConnections.2/@children.1" label="//@children.11/@sourceConnections.2/@children.2" sourceEnd="//@children.11/@sourceConnections.2/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="betWinner" location="117,14" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/BetWinner@betWinner|fr.uv1.bettingServices/BetWinner#betWinner" attachSource="true" multiplicityLabel="//@children.11/@sourceConnections.2/@children.0/@children.1" roleLabel="//@children.11/@sourceConnections.2/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - betWinner" location="229,875" size="67,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="229,848" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competitor" location="7,65" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/BetWinner@betWinner|fr.uv1.bettingServices/Competitor#competitor" multiplicityLabel="//@children.11/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.11/@sourceConnections.2/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competitor" location="572,509" size="69,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="551,509" size="7,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="BetPodium" location="300,729" size="119,95" id="fr.uv1.bettingServices/BetPodium" runTimeClassModel="betOnPodium(JLjava.lang.String;Lfr.uv1.bettingServices.Competitor;Lfr.uv1.bettingServices.Competitor;Lfr.uv1.bettingServices.Competitor;Ljava.lang.String;Ljava.lang.String;),BetPodium(),settlePodium(Ljava.lang.String;Lfr.uv1.bettingServices.Competitor;Lfr.uv1.bettingServices.Competitor;Lfr.uv1.bettingServices.Competitor;Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="96,45">
+      <children xsi:type="editmodel:MethodEditModel" name="BetPodium" id="fr.uv1.bettingServices/BetPodium#BetPodium()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="betOnPodium" id="fr.uv1.bettingServices/BetPodium#betOnPodium(JLjava.lang.String;Lfr.uv1.bettingServices.Competitor;Lfr.uv1.bettingServices.Competitor;Lfr.uv1.bettingServices.Competitor;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="settlePodium" id="fr.uv1.bettingServices/BetPodium#settlePodium(Ljava.lang.String;Lfr.uv1.bettingServices.Competitor;Lfr.uv1.bettingServices.Competitor;Lfr.uv1.bettingServices.Competitor;Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Bet&lt;-fr.uv1.bettingServices/BetPodium" source="//@children.12" target="//@children.10" targetEnd="//@children.12/@sourceConnections.0/@children.1" sourceEnd="//@children.12/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="26,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="116,80"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="fr.uv1.bettingServices/CompetitionPodium@competitionPodium+fr.uv1.bettingServices/BetPodium@betPodium" source="//@children.12" target="//@children.14" targetEnd="//@children.12/@sourceConnections.1/@children.1" label="//@children.12/@sourceConnections.1/@children.2" sourceEnd="//@children.12/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="betPodium" location="119,72" id="fr.uv1.bettingServices/CompetitionPodium@competitionPodium+fr.uv1.bettingServices/BetPodium@betPodium|fr.uv1.bettingServices/BetPodium#betPodium" attachSource="true" multiplicityLabel="//@children.12/@sourceConnections.1/@children.0/@children.1" roleLabel="//@children.12/@sourceConnections.1/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - betPodium" location="425,780" size="68,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="425,807" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competitionPodium" location="0,22" id="fr.uv1.bettingServices/CompetitionPodium@competitionPodium+fr.uv1.bettingServices/BetPodium@betPodium|fr.uv1.bettingServices/CompetitionPodium#competitionPodium" multiplicityLabel="//@children.12/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.12/@sourceConnections.1/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competitionPodium" location="527,780" size="115,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="635,807" size="7,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/BetPodium@betPodium" source="//@children.12" target="//@children.15" targetEnd="//@children.12/@sourceConnections.2/@children.1" label="//@children.12/@sourceConnections.2/@children.2" sourceEnd="//@children.12/@sourceConnections.2/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="betPodium" location="118,15" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/BetPodium@betPodium|fr.uv1.bettingServices/BetPodium#betPodium" attachSource="true" multiplicityLabel="//@children.12/@sourceConnections.2/@children.0/@children.1" roleLabel="//@children.12/@sourceConnections.2/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - betPodium" location="425,751" size="68,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="425,724" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competitor" location="0,55" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/BetPodium@betPodium|fr.uv1.bettingServices/Competitor#competitor" multiplicityLabel="//@children.12/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.12/@sourceConnections.2/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competitor" location="482,472" size="69,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="3..3" location="531,499" size="20,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.11/@sourceConnections.1" name="CompetitionWinner" location="764,900" size="169,65" id="fr.uv1.bettingServices/CompetitionWinner" runTimeClassModel="CompetitionWinner()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="128,15">
+      <children xsi:type="editmodel:MethodEditModel" name="CompetitionWinner" id="fr.uv1.bettingServices/CompetitionWinner#CompetitionWinner()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/CompetitionWinner@competitionWinner" source="//@children.13" target="//@children.15" targetEnd="//@children.13/@sourceConnections.0/@children.1" label="//@children.13/@sourceConnections.0/@children.2" sourceEnd="//@children.13/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competitionWinner" location="0,20" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/CompetitionWinner@competitionWinner|fr.uv1.bettingServices/CompetitionWinner#competitionWinner" attachSource="true" multiplicityLabel="//@children.13/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.13/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competitionWinner" location="643,927" size="114,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="752,900" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competitor" location="108,55" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/CompetitionWinner@competitionWinner|fr.uv1.bettingServices/Competitor#competitor" multiplicityLabel="//@children.13/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.13/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competitor" location="673,472" size="69,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="673,499" size="7,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Competition&lt;-fr.uv1.bettingServices/CompetitionWinner" source="//@children.13" target="//@children.16" targetEnd="//@children.13/@sourceConnections.1/@children.1" sourceEnd="//@children.13/@sourceConnections.1/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="68,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="68,110"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.1" name="CompetitionPodium" location="650,779" size="172,65" id="fr.uv1.bettingServices/CompetitionPodium" runTimeClassModel="CompetitionPodium()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="129,15">
+      <children xsi:type="editmodel:MethodEditModel" name="CompetitionPodium" id="fr.uv1.bettingServices/CompetitionPodium#CompetitionPodium()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/CompetitionPodium@competitionPodium" source="//@children.14" target="//@children.15" targetEnd="//@children.14/@sourceConnections.0/@children.1" label="//@children.14/@sourceConnections.0/@children.2" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competitionPodium" location="8,0" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/CompetitionPodium@competitionPodium|fr.uv1.bettingServices/CompetitionPodium#competitionPodium" attachSource="true" multiplicityLabel="//@children.14/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.14/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competitionPodium" location="664,758" size="115,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="645,758" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competitor" location="99,65" id="fr.uv1.bettingServices/Competitor@competitor+fr.uv1.bettingServices/CompetitionPodium@competitionPodium|fr.uv1.bettingServices/Competitor#competitor" multiplicityLabel="//@children.14/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.14/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competitor" location="664,509" size="69,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="3..3" location="630,509" size="20,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Competition&lt;-fr.uv1.bettingServices/CompetitionPodium" source="//@children.14" target="//@children.16" targetEnd="//@children.14/@sourceConnections.1/@children.1" sourceEnd="//@children.14/@sourceConnections.1/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="142,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="28,110"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.2 //@children.14/@sourceConnections.0 //@children.13/@sourceConnections.0 //@children.11/@sourceConnections.2" name="Competitor" location="559,438" size="108,65" id="fr.uv1.bettingServices/Competitor" runTimeClassModel="Competitor()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="83,15">
+      <children xsi:type="editmodel:MethodEditModel" name="Competitor" id="fr.uv1.bettingServices/Competitor#Competitor()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="fr.uv1.bettingServices/Person&lt;-fr.uv1.bettingServices/Competitor" source="//@children.15" target="//@children.8" targetEnd="//@children.15/@sourceConnections.0/@children.1" sourceEnd="//@children.15/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="35,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="100,275"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.1 //@children.13/@sourceConnections.1 //@children.10/@sourceConnections.0" name="Competition" location="764,330" size="137,110" id="fr.uv1.bettingServices/Competition" runTimeClassModel="Competition()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="114,45">
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="fr.uv1.bettingServices/Competition#name"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="startDate" id="fr.uv1.bettingServices/Competition#startDate"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="endDate" id="fr.uv1.bettingServices/Competition#endDate"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="89,15">
+      <children xsi:type="editmodel:MethodEditModel" name="Competition" id="fr.uv1.bettingServices/Competition#Competition()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" id="fr.uv1.bettingServices/BettingSoft@bettingSoft+fr.uv1.bettingServices/Competition@competition" source="//@children.16" target="//@children.6" targetEnd="//@children.16/@sourceConnections.0/@children.1" label="//@children.16/@sourceConnections.0/@children.2" sourceEnd="//@children.16/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="competition" location="96,0" id="fr.uv1.bettingServices/BettingSoft@bettingSoft+fr.uv1.bettingServices/Competition@competition|fr.uv1.bettingServices/Competition#competition" attachSource="true" multiplicityLabel="//@children.16/@sourceConnections.0/@children.0/@children.1" roleLabel="//@children.16/@sourceConnections.0/@children.0/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - competition" location="867,309" size="75,13" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="848,309" size="5,13" anchorKind="FirstPart"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="bettingSoft" location="40,200" id="fr.uv1.bettingServices/BettingSoft@bettingSoft+fr.uv1.bettingServices/Competition@competition|fr.uv1.bettingServices/BettingSoft#bettingSoft" multiplicityLabel="//@children.16/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.16/@sourceConnections.0/@children.1/@children.0" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name=" - bettingSoft" location="867,255" size="71,13" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="846,255" size="7,13" anchorKind="LastPart"/>
+      </children>
+      <children xsi:type="editmodel:WireLabelEditModel" size="0,13" anchorKind="MiddlePart"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="SubscriberException" location="1036,287" size="180,80" id="fr.uv1.bettingServices/SubscriberException" runTimeClassModel="SubscriberException(),SubscriberException(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="135,30">
+      <children xsi:type="editmodel:MethodEditModel" name="SubscriberException" id="fr.uv1.bettingServices/SubscriberException#SubscriberException()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="SubscriberException" id="fr.uv1.bettingServices/SubscriberException#SubscriberException(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="CompetitionException" location="1056,393" size="189,80" id="fr.uv1.bettingServices/CompetitionException" runTimeClassModel="CompetitionException(),CompetitionException(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="143,30">
+      <children xsi:type="editmodel:MethodEditModel" name="CompetitionException" id="fr.uv1.bettingServices/CompetitionException#CompetitionException(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="CompetitionException" id="fr.uv1.bettingServices/CompetitionException#CompetitionException()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ExistingCompetitionException" location="1004,539" size="250,80" id="fr.uv1.bettingServices/ExistingCompetitionException" runTimeClassModel="ExistingCompetitionException(Ljava.lang.String;),ExistingCompetitionException()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="186,30">
+      <children xsi:type="editmodel:MethodEditModel" name="ExistingCompetitionException" id="fr.uv1.bettingServices/ExistingCompetitionException#ExistingCompetitionException(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="ExistingCompetitionException" id="fr.uv1.bettingServices/ExistingCompetitionException#ExistingCompetitionException()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
