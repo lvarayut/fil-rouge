@@ -8,6 +8,7 @@ import fr.uv1.DAO.CompetitionDAO;
 import fr.uv1.DAO.CompetitorDAO;
 import fr.uv1.DAO.PodiumDAO;
 import fr.uv1.DAO.SubscriberDAO;
+import fr.uv1.DAO.WinnerDAO;
 import fr.uv1.database.DBConnection;
 
 /**
@@ -315,20 +316,24 @@ public class BettingSoft implements Betting {
 	 * @throws ExistingCompetitionException
 	 *             The competition is already existed
 	 * @throws BadParametersException
-	 *             The end date is invalid
+	 *             invalid parameters
+	 * @throws CompetitionException The end date is invalid
 	 */
 	public void addCompetition(String a_competition, Calendar a_closingDate,
 			Collection<PCompetitor> competitors, String a_managerPwd)
 			throws AuthenticationException, ExistingCompetitionException,
-			BadParametersException {
+			BadParametersException, CompetitionException {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
 		// Check whether the end date is correct or not
 		if (a_closingDate.before(Calendar.getInstance())) {
-			throw new BadParametersException("Invalide end date");
+			throw new CompetitionException("Invalide end date");
 		}
 		// Check whether the competition is existed or not
 		CompetitionDAO cd = new CompetitionDAO();
+		// Check parameters
+		if(a_closingDate==null||competitors==null || a_competition == null || a_managerPwd == null)
+			throw new BadParametersException();
 		try {
 			if (cd.isExistCompetition(a_competition))
 				throw new ExistingCompetitionException();
@@ -469,6 +474,32 @@ public class BettingSoft implements Betting {
 		PodiumDAO pd = new PodiumDAO();
 		try {
 			pd.addPodiumWinner(competition, winner, second, third);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Calculate the competitor who is the winner
+	 * 
+	 * @param competition
+	 *            Competition's name
+	 * @param winner
+	 *            Winner
+	 * @param managerPwd
+	 *            Manager's password
+	 * @throws AuthenticationException
+	 *             The manager's password is wrong
+	 */
+	public void calculateWinnerWinner(String competition, PCompetitor winner,
+			 String managerPwd)
+			throws AuthenticationException {
+		// Authenticate manager
+		authenticateMngr(managerPwd);
+		WinnerDAO wd = new WinnerDAO();
+		try {
+			wd.addWinner(competition, winner);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

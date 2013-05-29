@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import fr.uv1.DAO.BetPodiumDAO;
 import fr.uv1.DAO.CompetitionDAO;
+import fr.uv1.DAO.CompetitorDAO;
 import fr.uv1.DAO.PodiumDAO;
 import fr.uv1.DAO.SubscriberDAO;
 
@@ -34,12 +35,14 @@ public class BetPodium extends Bet {
 	 *             The competition is not existed
 	 * @throws SQLException
 	 *             SQL problem
-	 * @throws BadParametersException 
+	 * @throws BadParametersException
+	 * @throws CompetitionException
 	 */
 	public void settlePodium(String competition, PCompetitor winner,
 			PCompetitor second, PCompetitor third, String managerPwd)
 			throws AuthenticationException, SQLException,
-			ExistingCompetitionException, BadParametersException {
+			ExistingCompetitionException, BadParametersException,
+			CompetitionException {
 		// Authenticate manager
 		BettingSoft bs = new BettingSoft(managerPwd);
 		bs.authenticateMngr(managerPwd);
@@ -48,30 +51,43 @@ public class BetPodium extends Bet {
 		if (!cd.isExistCompetition(competition))
 			throw new ExistingCompetitionException(
 					"The competition doesn't exist");
+		// Exist Competitor
+		CompetitorDAO cTorD = new CompetitorDAO();
+		if (!cTorD.isExistCompetitor(winner.getId())
+				|| !cTorD.isExistCompetitor(second.getId())
+				|| !cTorD.isExistCompetitor(third.getId()))
+			throw new CompetitionException("The competitor doesn't exist");
 		PodiumDAO pd = new PodiumDAO();
 		pd.settlePodiumToSubscriber(competition, winner, second, third);
 
 	}
-	
+
 	/**
 	 * Bet on podium The number of tokens of the subscriber is debited.
-	 * @param numberTokens Number of tokens
-	 * @param competition  Competition's name
+	 * 
+	 * @param numberTokens
+	 *            Number of tokens
+	 * @param competition
+	 *            Competition's name
 	 * @param winner
 	 *            Winner
 	 * @param second
 	 *            First runner-up
 	 * @param third
 	 *            Second runner-up
-	 * @param username Subscriber's username
-	 * @param pwdSubs Subscriber's password
-	 * @throws AuthenticationException  The subscriber's password is invalid
-	 * @throws BadParametersException 
-	 * @throws SQLException 
+	 * @param username
+	 *            Subscriber's username
+	 * @param pwdSubs
+	 *            Subscriber's password
+	 * @throws AuthenticationException
+	 *             The subscriber's password is invalid
+	 * @throws BadParametersException
+	 * @throws SQLException
 	 */
 	public void betOnPodium(long numberTokens, String competition,
 			PCompetitor winner, PCompetitor second, PCompetitor third,
-			String username, String pwdSubs) throws AuthenticationException, SQLException, BadParametersException {
+			String username, String pwdSubs) throws AuthenticationException,
+			SQLException, BadParametersException {
 		// Authenticate subscriber
 		authenticateSubscriber(pwdSubs);
 		BetPodiumDAO bd = new BetPodiumDAO();
@@ -140,16 +156,20 @@ public class BetPodium extends Bet {
 	public void setCompetitionPodium(CompetitionPodium competitionPodium) {
 		this.competitionPodium = competitionPodium;
 	}
-	
+
 	/**
 	 * Authentication by using subsciber's password
-	 * @param a_subscriberPwd Subscriber's password
-	 * @throws AuthenticationException The subscriber's password is invalid
-	 * @throws BadParametersException 
-	 * @throws SQLException 
+	 * 
+	 * @param a_subscriberPwd
+	 *            Subscriber's password
+	 * @throws AuthenticationException
+	 *             The subscriber's password is invalid
+	 * @throws BadParametersException
+	 * @throws SQLException
 	 */
 	public void authenticateSubscriber(String a_subscriberPwd)
-			throws AuthenticationException, SQLException, BadParametersException {
+			throws AuthenticationException, SQLException,
+			BadParametersException {
 		if (a_subscriberPwd == null)
 			throw new AuthenticationException("invalid subscriber's password");
 		BetPodiumDAO bpd = new BetPodiumDAO();
@@ -157,7 +177,7 @@ public class BetPodium extends Bet {
 		Collection<Subscriber> sub = bpd.listAllSubscriber();
 		Iterator iterator = sub.iterator();
 		while (iterator.hasNext()) {
-			Subscriber s = (Subscriber)iterator.next();
+			Subscriber s = (Subscriber) iterator.next();
 			if (s.getPassword().equals(a_subscriberPwd))
 				found = true;
 		}
