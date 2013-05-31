@@ -101,8 +101,13 @@ public class BetPodium extends Bet {
 		if(winner.equals(null) || second.equals(null) || third.equals(null))
 			throw new CompetitionException("Please give names for all competitors");
 		
-		//check if the closing date is in the past
+		// check if the subscriber has enough tokens
+		SubscriberDAO subs =new SubscriberDAO();
+		if(subs.getNumberOfToken(username)< numberTokens)
+			throw new CompetitionException("The number of tokens is not enough");
 		
+		//check if the number of tokens less than 0
+		if(numberTokens <0) throw new BadParametersException("the number of token is less than 0!");
 		
 		try {
 			// Bet Podium
