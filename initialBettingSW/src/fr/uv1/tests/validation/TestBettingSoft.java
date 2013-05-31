@@ -13,6 +13,7 @@ import fr.uv1.bettingServices.BetPodium;
 import fr.uv1.bettingServices.BetWinner;
 import fr.uv1.bettingServices.BettingSoft;
 import fr.uv1.bettingServices.CompetitionException;
+import fr.uv1.bettingServices.Competitor;
 import fr.uv1.bettingServices.PCompetitor;
 import fr.uv1.bettingServices.ExistingCompetitionException;
 import fr.uv1.bettingServices.ExistingSubscriberException;
@@ -86,7 +87,7 @@ public class TestBettingSoft {
 		 */
 		System.out.println("----------------Add Competition ---------------");
 		BettingSoft bs = new BettingSoft("rokhayagaye");
-		Collection<PCompetitor> comName = new ArrayList<PCompetitor>();
+		Collection<Competitor> comName = new ArrayList<Competitor>();
 		Calendar s1 = Calendar.getInstance(); // Current time
 		PCompetitor cTor = bs.createCompetitor("Varayut", "Lerd", s1,
 				"rokhayagaye");

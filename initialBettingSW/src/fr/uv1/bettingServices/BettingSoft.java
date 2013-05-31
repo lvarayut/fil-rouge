@@ -162,6 +162,24 @@ public class BettingSoft implements Betting {
 		return age >= 18;
 	}
 
+	public boolean verifyDuplicateCompetitors(Collection<Competitor> competitors) {
+		boolean duplicate = false;
+		PCompetitor[] cTor = new PCompetitor[3];
+		Iterator iterator = competitors.iterator();
+		int i = 0;
+		while (iterator.hasNext()) {
+			cTor[i] = (PCompetitor) iterator.next();
+			i++;
+		}
+		for(int j =0;j<cTor.length;j++){
+			for (int k=0;k<cTor.length;k++){
+				if(cTor[j].getFirstname().equals(cTor[k].getFirstname()) && cTor[j].getLastname().equals(cTor[k].getLastname()) && cTor[j].getBirthdate() == cTor[k].getBirthdate())
+					return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * From Betting interface (non-Javadoc)
 	 * 
@@ -195,8 +213,8 @@ public class BettingSoft implements Betting {
 		ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
 		ArrayList<String> subsData = new ArrayList<String>();
 		for (Subscriber s : subscribers) {
-			subsData.add(s.getLastName());
-			subsData.add(s.getFirstName());
+			subsData.add(s.getLastname());
+			subsData.add(s.getFirstname());
 			subsData.add(s.getUsername());
 
 			result.add(subsData);
@@ -287,7 +305,7 @@ public class BettingSoft implements Betting {
 	 *             The manager's password is wrong
 	 */
 	public void addCompetitor(Competition a_competition,
-			Collection<PCompetitor> competitors, String a_managerPwd)
+			Collection<Competitor> competitors, String a_managerPwd)
 			throws AuthenticationException {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
@@ -317,22 +335,26 @@ public class BettingSoft implements Betting {
 	 *             The competition is already existed
 	 * @throws BadParametersException
 	 *             invalid parameters
-	 * @throws CompetitionException The end date is invalid
+	 * @throws CompetitionException
+	 *             The end date is invalid
 	 */
 	public void addCompetition(String a_competition, Calendar a_closingDate,
-			Collection<PCompetitor> competitors, String a_managerPwd)
+			Collection<Competitor> competitors, String a_managerPwd)
 			throws AuthenticationException, ExistingCompetitionException,
 			BadParametersException, CompetitionException {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
 		// Check whether the end date is correct or not
-		if (a_closingDate.before(Calendar.getInstance())) {
+		if (a_closingDate.before(Calendar.getInstance())
+				|| competitors.size() < 2
+				|| verifyDuplicateCompetitors(competitors)) {
 			throw new CompetitionException("Invalide end date");
 		}
 		// Check whether the competition is existed or not
 		CompetitionDAO cd = new CompetitionDAO();
 		// Check parameters
-		if(a_closingDate==null||competitors==null || a_competition == null || a_managerPwd == null)
+		if (a_closingDate == null || competitors == null
+				|| a_competition == null || a_managerPwd == null)
 			throw new BadParametersException();
 		try {
 			if (cd.isExistCompetition(a_competition))
@@ -448,8 +470,6 @@ public class BettingSoft implements Betting {
 		}
 	}
 
-
-
 	/**
 	 * Calculate the competitors who are first, second, and third
 	 * 
@@ -479,7 +499,7 @@ public class BettingSoft implements Betting {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Calculate the competitor who is the winner
 	 * 
@@ -493,8 +513,7 @@ public class BettingSoft implements Betting {
 	 *             The manager's password is wrong
 	 */
 	public void calculateWinnerWinner(String competition, PCompetitor winner,
-			 String managerPwd)
-			throws AuthenticationException {
+			String managerPwd) throws AuthenticationException {
 		// Authenticate manager
 		authenticateMngr(managerPwd);
 		WinnerDAO wd = new WinnerDAO();
@@ -520,10 +539,11 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @param robot
 	 *            The robot to set. uml.property name="robot"
-	 * @throws BadParametersException  The robot object cannot be null
+	 * @throws BadParametersException
+	 *             The robot object cannot be null
 	 */
 	public void setRobot(Collection<Robot> robot) throws BadParametersException {
-		if(robot == null)
+		if (robot == null)
 			throw new BadParametersException("The robot object cannot be null");
 		this.robot = robot;
 	}
@@ -542,10 +562,12 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @param person
 	 *            The person to set. uml.property name="person"
-	 * @throws BadParametersException The person object cannot be null
+	 * @throws BadParametersException
+	 *             The person object cannot be null
 	 */
-	public void setPerson(Collection<Person> person) throws BadParametersException {
-		if(person == null)
+	public void setPerson(Collection<Person> person)
+			throws BadParametersException {
+		if (person == null)
 			throw new BadParametersException("The person object cannot be null");
 		this.person = person;
 	}
@@ -570,11 +592,14 @@ public class BettingSoft implements Betting {
 	 * 
 	 * @param competition
 	 *            The competition to set. uml.property name="competition"
-	 * @throws BadParametersException The competition object cannot be null
+	 * @throws BadParametersException
+	 *             The competition object cannot be null
 	 */
-	public void setCompetition(Collection<Competition> competition) throws BadParametersException {
-		if(competition == null)
-			throw new BadParametersException("The competition object cannot be null");
+	public void setCompetition(Collection<Competition> competition)
+			throws BadParametersException {
+		if (competition == null)
+			throw new BadParametersException(
+					"The competition object cannot be null");
 		this.competition = competition;
 	}
 
@@ -583,11 +608,14 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * @param pv BettingPasswordVerifier object
-	 * @throws BadParametersException "The pv object cannot be null"
+	 * @param pv
+	 *            BettingPasswordVerifier object
+	 * @throws BadParametersException
+	 *             "The pv object cannot be null"
 	 */
-	public void setPv(BettingPasswordsVerifier pv) throws BadParametersException {
-		if(pv == null)
+	public void setPv(BettingPasswordsVerifier pv)
+			throws BadParametersException {
+		if (pv == null)
 			throw new BadParametersException("The pv object cannot be null");
 		this.pv = pv;
 	}
@@ -597,12 +625,16 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * @param subscribers Collection of subscribers
-	 * @throws BadParametersException The subscriber object cannot be null
+	 * @param subscribers
+	 *            Collection of subscribers
+	 * @throws BadParametersException
+	 *             The subscriber object cannot be null
 	 */
-	public void setSubscribers(Collection<Subscriber> subscribers) throws BadParametersException {
-		if(subscribers == null)
-			throw new BadParametersException("The subscriber object cannot be null");
+	public void setSubscribers(Collection<Subscriber> subscribers)
+			throws BadParametersException {
+		if (subscribers == null)
+			throw new BadParametersException(
+					"The subscriber object cannot be null");
 		this.subscribers = subscribers;
 	}
 
