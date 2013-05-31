@@ -94,11 +94,12 @@ public class BetPodium extends Bet {
 	 * @throws SQLException
 	 * @throws CompetitionException 
 	 * @throws SubscriberException 
+	 * @throws ExistingSubscriberException 
 	 */
 	public void betOnPodium(long numberTokens, String competition,
 			PCompetitor winner, PCompetitor second, PCompetitor third,
 			String username, String pwdSubs) throws AuthenticationException,
-			SQLException, BadParametersException, CompetitionException, SubscriberException {
+			SQLException, BadParametersException, CompetitionException, SubscriberException, ExistingSubscriberException {
 		
 		// Authenticate subscriber
 		Subscriber.authenticateSubscriber(pwdSubs);
@@ -125,7 +126,7 @@ public class BetPodium extends Bet {
 					username);
 			// The number of tokens of the subscriber is debited.
 			BettingSoft bs = new BettingSoft("password");
-			bs.debitSubscriber(username, -numberTokens, "password");
+			bs.debitSubscriber(username, numberTokens, "password");
 		} catch (SQLException | BadParametersException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

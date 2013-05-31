@@ -18,12 +18,13 @@ public class BetWinner extends Bet {
 
 	/**
 	 * @throws SQLException
+	 * @throws ExistingSubscriberException 
 	 */
 	public void betOnWinner(long number_tokens, String a_competition,
 			PCompetitor a_winner, String a_username, String pwdSubs)
 			throws AuthenticationException, CompetitionException,
 			ExistingCompetitionException, SubscriberException,
-			BadParametersException, SQLException {
+			BadParametersException, SQLException, ExistingSubscriberException {
 		// Authenticate subscriber
 		Subscriber.authenticateSubscriber(pwdSubs);
 		// Check the existing competition
@@ -47,7 +48,7 @@ public class BetWinner extends Bet {
 			bd.betWinner(number_tokens, a_competition, a_winner, a_username);
 			// The number of tokens of the subscriber is debited.
 			BettingSoft bs = new BettingSoft("password");
-			bs.debitSubscriber(a_username, -number_tokens, "password");
+			bs.debitSubscriber(a_username, number_tokens, "password");
 		} catch (SQLException | BadParametersException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

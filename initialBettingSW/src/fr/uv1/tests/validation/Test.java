@@ -10,28 +10,49 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		TestSubscribersBettingServices t = new TestSubscribersBettingServices() {
-			BettingSoft bs = null ;
-			@Override
-			public Betting plugToBetting() {
-				// TODO Auto-generated method stub
+	FirstIncrementValidationTests t = new FirstIncrementValidationTests() {
+		
+		@Override
+		public Betting plugToBetting() {
+			// TODO Auto-generated method stub
+			BettingSoft bs = null;
+			try {
+				bs = new BettingSoft("varayut23");
 				
-				try {
-					bs = new BettingSoft("rokhayagaye");
-				} catch (BadParametersException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return bs;
+			} catch (BadParametersException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
-			@Override
-			public String getManagerPassword() {
-				// TODO Auto-generated method stub
-				return bs.getManagerPassword();
-			}
-		};
-		t.launchSubscribersValidationtest();
+			return bs;
+		}
+		
+		@Override
+		public String getManagerPassword() {
+			// TODO Auto-generated method stub
+			return "varayut23";
+		}
+	};
+//			BettingSoft bs = null;
+//			@Override
+//			public Betting plugToBetting() {
+//				// TODO Auto-generated method stub
+//				
+//				try {
+//					bs = new BettingSoft("rokhayagaye");
+//				} catch (BadParametersException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				return bs;
+//			}
+//			
+//			@Override
+//			public String getManagerPassword() {
+//				// TODO Auto-generated method stub
+//				return bs.getManagerPassword();
+//			}
+//		};
+//		t.launchSubscribersValidationtest();
 	}
 
 }

@@ -120,7 +120,8 @@ public class BettingSoft implements Betting {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
 		// Check Parameters
-		if(a_name == null || a_firstName == null || a_birthDay==null||a_username==null)
+		if (a_name == null || a_firstName == null || a_birthDay == null
+				|| a_username == null)
 			throw new BadParametersException();
 		// Look if a subscriber with the same username already exists
 		Subscriber s = searchSubscriberByUsername(a_username);
@@ -276,8 +277,9 @@ public class BettingSoft implements Betting {
 
 	/**
 	 * From Betting interface (non-Javadoc)
-	 * @throws BadParametersException 
-	 * @throws ExistingCompetitorException 
+	 * 
+	 * @throws BadParametersException
+	 * @throws ExistingCompetitorException
 	 * 
 	 * @throws SQLException
 	 * 
@@ -287,7 +289,8 @@ public class BettingSoft implements Betting {
 	@Override
 	public Competitor createCompetitor(String firstname, String lastname,
 			Calendar birthDay, String managerPwd)
-			throws AuthenticationException, BadParametersException, ExistingCompetitorException {
+			throws AuthenticationException, BadParametersException,
+			ExistingCompetitorException {
 		CompetitorDAO cd = new CompetitorDAO();
 		PCompetitor com = new PCompetitor(firstname, lastname, birthDay);
 		// Authenticate manager
@@ -297,8 +300,9 @@ public class BettingSoft implements Betting {
 			throw new BadParametersException();
 		// Check existing competitor
 		try {
-			if(PCompetitor.existCompetitor(com.getId()))
-				throw new ExistingCompetitorException("The competitor is already existed");
+			if (PCompetitor.existCompetitor(com.getId()))
+				throw new ExistingCompetitorException(
+						"The competitor is already existed");
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -469,17 +473,19 @@ public class BettingSoft implements Betting {
 	 *             The manager's password is wrong
 	 * @throws BadParametersException
 	 *             The number of tokens lesser than 0
-	 * @throws SQLException 
+	 * @throws SQLException
+	 * @throws ExistingSubscriberException 
 	 */
 	public void creditSubscriber(String username, long numberTokens,
 			String managerPwd) throws AuthenticationException,
-			BadParametersException, SQLException {
+			BadParametersException, SQLException, ExistingSubscriberException {
 		// Authenticate manager
 		authenticateMngr(managerPwd);
-		
+
 		// verify subscriber name
-		Subscriber.existSubscriber(username);
-		
+		if (!Subscriber.existSubscriber(username))
+			throw new ExistingSubscriberException();
+
 		// Verify number of tokens
 		if (numberTokens <= 0)
 			throw new BadParametersException(
@@ -491,7 +497,7 @@ public class BettingSoft implements Betting {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	/**
@@ -507,14 +513,20 @@ public class BettingSoft implements Betting {
 	 *             The manager's password is wrong
 	 * @throws BadParametersException
 	 *             The number of tokens lesser than 0
-	 * @throws SubscriberException 
+	 * @throws SubscriberException
+	 * @throws SQLException
+	 * @throws ExistingSubscriberException
 	 */
 	public void debitSubscriber(String username, long numberTokens,
 			String managerPwd) throws AuthenticationException,
-			BadParametersException, SubscriberException {
+			BadParametersException, SubscriberException, SQLException,
+			ExistingSubscriberException {
 		SubscriberDAO sd = new SubscriberDAO();
 		// Authenticate manager
 		authenticateMngr(managerPwd);
+		// verify subscriber name
+		if (!Subscriber.existSubscriber(username))
+			throw new ExistingSubscriberException();
 		// Verify number of tokens
 		if (numberTokens < 0)
 			throw new BadParametersException(
@@ -527,14 +539,15 @@ public class BettingSoft implements Betting {
 		}
 		// Enough number of token
 		try {
-			if(sd.getNumberOfToken(username)>0)
-				throw new SubscriberException("Subsciber doesn't have enough tokens");
+			if (sd.getNumberOfToken(username) > 0)
+				throw new SubscriberException(
+						"Subsciber doesn't have enough tokens");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		// Exist subscribers
-		
+
 	}
 
 	/**

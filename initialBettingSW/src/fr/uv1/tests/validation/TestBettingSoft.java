@@ -146,7 +146,7 @@ public class TestBettingSoft {
 		BettingSoft bs = new BettingSoft("rokhayagaye");
 		try {
 			bs.creditSubscriber("rgaye", 20, "rokhayagaye");
-		} catch (AuthenticationException | BadParametersException e) {
+		} catch (AuthenticationException | BadParametersException | SQLException | ExistingSubscriberException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -159,8 +159,8 @@ public class TestBettingSoft {
 		System.out.println("----------------Remove tokens ---------------");
 		BettingSoft bs = new BettingSoft("rokhayagaye");
 		try {
-			bs.debitSubscriber("rgaye", -10, "rokhayagaye");
-		} catch (AuthenticationException | BadParametersException e) {
+			bs.debitSubscriber("rgaye", 10, "rokhayagaye");
+		} catch (AuthenticationException | BadParametersException | SubscriberException | SQLException | ExistingSubscriberException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
