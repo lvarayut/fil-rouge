@@ -119,6 +119,9 @@ public class BettingSoft implements Betting {
 		birthDay.set(birthYear, birthMonth, birthDate);
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
+		// Check Parameters
+		if(a_name == null || a_firstName == null || a_birthDay==null||a_username==null)
+			throw new BadParametersException();
 		// Look if a subscriber with the same username already exists
 		Subscriber s = searchSubscriberByUsername(a_username);
 		if (s != null)
@@ -274,6 +277,7 @@ public class BettingSoft implements Betting {
 	/**
 	 * From Betting interface (non-Javadoc)
 	 * @throws BadParametersException 
+	 * @throws ExistingCompetitorException 
 	 * 
 	 * @throws SQLException
 	 * 
@@ -283,7 +287,7 @@ public class BettingSoft implements Betting {
 	@Override
 	public Competitor createCompetitor(String firstname, String lastname,
 			Calendar birthDay, String managerPwd)
-			throws AuthenticationException, BadParametersException {
+			throws AuthenticationException, BadParametersException, ExistingCompetitorException {
 		CompetitorDAO cd = new CompetitorDAO();
 		PCompetitor com = new PCompetitor(firstname, lastname, birthDay);
 		// Authenticate manager
@@ -293,7 +297,8 @@ public class BettingSoft implements Betting {
 			throw new BadParametersException();
 		// Check existing competitor
 		try {
-			PCompetitor.existCompetitor(com.getId());
+			if(PCompetitor.existCompetitor(com.getId()))
+				throw new ExistingCompetitorException("The competitor is already existed");
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

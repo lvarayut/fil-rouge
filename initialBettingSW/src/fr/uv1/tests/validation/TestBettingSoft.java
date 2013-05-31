@@ -14,6 +14,7 @@ import fr.uv1.bettingServices.BetWinner;
 import fr.uv1.bettingServices.BettingSoft;
 import fr.uv1.bettingServices.CompetitionException;
 import fr.uv1.bettingServices.Competitor;
+import fr.uv1.bettingServices.ExistingCompetitorException;
 import fr.uv1.bettingServices.PCompetitor;
 import fr.uv1.bettingServices.ExistingCompetitionException;
 import fr.uv1.bettingServices.ExistingSubscriberException;
@@ -27,8 +28,9 @@ public class TestBettingSoft {
 	 * @throws AuthenticationException 
 	 * @throws BadParametersException 
 	 * @throws CompetitionException 
+	 * @throws ExistingCompetitorException 
 	 */
-	public static void main(String[] args) throws BadParametersException, AuthenticationException, CompetitionException {
+	public static void main(String[] args) throws BadParametersException, AuthenticationException, CompetitionException, ExistingCompetitorException {
 		// TODO Auto-generated method stub
 
 		BettingSoft bs = null;
@@ -75,7 +77,7 @@ public class TestBettingSoft {
 		PCompetitor cTor = null;
 		try {
 			cTor = (PCompetitor) bs.createCompetitor("Varayut", "Lerd", s1, "rokhayagaye");
-		} catch (AuthenticationException e2) {
+		} catch (AuthenticationException | ExistingCompetitorException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
@@ -90,8 +92,14 @@ public class TestBettingSoft {
 		BettingSoft bs = new BettingSoft("rokhayagaye");
 		Collection<Competitor> comName = new ArrayList<Competitor>();
 		Calendar s1 = Calendar.getInstance(); // Current time
-		PCompetitor cTor = (PCompetitor) bs.createCompetitor("Varayut", "Lerd", s1,
-				"rokhayagaye");
+		PCompetitor cTor = null;
+		try {
+			cTor = (PCompetitor) bs.createCompetitor("Varayut", "Lerd", s1,
+					"rokhayagaye");
+		} catch (ExistingCompetitorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		comName.add(cTor);
 		try {
 			bs.addCompetition("Polo", s1, comName, "rokhayagaye");
@@ -178,7 +186,7 @@ public class TestBettingSoft {
 					Calendar.getInstance(), "rokhayagaye");
 			cTor3 = (PCompetitor) bs.createCompetitor("CFirst", "CLast",
 					Calendar.getInstance(), "rokhayagaye");
-		} catch (AuthenticationException e2) {
+		} catch (AuthenticationException | ExistingCompetitorException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
@@ -198,7 +206,7 @@ public class TestBettingSoft {
 
 	}
 	
-	public static void testCalculatePodiumWinner() throws BadParametersException, AuthenticationException{
+	public static void testCalculatePodiumWinner() throws BadParametersException, AuthenticationException, ExistingCompetitorException{
 		/*
 		 * Test CalculatePodiumWinner
 		 */
@@ -214,7 +222,7 @@ public class TestBettingSoft {
 		bs.calculatePodiumWinner("Polo", cTor1, cTor2, cTor3, "rokhayagaye");
 	}
 
-	public static void testSettlePodium() throws BadParametersException, AuthenticationException, CompetitionException {
+	public static void testSettlePodium() throws BadParametersException, AuthenticationException, CompetitionException, ExistingCompetitorException {
 		/*
 		 * Test settlePodium
 		 */
@@ -235,7 +243,7 @@ public class TestBettingSoft {
 			e.printStackTrace();
 		}
 	}
-	public static void testCalculateWinnerWinner() throws BadParametersException, AuthenticationException{
+	public static void testCalculateWinnerWinner() throws BadParametersException, AuthenticationException, ExistingCompetitorException{
 		/*
 		 * Test CalculateWinnerWinner
 		 */
@@ -246,7 +254,7 @@ public class TestBettingSoft {
 		
 		bs.calculateWinnerWinner("Polo", cTor1,  "rokhayagaye");
 	}
-	public static void testSettleWinner() throws BadParametersException, AuthenticationException, CompetitionException {
+	public static void testSettleWinner() throws BadParametersException, AuthenticationException, CompetitionException, ExistingCompetitorException {
 		/*
 		 * Test settleWinner
 		 */
@@ -278,7 +286,7 @@ public class TestBettingSoft {
 			cTor= (PCompetitor) bs.createCompetitor("AFirst", "ALast",
 					Calendar.getInstance(), "rokhayagaye");
 		
-		} catch (AuthenticationException e2) {
+		} catch (AuthenticationException | ExistingCompetitorException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}

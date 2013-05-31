@@ -26,8 +26,8 @@ public class SubscriberTest {
 	 */
 	@Test
 	public void testSubscriber() {
-		assertTrue(subs.getFirstName().equals("Miguel"));
-		assertTrue(subs.getLastName().equals("Duran"));
+		assertTrue(subs.getFirstname().equals("Miguel"));
+		assertTrue(subs.getLastname().equals("Duran"));
 		assertTrue(subs.getUsername().equals("worldChamp"));
 		assertTrue(subs.getPassword() != null);
 	}

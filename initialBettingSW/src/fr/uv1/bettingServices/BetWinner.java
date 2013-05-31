@@ -16,30 +16,37 @@ public class BetWinner extends Bet {
 	}
 
 	/**
+	 * @throws SQLException
 	 */
 	public void betOnWinner(long number_tokens, String a_competition,
 			PCompetitor a_winner, String a_username, String pwdSubs)
 			throws AuthenticationException, CompetitionException,
 			ExistingCompetitionException, SubscriberException,
-			BadParametersException {
+			BadParametersException, SQLException {
 		// Authenticate subscriber
-				try {
-					Subscriber.authenticateSubscriber(pwdSubs);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				BetWinnerDAO bd = new BetWinnerDAO();
-				try {
-					// Bet Winner
-					bd.betWinner(number_tokens, a_competition, a_winner,a_username);
-					// The number of tokens of the subscriber is debited.
-					BettingSoft bs = new BettingSoft("password");
-					bs.debitSubscriber(a_username, -number_tokens, "password");
-				} catch (SQLException | BadParametersException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		Subscriber.authenticateSubscriber(pwdSubs);
+		// Check the existing competition
+		if (Competition.existCompetition(a_competition)) {
+			throw new ExistingCompetitionException();
+		}
+		// check if there is no competitor with the name winner, second, third
+		if (a_winner.equals(null))
+			throw new CompetitionException(
+					"Please give names for all competitors");
+		// Check Parameters
+		if (number_tokens < 0)
+			throw new BadParametersException();
+		BetWinnerDAO bd = new BetWinnerDAO();
+		try {
+			// Bet Winner
+			bd.betWinner(number_tokens, a_competition, a_winner, a_username);
+			// The number of tokens of the subscriber is debited.
+			BettingSoft bs = new BettingSoft("password");
+			bs.debitSubscriber(a_username, -number_tokens, "password");
+		} catch (SQLException | BadParametersException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -57,11 +64,12 @@ public class BetWinner extends Bet {
 	 *             The competition is not existed
 	 * @throws SQLException
 	 *             SQL problem
-	 * @throws BadParametersException 
+	 * @throws BadParametersException
 	 */
 	public void settleWinner(String a_competition, PCompetitor a_winner,
 			String a_managerPwd) throws AuthenticationException,
-			ExistingCompetitionException, CompetitionException, BadParametersException, SQLException {
+			ExistingCompetitionException, CompetitionException,
+			BadParametersException, SQLException {
 		// Authenticate manager
 		BettingSoft bs = new BettingSoft(a_managerPwd);
 		bs.authenticateMngr(a_managerPwd);
@@ -73,8 +81,7 @@ public class BetWinner extends Bet {
 		// Exist Competitor
 		CompetitorDAO cTorD = new CompetitorDAO();
 		if (!cTorD.isExistCompetitor(a_winner.getId()))
-			throw new CompetitionException(
-					"The competitor doesn't exist");
+			throw new CompetitionException("The competitor doesn't exist");
 		WinnerDAO wd = new WinnerDAO();
 		wd.settleWinnerToSubscriber(a_competition, a_winner);
 	}
