@@ -84,11 +84,12 @@ public class BetPodium extends Bet {
 	 * @throws BadParametersException
 	 * @throws SQLException
 	 * @throws CompetitionException 
+	 * @throws SubscriberException 
 	 */
 	public void betOnPodium(long numberTokens, String competition,
 			PCompetitor winner, PCompetitor second, PCompetitor third,
 			String username, String pwdSubs) throws AuthenticationException,
-			SQLException, BadParametersException, CompetitionException {
+			SQLException, BadParametersException, CompetitionException, SubscriberException {
 		
 		// Authenticate subscriber
 		Subscriber.authenticateSubscriber(pwdSubs);
@@ -104,7 +105,7 @@ public class BetPodium extends Bet {
 		// check if the subscriber has enough tokens
 		SubscriberDAO subs =new SubscriberDAO();
 		if(subs.getNumberOfToken(username)< numberTokens)
-			throw new CompetitionException("The number of tokens is not enough");
+			throw new SubscriberException("The number of tokens is not enough");
 		
 		//check if the number of tokens less than 0
 		if(numberTokens <0) throw new BadParametersException("the number of token is less than 0!");

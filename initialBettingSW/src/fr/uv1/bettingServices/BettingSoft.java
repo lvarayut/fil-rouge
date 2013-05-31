@@ -430,9 +430,9 @@ public class BettingSoft implements Betting {
 	 * List all the competition, shown in console
 	 */
 
-	public void listCompetitions() {
+	public Collection<Competition> listCompetitions() {
 		CompetitionDAO cd = new CompetitionDAO();
-		Collection allCTion = new ArrayList<PCompetitor>();
+		Collection<Competition> allCTion = new ArrayList<Competition>();
 		try {
 			allCTion = cd.listAllCompetition();
 		} catch (SQLException e) {
@@ -453,6 +453,7 @@ public class BettingSoft implements Betting {
 					+ (cTion.getEndDate().get(Calendar.MONTH) + 1) + "/"
 					+ cTion.getEndDate().get(Calendar.YEAR));
 		}
+		return allCTion;
 	}
 
 	/**
@@ -500,23 +501,34 @@ public class BettingSoft implements Betting {
 	 *             The manager's password is wrong
 	 * @throws BadParametersException
 	 *             The number of tokens lesser than 0
+	 * @throws SubscriberException 
 	 */
 	public void debitSubscriber(String username, long numberTokens,
 			String managerPwd) throws AuthenticationException,
-			BadParametersException {
+			BadParametersException, SubscriberException {
+		SubscriberDAO sd = new SubscriberDAO();
 		// Authenticate manager
 		authenticateMngr(managerPwd);
 		// Verify number of tokens
-		if (numberTokens > 0)
+		if (numberTokens < 0)
 			throw new BadParametersException(
 					"The number of tokens should be lesser than 0");
-		SubscriberDAO sd = new SubscriberDAO();
 		try {
 			sd.removeTokens(username, numberTokens);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		// Enough number of token
+		try {
+			if(sd.getNumberOfToken(username)>0)
+				throw new SubscriberException("Subsciber doesn't have enough tokens");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// Exist subscribers
+		
 	}
 
 	/**

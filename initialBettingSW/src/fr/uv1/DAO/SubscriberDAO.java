@@ -135,7 +135,7 @@ public class SubscriberDAO {
 		while (resultSet.next()) {
 			tokens = resultSet.getLong("number_token");
 		}
-		tokens += numberTokens;
+		tokens -= numberTokens;
 		// Calculate and add new tokens
 		psSQL = c
 				.prepareStatement("update subscriber set number_token = ? where pseudo = ?");

@@ -120,10 +120,10 @@ public class CompetitionDAO {
 	 * @return Collection of competitions
 	 * @throws SQLException SQL problem
 	 */
-	public Collection listAllCompetition() throws SQLException{
+	public Collection<Competition> listAllCompetition() throws SQLException{
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
-		Collection allCTion = new ArrayList<Competition>();
+		Collection<Competition> allCTion = new ArrayList<Competition>();
 		PreparedStatement psSQL = c
 				.prepareStatement("select * from competition");
 		ResultSet resultSet = psSQL.executeQuery();

@@ -7,6 +7,7 @@ import fr.uv1.DAO.BetWinnerDAO;
 import fr.uv1.DAO.CompetitionDAO;
 import fr.uv1.DAO.CompetitorDAO;
 import fr.uv1.DAO.PodiumDAO;
+import fr.uv1.DAO.SubscriberDAO;
 import fr.uv1.DAO.WinnerDAO;
 
 public class BetWinner extends Bet {
@@ -29,10 +30,14 @@ public class BetWinner extends Bet {
 		if (Competition.existCompetition(a_competition)) {
 			throw new ExistingCompetitionException();
 		}
-		// check if there is no competitor with the name winner, second, third
+		// check if there is no competitor with the name winner
 		if (a_winner.equals(null))
 			throw new CompetitionException(
 					"Please give names for all competitors");
+		// check if the subscriber has enough tokens
+		SubscriberDAO subs = new SubscriberDAO();
+		if (subs.getNumberOfToken(a_username) < number_tokens)
+			throw new SubscriberException("The number of tokens is not enough");
 		// Check Parameters
 		if (number_tokens < 0)
 			throw new BadParametersException();
