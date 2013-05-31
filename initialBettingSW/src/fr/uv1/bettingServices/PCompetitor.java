@@ -1,7 +1,11 @@
 package fr.uv1.bettingServices;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Collection;
+
+import fr.uv1.DAO.CompetitionDAO;
+import fr.uv1.DAO.CompetitorDAO;
 
 
 public class PCompetitor extends Person  implements Competitor{
@@ -10,6 +14,11 @@ public class PCompetitor extends Person  implements Competitor{
 		// TODO Auto-generated constructor stub
 		super(firstname, lastname,birthDay);
 		id = -1;
+	}
+	
+	public static boolean existCompetitor(int id) throws SQLException{
+		CompetitorDAO cd = new CompetitorDAO();
+		return cd.isExistCompetitor(id);
 	}
 
 	/**

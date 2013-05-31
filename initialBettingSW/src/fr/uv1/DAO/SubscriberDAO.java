@@ -49,8 +49,8 @@ public class SubscriberDAO {
 					.prepareStatement("insert into subscriber(pseudo, lastname, firstname,password,birthdate,number_token)  values (?, ?,?,?,?,?)");
 
 			psSQL.setString(1, s.getUsername());
-			psSQL.setString(2, s.getLastName());
-			psSQL.setString(3, s.getFirstName());
+			psSQL.setString(2, s.getLastname());
+			psSQL.setString(3, s.getFirstname());
 			psSQL.setString(4, s.getPassword());
 			psSQL.setDate(5, birthDay);
 			psSQL.setInt(6, s.getToken());

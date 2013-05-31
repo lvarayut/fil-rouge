@@ -171,9 +171,11 @@ public class BettingSoft implements Betting {
 			cTor[i] = (PCompetitor) iterator.next();
 			i++;
 		}
-		for(int j =0;j<cTor.length;j++){
-			for (int k=0;k<cTor.length;k++){
-				if(cTor[j].getFirstname().equals(cTor[k].getFirstname()) && cTor[j].getLastname().equals(cTor[k].getLastname()) && cTor[j].getBirthdate() == cTor[k].getBirthdate())
+		for (int j = 0; j < cTor.length; j++) {
+			for (int k = 0; k < cTor.length; k++) {
+				if (cTor[j].getFirstname().equals(cTor[k].getFirstname())
+						&& cTor[j].getLastname().equals(cTor[k].getLastname())
+						&& cTor[j].getBirthdate() == cTor[k].getBirthdate())
 					return true;
 			}
 		}
@@ -271,25 +273,38 @@ public class BettingSoft implements Betting {
 
 	/**
 	 * From Betting interface (non-Javadoc)
+	 * @throws BadParametersException 
+	 * 
+	 * @throws SQLException
 	 * 
 	 * @see fr.uv1.bettingServices.Betting#createCompetitor(java.lang.String,
 	 *      java.lang.String, java.util.Calendar, java.lang.String)
 	 */
 	@Override
-	public PCompetitor createCompetitor(String firstname, String lastname,
+	public Competitor createCompetitor(String firstname, String lastname,
 			Calendar birthDay, String managerPwd)
-			throws AuthenticationException {
+			throws AuthenticationException, BadParametersException {
 		CompetitorDAO cd = new CompetitorDAO();
 		PCompetitor com = new PCompetitor(firstname, lastname, birthDay);
 		// Authenticate manager
 		authenticateMngr(managerPwd);
+		// Check parameters
+		if (firstname == null || lastname == null || birthDay == null)
+			throw new BadParametersException();
+		// Check existing competitor
+		try {
+			PCompetitor.existCompetitor(com.getId());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			com = cd.createCompetitor(com);
 		} catch (SQLException | ExistingCompetitorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return com;
+		return (Competitor) com;
 	}
 
 	/**
@@ -303,13 +318,41 @@ public class BettingSoft implements Betting {
 	 *            Manager's password
 	 * @throws AuthenticationException
 	 *             The manager's password is wrong
+	 * @throws SQLException
+	 * @throws ExistingCompetitionException
+	 * @throws CompetitionException
+	 * @throws ExistingCompetitorException
+	 * @throws BadParametersException
 	 */
 	public void addCompetitor(Competition a_competition,
 			Collection<Competitor> competitors, String a_managerPwd)
-			throws AuthenticationException {
+			throws AuthenticationException, SQLException,
+			ExistingCompetitionException, CompetitionException,
+			ExistingCompetitorException, BadParametersException {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
-		// 
+		// Check Parameters
+		if (a_competition == null || competitors == null) {
+			throw new BadParametersException();
+		}
+		// Check the existing competition
+		if (Competition.existCompetition(a_competition.getName())) {
+			throw new ExistingCompetitionException();
+		}
+		;
+		// Check whether the end date is correct or not
+		if (a_competition.getEndDate().before(Calendar.getInstance())) {
+			throw new CompetitionException("Invalide end date");
+		}
+		// Check the existing competitor
+		Iterator iterator = competitors.iterator();
+		while (iterator.hasNext()) {
+			// Month's index starts from 0
+			PCompetitor cTor = (PCompetitor) iterator.next();
+			if (PCompetitor.existCompetitor(cTor.getId()))
+				throw new ExistingCompetitorException();
+		}
+
 		CompetitionDAO cd = new CompetitionDAO();
 		try {
 			cd.addCompetitor(a_competition, competitors);
