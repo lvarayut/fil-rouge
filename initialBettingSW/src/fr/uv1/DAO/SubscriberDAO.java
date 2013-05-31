@@ -179,5 +179,23 @@ public class SubscriberDAO {
 		db.disconnect();
 		return allSub;
 	}
+	
+	public int getNumberOfToken(String a_username) throws SQLException{
+		int numberOfTokens = 0;
+		DBConnection db = new DBConnection();
+		Connection c = db.connect();
+		PreparedStatement psSQL = c
+				.prepareStatement("select number_token from subscriber where username=?");
+		psSQL.setString(1, a_username);
+		ResultSet resultSet = psSQL.executeQuery();
+		while (resultSet.next()) {
+			numberOfTokens = resultSet.getInt("number_token");
+			
+		}
+		resultSet.close();
+		c.setAutoCommit(true);
+		db.disconnect();
+		return numberOfTokens;
+	}
 
 }

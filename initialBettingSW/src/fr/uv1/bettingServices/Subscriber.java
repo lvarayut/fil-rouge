@@ -278,5 +278,5 @@ public class Subscriber extends Person implements Serializable {
 			throw new AuthenticationException("incorrect subscriber's password");
 	}
 
-	
+
 }
