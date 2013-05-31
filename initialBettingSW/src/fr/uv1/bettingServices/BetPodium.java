@@ -83,11 +83,12 @@ public class BetPodium extends Bet {
 	 *             The subscriber's password is invalid
 	 * @throws BadParametersException
 	 * @throws SQLException
+	 * @throws CompetitionException 
 	 */
 	public void betOnPodium(long numberTokens, String competition,
 			PCompetitor winner, PCompetitor second, PCompetitor third,
 			String username, String pwdSubs) throws AuthenticationException,
-			SQLException, BadParametersException {
+			SQLException, BadParametersException, CompetitionException {
 		
 		// Authenticate subscriber
 		Subscriber.authenticateSubscriber(pwdSubs);
@@ -95,6 +96,14 @@ public class BetPodium extends Bet {
 		// check if the competition already exist or not
 		Competition.existCompetition(competition);
 		BetPodiumDAO bd = new BetPodiumDAO();
+		
+		//check if there is no competitor with the name winner, second, third
+		if(winner.equals(null) || second.equals(null) || third.equals(null))
+			throw new CompetitionException("Please give names for all competitors");
+		
+		//check if the closing date is in the past
+		
+		
 		try {
 			// Bet Podium
 			bd.betPodium(numberTokens, competition, winner, second, third,

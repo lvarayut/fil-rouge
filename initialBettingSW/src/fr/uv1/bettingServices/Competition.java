@@ -125,5 +125,7 @@ public class Competition {
 		CompetitionDAO cd = new CompetitionDAO();
 		return cd.isExistCompetition(competitionName);
 	}
+	
+
 
 }

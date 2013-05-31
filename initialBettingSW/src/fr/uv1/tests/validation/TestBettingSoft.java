@@ -190,7 +190,7 @@ public class TestBettingSoft {
 			bp.betOnPodium(10, "Polo", cTor1, cTor2, cTor3, "rgaye",
 					s.getPassword());
 		} catch (BadParametersException | AuthenticationException
-				| SQLException | ExistingSubscriberException e1) {
+				| SQLException | ExistingSubscriberException | CompetitionException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
