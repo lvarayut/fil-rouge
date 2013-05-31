@@ -309,6 +309,7 @@ public class BettingSoft implements Betting {
 			throws AuthenticationException {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
+		// 
 		CompetitionDAO cd = new CompetitionDAO();
 		try {
 			cd.addCompetitor(a_competition, competitors);

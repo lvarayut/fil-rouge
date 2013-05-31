@@ -2,6 +2,8 @@ package fr.uv1.bettingServices;
 
 import java.sql.SQLException;
 
+import fr.uv1.DAO.BetPodiumDAO;
+import fr.uv1.DAO.BetWinnerDAO;
 import fr.uv1.DAO.CompetitionDAO;
 import fr.uv1.DAO.CompetitorDAO;
 import fr.uv1.DAO.PodiumDAO;
@@ -16,10 +18,28 @@ public class BetWinner extends Bet {
 	/**
 	 */
 	public void betOnWinner(long number_tokens, String a_competition,
-			PCompetitor a_winner, String a_username, String a_pwdsubs)
+			PCompetitor a_winner, String a_username, String pwdSubs)
 			throws AuthenticationException, CompetitionException,
 			ExistingCompetitionException, SubscriberException,
 			BadParametersException {
+		// Authenticate subscriber
+				try {
+					Subscriber.authenticateSubscriber(pwdSubs);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				BetWinnerDAO bd = new BetWinnerDAO();
+				try {
+					// Bet Winner
+					bd.betWinner(number_tokens, a_competition, a_winner,a_username);
+					// The number of tokens of the subscriber is debited.
+					BettingSoft bs = new BettingSoft("password");
+					bs.debitSubscriber(a_username, -number_tokens, "password");
+				} catch (SQLException | BadParametersException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	}
 
 	/**

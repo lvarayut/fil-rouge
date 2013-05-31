@@ -89,7 +89,7 @@ public class BetPodium extends Bet {
 			String username, String pwdSubs) throws AuthenticationException,
 			SQLException, BadParametersException {
 		// Authenticate subscriber
-		authenticateSubscriber(pwdSubs);
+		Subscriber.authenticateSubscriber(pwdSubs);
 		BetPodiumDAO bd = new BetPodiumDAO();
 		try {
 			// Bet Podium
@@ -157,31 +157,5 @@ public class BetPodium extends Bet {
 		this.competitionPodium = competitionPodium;
 	}
 
-	/**
-	 * Authentication by using subsciber's password
-	 * 
-	 * @param a_subscriberPwd
-	 *            Subscriber's password
-	 * @throws AuthenticationException
-	 *             The subscriber's password is invalid
-	 * @throws BadParametersException
-	 * @throws SQLException
-	 */
-	public void authenticateSubscriber(String a_subscriberPwd)
-			throws AuthenticationException, SQLException,
-			BadParametersException {
-		if (a_subscriberPwd == null)
-			throw new AuthenticationException("invalid subscriber's password");
-		BetPodiumDAO bpd = new BetPodiumDAO();
-		boolean found = false;
-		Collection<Subscriber> sub = bpd.listAllSubscriber();
-		Iterator iterator = sub.iterator();
-		while (iterator.hasNext()) {
-			Subscriber s = (Subscriber) iterator.next();
-			if (s.getPassword().equals(a_subscriberPwd))
-				found = true;
-		}
-		if (!found)
-			throw new AuthenticationException("incorrect subscriber's password");
-	}
+	
 }

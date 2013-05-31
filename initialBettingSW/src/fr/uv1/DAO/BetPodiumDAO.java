@@ -56,35 +56,5 @@ public class BetPodiumDAO {
 		System.out.println("Bet on podium is sucess!");
 	}
 
-	/**
-	 * List all subscribers in the database
-	 * 
-	 * @return Collection of competitions
-	 * @throws SQLException
-	 *             SQL problem
-	 * @throws BadParametersException 
-	 */
-	public Collection<Subscriber> listAllSubscriber() throws SQLException, BadParametersException {
-		DBConnection db = new DBConnection();
-		Connection c = db.connect();
-		Collection<Subscriber> allSub = new ArrayList<Subscriber>();
-		PreparedStatement psSQL = c
-				.prepareStatement("select * from subscriber");
-		ResultSet resultSet = psSQL.executeQuery();
-		while (resultSet.next()) {
-			Calendar birthDate = Calendar.getInstance();
-			birthDate.setTime(resultSet.getDate("birthdate"));
-			Subscriber tempS = new Subscriber(resultSet.getString("lastname"),
-					resultSet.getString("firstname"),
-					resultSet.getString("pseudo"), birthDate);
-			tempS.setPassword(resultSet.getString("password"));
-			tempS.setToken(resultSet.getInt("number_token"));
-
-			allSub.add(tempS);
-		}
-		resultSet.close();
-		c.setAutoCommit(true);
-		db.disconnect();
-		return allSub;
-	}
+	
 }
