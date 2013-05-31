@@ -469,12 +469,17 @@ public class BettingSoft implements Betting {
 	 *             The manager's password is wrong
 	 * @throws BadParametersException
 	 *             The number of tokens lesser than 0
+	 * @throws SQLException 
 	 */
 	public void creditSubscriber(String username, long numberTokens,
 			String managerPwd) throws AuthenticationException,
-			BadParametersException {
+			BadParametersException, SQLException {
 		// Authenticate manager
 		authenticateMngr(managerPwd);
+		
+		// verify subscriber name
+		Subscriber.existSubscriber(username);
+		
 		// Verify number of tokens
 		if (numberTokens <= 0)
 			throw new BadParametersException(
@@ -486,6 +491,7 @@ public class BettingSoft implements Betting {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**

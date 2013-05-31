@@ -45,7 +45,8 @@ public class BetPodium extends Bet {
 			CompetitionException {
 		// Authenticate manager
 		BettingSoft bs = new BettingSoft(managerPwd);
-		bs.authenticateMngr(managerPwd);
+		bs.authenticateMngr(managerPwd);		
+		
 		CompetitionDAO cd = new CompetitionDAO();
 		// Exist Competition
 		if (!cd.isExistCompetition(competition))
@@ -57,8 +58,16 @@ public class BetPodium extends Bet {
 				|| !cTorD.isExistCompetitor(second.getId())
 				|| !cTorD.isExistCompetitor(third.getId()))
 			throw new CompetitionException("The competitor doesn't exist");
+		
+		//verify if two competitors in the podium have the same name
+		if (winner.equals(second) 
+				|| winner.equals(third) 
+				|| second.equals(third))
+			throw new CompetitionException("Names must be different");
+		
 		PodiumDAO pd = new PodiumDAO();
 		pd.settlePodiumToSubscriber(competition, winner, second, third);
+		
 
 	}
 
