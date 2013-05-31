@@ -17,6 +17,7 @@ import fr.uv1.bettingServices.PCompetitor;
 import fr.uv1.bettingServices.ExistingCompetitionException;
 import fr.uv1.bettingServices.ExistingSubscriberException;
 import fr.uv1.bettingServices.Subscriber;
+import fr.uv1.bettingServices.SubscriberException;
 
 public class TestBettingSoft {
 
@@ -260,5 +261,39 @@ public class TestBettingSoft {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void testBetOnWinner() throws BadParametersException {
+		/*
+		 * Test betOnWinner
+		 */
+
+		System.out.println("----------------Bet on winner ---------------");
+		BettingSoft bs = new BettingSoft("rokhayagaye");
+		Calendar s1 = Calendar.getInstance(); // Current time
+		s1.set(2013, Calendar.AUGUST, 20);
+		PCompetitor cTor = null;
+		try {
+			cTor= bs.createCompetitor("AFirst", "ALast",
+					Calendar.getInstance(), "rokhayagaye");
+		
+		} catch (AuthenticationException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+
+		try {
+			Subscriber s = new Subscriber("subLast", "subFirst", "pass", s1);
+			SubscriberDAO sd = new SubscriberDAO();
+			sd.addSubscriber(s);
+			BetWinner bp = new BetWinner();
+			bp.betOnWinner(10, "Polo", cTor, "rgaye",
+					s.getPassword());
+		} catch (BadParametersException | AuthenticationException
+				| SQLException | ExistingSubscriberException | CompetitionException | ExistingCompetitionException | SubscriberException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 	}
 }

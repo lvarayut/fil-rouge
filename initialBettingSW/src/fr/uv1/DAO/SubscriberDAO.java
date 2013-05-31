@@ -4,7 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
 
+import fr.uv1.bettingServices.BadParametersException;
 import fr.uv1.bettingServices.Competitor;
 import fr.uv1.bettingServices.ExistingCompetitorException;
 import fr.uv1.bettingServices.ExistingSubscriberException;
@@ -144,6 +148,36 @@ public class SubscriberDAO {
 				+ " tokens");
 	}
 
-	
+	/**
+	 * List all subscribers in the database
+	 * 
+	 * @return Collection of competitions
+	 * @throws SQLException
+	 *             SQL problem
+	 * @throws BadParametersException 
+	 */
+	public Collection<Subscriber> listAllSubscriber() throws SQLException, BadParametersException {
+		DBConnection db = new DBConnection();
+		Connection c = db.connect();
+		Collection<Subscriber> allSub = new ArrayList<Subscriber>();
+		PreparedStatement psSQL = c
+				.prepareStatement("select * from subscriber");
+		ResultSet resultSet = psSQL.executeQuery();
+		while (resultSet.next()) {
+			Calendar birthDate = Calendar.getInstance();
+			birthDate.setTime(resultSet.getDate("birthdate"));
+			Subscriber tempS = new Subscriber(resultSet.getString("lastname"),
+					resultSet.getString("firstname"),
+					resultSet.getString("pseudo"), birthDate);
+			tempS.setPassword(resultSet.getString("password"));
+			tempS.setToken(resultSet.getInt("number_token"));
+
+			allSub.add(tempS);
+		}
+		resultSet.close();
+		c.setAutoCommit(true);
+		db.disconnect();
+		return allSub;
+	}
 
 }

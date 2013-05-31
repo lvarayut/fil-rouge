@@ -3,6 +3,7 @@ package fr.uv1.bettingServices;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Iterator;
 
 import fr.uv1.DAO.SubscriberDAO;
 import fr.uv1.utils.*;
@@ -246,5 +247,36 @@ public class Subscriber extends Person implements Serializable {
 	public String toString() {
 		return " " + getFirstname() + " " + getLastname() + " " + username;
 	}
+	
 
+	/**
+	 * Authentication by using subsciber's password
+	 * 
+	 * @param a_subscriberPwd
+	 *            Subscriber's password
+	 * @throws AuthenticationException
+	 *             The subscriber's password is invalid
+	 * @throws BadParametersException
+	 * @throws SQLException
+	 */
+	public static void  authenticateSubscriber(String a_subscriberPwd)
+			throws AuthenticationException, SQLException,
+			BadParametersException {
+		if (a_subscriberPwd == null)
+			throw new AuthenticationException("invalid subscriber's password");
+		SubscriberDAO bpd = new SubscriberDAO();
+		
+		boolean found = false;
+		Collection<Subscriber> sub = bpd.listAllSubscriber();
+		Iterator iterator = sub.iterator();
+		while (iterator.hasNext()) {
+			Subscriber s = (Subscriber) iterator.next();
+			if (s.getPassword().equals(a_subscriberPwd))
+				found = true;
+		}
+		if (!found)
+			throw new AuthenticationException("incorrect subscriber's password");
+	}
+
+	
 }
