@@ -88,8 +88,12 @@ public class BetPodium extends Bet {
 			PCompetitor winner, PCompetitor second, PCompetitor third,
 			String username, String pwdSubs) throws AuthenticationException,
 			SQLException, BadParametersException {
+		
 		// Authenticate subscriber
 		Subscriber.authenticateSubscriber(pwdSubs);
+		
+		// check if the competition already exist or not
+		Competition.existCompetition(competition);
 		BetPodiumDAO bd = new BetPodiumDAO();
 		try {
 			// Bet Podium
