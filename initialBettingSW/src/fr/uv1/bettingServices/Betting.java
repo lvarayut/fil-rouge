@@ -116,8 +116,10 @@ public interface Betting {
 	 *            Manager's password
 	 * @return New competitor
 	 * @throws AuthenticationException 
+	 * @throws ExistingCompetitionException
+	 * @throws BadParametersException
 	 */
-	PCompetitor createCompetitor(String firstname, String lastname,
+	Competitor createCompetitor(String firstname, String lastname,
 			Calendar birthDay, String managerPwd)
-			throws AuthenticationException;
+			throws AuthenticationException,ExistingCompetitorException,BadParametersException;
 }
