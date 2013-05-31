@@ -74,7 +74,7 @@ public class TestBettingSoft {
 		s1.set(2013, Calendar.AUGUST, 20);
 		PCompetitor cTor = null;
 		try {
-			cTor = bs.createCompetitor("Varayut", "Lerd", s1, "rokhayagaye");
+			cTor = (PCompetitor) bs.createCompetitor("Varayut", "Lerd", s1, "rokhayagaye");
 		} catch (AuthenticationException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -90,7 +90,7 @@ public class TestBettingSoft {
 		BettingSoft bs = new BettingSoft("rokhayagaye");
 		Collection<Competitor> comName = new ArrayList<Competitor>();
 		Calendar s1 = Calendar.getInstance(); // Current time
-		PCompetitor cTor = bs.createCompetitor("Varayut", "Lerd", s1,
+		PCompetitor cTor = (PCompetitor) bs.createCompetitor("Varayut", "Lerd", s1,
 				"rokhayagaye");
 		comName.add(cTor);
 		try {
@@ -172,11 +172,11 @@ public class TestBettingSoft {
 		PCompetitor cTor2 = null;
 		PCompetitor cTor3 = null;
 		try {
-			cTor1 = bs.createCompetitor("AFirst", "ALast",
+			cTor1 = (PCompetitor) bs.createCompetitor("AFirst", "ALast",
 					Calendar.getInstance(), "rokhayagaye");
-			cTor2 = bs.createCompetitor("BFirst", "BLast",
+			cTor2 = (PCompetitor) bs.createCompetitor("BFirst", "BLast",
 					Calendar.getInstance(), "rokhayagaye");
-			cTor3 = bs.createCompetitor("CFirst", "CLast",
+			cTor3 = (PCompetitor) bs.createCompetitor("CFirst", "CLast",
 					Calendar.getInstance(), "rokhayagaye");
 		} catch (AuthenticationException e2) {
 			// TODO Auto-generated catch block
@@ -204,11 +204,11 @@ public class TestBettingSoft {
 		 */
 		System.out.println("----------------Calculate Podium Winner---------------");
 		BettingSoft bs = new BettingSoft("rokhayagaye");
-		PCompetitor cTor1 = bs.createCompetitor("AFirst", "ALast",
+		PCompetitor cTor1 = (PCompetitor) bs.createCompetitor("AFirst", "ALast",
 				Calendar.getInstance(), "rokhayagaye");
-		PCompetitor cTor2 = bs.createCompetitor("BFirst", "BLast",
+		PCompetitor cTor2 = (PCompetitor) bs.createCompetitor("BFirst", "BLast",
 				Calendar.getInstance(), "rokhayagaye");
-		PCompetitor cTor3 = bs.createCompetitor("CFirst", "CLast",
+		PCompetitor cTor3 = (PCompetitor) bs.createCompetitor("CFirst", "CLast",
 				Calendar.getInstance(), "rokhayagaye");
 		
 		bs.calculatePodiumWinner("Polo", cTor1, cTor2, cTor3, "rokhayagaye");
@@ -221,11 +221,11 @@ public class TestBettingSoft {
 		System.out.println("----------------Settle Podium ---------------");
 		BetPodium bp = new BetPodium();
 		BettingSoft bs = new BettingSoft("rokhayagaye");
-		PCompetitor cTor1 = bs.createCompetitor("AFirst", "ALast",
+		PCompetitor cTor1 = (PCompetitor) bs.createCompetitor("AFirst", "ALast",
 				Calendar.getInstance(), "rokhayagaye");
-		PCompetitor cTor2 = bs.createCompetitor("BFirst", "BLast",
+		PCompetitor cTor2 = (PCompetitor) bs.createCompetitor("BFirst", "BLast",
 				Calendar.getInstance(), "rokhayagaye");
-		PCompetitor cTor3 = bs.createCompetitor("CFirst", "CLast",
+		PCompetitor cTor3 = (PCompetitor) bs.createCompetitor("CFirst", "CLast",
 				Calendar.getInstance(), "rokhayagaye");
 		try {
 			bp.settlePodium("Polo", cTor1, cTor2, cTor3, "rokhayagaye");
@@ -241,7 +241,7 @@ public class TestBettingSoft {
 		 */
 		System.out.println("----------------Calculate Winner Winner---------------");
 		BettingSoft bs = new BettingSoft("rokhayagaye");
-		PCompetitor cTor1 = bs.createCompetitor("AFirst", "ALast",
+		PCompetitor cTor1 = (PCompetitor) bs.createCompetitor("AFirst", "ALast",
 				Calendar.getInstance(), "rokhayagaye");
 		
 		bs.calculateWinnerWinner("Polo", cTor1,  "rokhayagaye");
@@ -253,7 +253,7 @@ public class TestBettingSoft {
 		System.out.println("----------------Settle Winner ---------------");
 		BetWinner bw = new BetWinner();
 		BettingSoft bs = new BettingSoft("rokhayagaye");
-		PCompetitor cTor1 = bs.createCompetitor("AFirst", "ALast",
+		PCompetitor cTor1 = (PCompetitor) bs.createCompetitor("AFirst", "ALast",
 				Calendar.getInstance(), "rokhayagaye");
 		try {
 			bw.settleWinner("Polo", cTor1, "rokhayagaye");
@@ -275,7 +275,7 @@ public class TestBettingSoft {
 		s1.set(2013, Calendar.AUGUST, 20);
 		PCompetitor cTor = null;
 		try {
-			cTor= bs.createCompetitor("AFirst", "ALast",
+			cTor= (PCompetitor) bs.createCompetitor("AFirst", "ALast",
 					Calendar.getInstance(), "rokhayagaye");
 		
 		} catch (AuthenticationException e2) {
