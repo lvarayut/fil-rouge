@@ -278,5 +278,9 @@ public class Subscriber extends Person implements Serializable {
 			throw new AuthenticationException("incorrect subscriber's password");
 	}
 
-
+	public static boolean existSubscriber(String username) throws SQLException{
+		SubscriberDAO subs = new SubscriberDAO();
+		return subs.isExistSubscriber(username);
+		
+	}
 }
