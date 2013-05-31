@@ -1,7 +1,10 @@
 package fr.uv1.bettingServices;
 
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Collection;
+
+import fr.uv1.DAO.CompetitionDAO;
 /**
  * This class is used to create t
  * @author Rokhaya and Varayut
@@ -116,6 +119,11 @@ public class Competition {
 		if(endDate == null)
 			throw new BadParametersException("The endDate object cannot be null");
 		this.endDate = endDate;
+	}
+	
+	public static boolean existCompetition(String competitionName) throws SQLException{
+		CompetitionDAO cd = new CompetitionDAO();
+		return cd.isExistCompetition(competitionName);
 	}
 
 }
