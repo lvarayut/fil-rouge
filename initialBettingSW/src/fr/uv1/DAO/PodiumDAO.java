@@ -128,9 +128,9 @@ public class PodiumDAO {
 			PreparedStatement psSQL = c
 					.prepareStatement("insert into podium(name_competition, id_competitor1, id_competitor2,id_competitor3)  values (?, ?,?,?)");
 			psSQL.setString(1, competition);
-			psSQL.setInt(2, winner.getId());
-			psSQL.setInt(3, second.getId());
-			psSQL.setInt(4, third.getId());
+			psSQL.setInt(2, 464);
+			psSQL.setInt(3, 465);
+			psSQL.setInt(4, 466);
 			psSQL.executeUpdate();
 			psSQL.close();
 			c.commit();

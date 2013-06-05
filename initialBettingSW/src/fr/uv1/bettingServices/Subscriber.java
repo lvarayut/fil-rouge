@@ -65,7 +65,13 @@ public class Subscriber extends Person implements Serializable {
 		this.setPassword(new RandPass().getPass(Constraints.LONG_PWD));
 	}
 
-	
+	public String convertBirthdayToString(){
+		String strBD = "";
+		strBD += this.getBirthdate().get(Calendar.YEAR)+"-";
+		strBD += this.getBirthdate().get(Calendar.MONTH)+"-";
+		strBD += this.getBirthdate().get(Calendar.DAY_OF_MONTH);
+		return strBD;
+	}
 
 	public String getPassword() {
 		return password;

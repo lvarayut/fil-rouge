@@ -38,11 +38,14 @@ public class BetPodium extends Bet {
 	 * @throws BadParametersException
 	 * @throws CompetitionException
 	 */
-	public void settlePodium(String competition, PCompetitor winner,
-			PCompetitor second, PCompetitor third, String managerPwd)
+	public void settlePodium(String competition, Competitor winner,
+			Competitor second, Competitor third, String managerPwd)
 			throws AuthenticationException, SQLException,
 			ExistingCompetitionException, BadParametersException,
 			CompetitionException {
+		PCompetitor win = (PCompetitor)winner;
+		PCompetitor sec = (PCompetitor)second;
+		PCompetitor thi = (PCompetitor)third;
 		// Authenticate manager
 		BettingSoft bs = new BettingSoft(managerPwd);
 		bs.authenticateMngr(managerPwd);		
@@ -54,9 +57,9 @@ public class BetPodium extends Bet {
 					"The competition doesn't exist");
 		// Exist Competitor
 		CompetitorDAO cTorD = new CompetitorDAO();
-		if (!cTorD.isExistCompetitor(winner.getId())
-				|| !cTorD.isExistCompetitor(second.getId())
-				|| !cTorD.isExistCompetitor(third.getId()))
+		if (!cTorD.isExistCompetitor(win.getId())
+				|| !cTorD.isExistCompetitor(sec.getId())
+				|| !cTorD.isExistCompetitor(thi.getId()))
 			throw new CompetitionException("The competitor doesn't exist");
 		
 		//verify if two competitors in the podium have the same name
@@ -66,7 +69,7 @@ public class BetPodium extends Bet {
 			throw new CompetitionException("Names must be different");
 		
 		PodiumDAO pd = new PodiumDAO();
-		pd.settlePodiumToSubscriber(competition, winner, second, third);
+		pd.settlePodiumToSubscriber(competition, win, sec, thi);
 		
 
 	}
@@ -97,10 +100,12 @@ public class BetPodium extends Bet {
 	 * @throws ExistingSubscriberException 
 	 */
 	public void betOnPodium(long numberTokens, String competition,
-			PCompetitor winner, PCompetitor second, PCompetitor third,
+			Competitor winner, Competitor second, Competitor third,
 			String username, String pwdSubs) throws AuthenticationException,
 			SQLException, BadParametersException, CompetitionException, SubscriberException, ExistingSubscriberException {
-		
+		PCompetitor win = (PCompetitor)winner;
+		PCompetitor sec = (PCompetitor)second;
+		PCompetitor thi = (PCompetitor)third;
 		// Authenticate subscriber
 		Subscriber.authenticateSubscriber(pwdSubs);
 		
@@ -122,7 +127,7 @@ public class BetPodium extends Bet {
 		
 		try {
 			// Bet Podium
-			bd.betPodium(numberTokens, competition, winner, second, third,
+			bd.betPodium(numberTokens, competition, win, sec, thi,
 					username);
 			// The number of tokens of the subscriber is debited.
 			BettingSoft bs = new BettingSoft("password");

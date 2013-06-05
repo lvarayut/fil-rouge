@@ -185,7 +185,7 @@ public class SubscriberDAO {
 		DBConnection db = new DBConnection();
 		Connection c = db.connect();
 		PreparedStatement psSQL = c
-				.prepareStatement("select number_token from subscriber where username=?");
+				.prepareStatement("select number_token from subscriber where pseudo=?");
 		psSQL.setString(1, a_username);
 		ResultSet resultSet = psSQL.executeQuery();
 		while (resultSet.next()) {

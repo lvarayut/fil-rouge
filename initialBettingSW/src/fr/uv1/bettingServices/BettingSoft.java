@@ -101,20 +101,20 @@ public class BettingSoft implements Betting {
 			String a_birthDay, String a_username, String a_managerPwd)
 			throws AuthenticationException, ExistingSubscriberException,
 			BadParametersException {
-		System.out.println("lastname" + a_name);
-		System.out.println("firstname" + a_firstName);
-		System.out.println("username" + a_username);
-		System.out.println("birthday" + a_birthDay);
-		System.out.println("ManagerPassword" + a_managerPwd);
-		String query = "";
+		SubscriberDAO sd = new SubscriberDAO();
+		System.out.println("lastname : " + a_name);
+		System.out.println("firstname: " + a_firstName);
+		System.out.println("username : " + a_username);
+		System.out.println("birthday : " + a_birthDay);
+		System.out.println("ManagerPassword : " + a_managerPwd);
 		String a_password = "";
 		int birthDate = 0;
 		int birthMonth = 0;
 		int birthYear = 0;
 		String[] birth = a_birthDay.split("-");
-		birthDate = Integer.parseInt(birth[0]);
+		birthYear = Integer.parseInt(birth[0]);
 		birthMonth = Integer.parseInt(birth[1]);
-		birthYear = Integer.parseInt(birth[2]);
+		birthDate = Integer.parseInt(birth[2]);
 		Calendar birthDay = Calendar.getInstance();
 		birthDay.set(birthYear, birthMonth, birthDate);
 		// Authenticate manager
@@ -125,9 +125,14 @@ public class BettingSoft implements Betting {
 			throw new BadParametersException();
 		// Look if a subscriber with the same username already exists
 		Subscriber s = searchSubscriberByUsername(a_username);
-		if (s != null)
-			throw new ExistingSubscriberException(
-					"A subscriber with the same username already exists");
+		try {
+			if (s != null || sd.isExistSubscriber(a_username))
+				throw new ExistingSubscriberException(
+						"A subscriber with the same username already exists");
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		// Creates the new subscriber
 		if (verifyAge(birthDay)) {
 			s = new Subscriber(a_name, a_firstName, a_username, birthDay);
@@ -135,8 +140,7 @@ public class BettingSoft implements Betting {
 			subscribers.add(s);
 			a_password = s.getPassword();
 			// Connect to data base
-			SubscriberDAO sd = new SubscriberDAO();
-			try {
+						try {
 				sd.addSubscriber(s);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -166,23 +170,34 @@ public class BettingSoft implements Betting {
 		return age >= 18;
 	}
 
-	public boolean verifyDuplicateCompetitors(Collection<Competitor> competitors) {
-		boolean duplicate = false;
-		PCompetitor[] cTor = new PCompetitor[3];
-		Iterator iterator = competitors.iterator();
-		int i = 0;
+	/** Verify the three competitors to participate 
+	 * @param competitors Collection of competitors
+	 * @return Whether the competitors are duplicate each other or not
+	 * @throws SQLException 
+	 */
+	public boolean verifyDuplicateCompetitors(Collection<Competitor> competitors) throws SQLException {
+		CompetitorDAO cd = new CompetitorDAO();
+		Iterator<Competitor> iterator = competitors.iterator();
 		while (iterator.hasNext()) {
-			cTor[i] = (PCompetitor) iterator.next();
-			i++;
+			PCompetitor cTor = (PCompetitor)iterator.next();
+			if(cd.isExistCompetitor(cTor.getId()))
+				return true;
 		}
-		for (int j = 0; j < cTor.length; j++) {
-			for (int k = 0; k < cTor.length; k++) {
-				if (cTor[j].getFirstname().equals(cTor[k].getFirstname())
-						&& cTor[j].getLastname().equals(cTor[k].getLastname())
-						&& cTor[j].getBirthdate() == cTor[k].getBirthdate())
-					return true;
-			}
-		}
+//		PCompetitor[] cTor = new PCompetitor[3];
+//		Iterator<Competitor> iterator = competitors.iterator();
+//		int i = 0;
+//		while (iterator.hasNext()) {
+//			cTor[i] = (PCompetitor) iterator.next();
+//			i++;
+//		}
+//		for (int j = 0; j < cTor.length; j++) {
+//			for (int k = 0; k < cTor.length; k++) {
+//				if (cTor[j].getFirstname().equals(cTor[k].getFirstname())
+//						&& cTor[j].getLastname().equals(cTor[k].getLastname())
+//						&& cTor[j].getBirthdate() == cTor[k].getBirthdate())
+//					return true;
+//			}
+//		}
 		return false;
 	}
 
@@ -317,7 +332,7 @@ public class BettingSoft implements Betting {
 	}
 
 	/**
-	 * Add competitors to participate competitions
+	 * Add competitors to participate a competition
 	 * 
 	 * @param a_competition
 	 *            Competition's name
@@ -345,7 +360,7 @@ public class BettingSoft implements Betting {
 			throw new BadParametersException();
 		}
 		// Check the existing competition
-		if (Competition.existCompetition(a_competition.getName())) {
+		if (!Competition.existCompetition(a_competition.getName())) {
 			throw new ExistingCompetitionException();
 		}
 		;
@@ -354,12 +369,11 @@ public class BettingSoft implements Betting {
 			throw new CompetitionException("Invalide end date");
 		}
 		// Check the existing competitor
-		Iterator iterator = competitors.iterator();
+		Iterator<Competitor> iterator = competitors.iterator();
 		while (iterator.hasNext()) {
-			// Month's index starts from 0
 			PCompetitor cTor = (PCompetitor) iterator.next();
-			if (PCompetitor.existCompetitor(cTor.getId()))
-				throw new ExistingCompetitorException();
+			if (!PCompetitor.existCompetitor(cTor.getId()))
+				throw new ExistingCompetitorException("Please create the competitor first");
 		}
 
 		CompetitionDAO cd = new CompetitionDAO();
@@ -390,25 +404,27 @@ public class BettingSoft implements Betting {
 	 *             invalid parameters
 	 * @throws CompetitionException
 	 *             The end date is invalid
+	 * @throws SQLException 
 	 */
 	public void addCompetition(String a_competition, Calendar a_closingDate,
 			Collection<Competitor> competitors, String a_managerPwd)
 			throws AuthenticationException, ExistingCompetitionException,
-			BadParametersException, CompetitionException {
+			BadParametersException, CompetitionException, SQLException {
 		// Authenticate manager
 		authenticateMngr(a_managerPwd);
-		// Check whether the end date is correct or not
-		if (a_closingDate.before(Calendar.getInstance())
-				|| competitors.size() < 2
-				|| verifyDuplicateCompetitors(competitors)) {
-			throw new CompetitionException("Invalide end date");
-		}
-		// Check whether the competition is existed or not
-		CompetitionDAO cd = new CompetitionDAO();
 		// Check parameters
 		if (a_closingDate == null || competitors == null
 				|| a_competition == null || a_managerPwd == null)
 			throw new BadParametersException();
+		// Check whether the end date is correct or not
+		if (a_closingDate.before(Calendar.getInstance())
+				|| competitors.size() < 2){
+				//|| verifyDuplicateCompetitors(competitors)) {
+			throw new CompetitionException(
+					"This error is shown because of serveral reasons:\n1. Invalide end date\n2.Number of competitors is less than two\n3.Competitors are already exist in the competition");
+		}
+		// Check whether the competition is existed or not
+		CompetitionDAO cd = new CompetitionDAO();
 		try {
 			if (cd.isExistCompetition(a_competition))
 				throw new ExistingCompetitionException();
@@ -422,7 +438,7 @@ public class BettingSoft implements Betting {
 		try {
 			cd.addCompetition(comTion);
 			// Add new competitor into participate table DB
-			addCompetitor(comTion, competitors, a_managerPwd);
+			//addCompetitor(comTion, competitors, a_managerPwd);
 			// Verify whether the competitors exist in Competitor DB or not
 		} catch (Exception e) {// SQLException e) {
 			e.printStackTrace();
@@ -443,7 +459,7 @@ public class BettingSoft implements Betting {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Iterator iterator = allCTion.iterator();
+		Iterator<Competition> iterator = allCTion.iterator();
 		while (iterator.hasNext()) {
 			// Month's index starts from 0
 			Competition cTion = (Competition) iterator.next();
@@ -474,7 +490,7 @@ public class BettingSoft implements Betting {
 	 * @throws BadParametersException
 	 *             The number of tokens lesser than 0
 	 * @throws SQLException
-	 * @throws ExistingSubscriberException 
+	 * @throws ExistingSubscriberException
 	 */
 	public void creditSubscriber(String username, long numberTokens,
 			String managerPwd) throws AuthenticationException,
@@ -539,7 +555,7 @@ public class BettingSoft implements Betting {
 		}
 		// Enough number of token
 		try {
-			if (sd.getNumberOfToken(username) > 0)
+			if (sd.getNumberOfToken(username) < 0)
 				throw new SubscriberException(
 						"Subsciber doesn't have enough tokens");
 		} catch (SQLException e) {
